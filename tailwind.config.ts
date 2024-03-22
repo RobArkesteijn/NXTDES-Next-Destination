@@ -4,6 +4,10 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 export default <Partial<Config>>{
   theme: {
     extend: {
+      boxShadow: {
+        'lighting-blue': '0 0 100px 100px #dbedf2',
+        'lighting-blue-dark': '0 0 100px 100px #2a414f',
+      },
       colors: {
         shark: {
           50: '#f5f6f6',
@@ -36,6 +40,9 @@ export default <Partial<Config>>{
       fontFamily: {
         thermite: ['Thermite', 'Thermite fallback', ...defaultTheme.fontFamily.sans],
         brixton: ['Brixton', 'Brixton fallback', ...defaultTheme.fontFamily.sans],
+      },
+      transitionProperty: {
+        cursor: 'opacity, width, height, background-color, box-shadow',
       },
     },
   },

@@ -8,6 +8,8 @@
     <Body>
       <DefaultHeader />
       <UMain>
+        <CursorFollower />
+
         <slot />
       </UMain>
       <DefaultFooter />
