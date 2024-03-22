@@ -1,23 +1,26 @@
 name: CI
-on: [push]
+on:
+  pull_request:
+    branches:
+      - '*'
 jobs:
   lint:
     name: Lint project code
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Install pnpm
-        uses: pnpm/action-setup@v3
+      - uses: actions/checkout@v4
+      - name: Install bun
+        uses: oven-sh/setup-bun@v1
         with:
-          version: latest
+          bun-version: latest
       - name: Use Node.js 20.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20.x
-          cache: 'pnpm'
-      - name: install
-        run: pnpm install
+          cache: 'bun'
+      - name: Install Dependencies
+        run: bun install --frozen-lockfile
       - name: Build so required ./nuxt/tsconfig.json is created
-        run: pnpm nuxi build
+        run: bun nuxi build
       - name: lint
-        run: pnpm lint
+        run: bun lint
