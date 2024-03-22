@@ -4,7 +4,7 @@
 
 ## Setup
 
-Copy **.env** and create a **.env.local**.
+Copy `.env` and create a `.env.local`.
 Make sure to add the correct values for the env variables.
 
 Make sure to install the dependencies:
