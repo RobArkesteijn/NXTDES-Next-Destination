@@ -5,9 +5,9 @@
 @font-face {
   font-family: 'Thermite';
   font-display: swap;
-  src: url('fonts/Thermite.ttf') format('ttf');
+  src: url('fonts/Thermite.ttf') format('ttf'),
     /* opentype file seems to gives errors */
-    /* url('fonts/Thermite.otf') format('opentype'); */
+    url('fonts/Thermite.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
@@ -50,286 +50,71 @@
     }
   }
 
-  /* @TODO: Shapedivider needs a refactor */
-  .shapedivider-top {
+  .shapedivider {
     overflow: hidden;
     position: relative;
-  }
 
-  .shapedivider-top::before {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: -1px;
-    right: -1px;
-    top: -1px;
-    z-index: 3;
-    pointer-events: none;
-    background-repeat: no-repeat;
-    background-size: 100% 30px;
-    background-position: 50% 0%;
-    background-image: url('/patterns/shape-divider-top-light.svg');
-  }
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: -1px;
+      right: -1px;
+      top: -1px;
+      z-index: 3;
+      pointer-events: none;
+      background-repeat: no-repeat;
+      background-size: 100% 30px;
 
-  .shapedivider-top::before {
-    @apply dark:bg-[url('/patterns/shape-divider-top-dark.svg')]
-  }
+      @media (min-width: 768px) {
+        background-size: 100% 50px;
+      }
 
-  @media (min-width: 768px) {
-    .shapedivider-top::before {
-      background-size: 100% 50px;
+      @media (min-width: 1024px) {
+        background-size: 100% 70px;
+        bottom: -0.1vw;
+        left: -0.1vw;
+        right: -0.1vw;
+        top: -0.1vw;
+      }
+
+      @media (min-width: 2100px) {
+        background-size: 100% calc(2vw + 70px);
+      }
+    }
+
+    &--top::before {
       background-position: 50% 0%;
+      background-image: url('/patterns/shape-divider-top-light.svg');
+      @apply dark:bg-[url('/patterns/shape-divider-top-dark.svg')];
     }
-  }
 
-  @media (min-width: 1024px) {
-    .shapedivider-top::before {
-      bottom: -0.1vw;
-      left: -0.1vw;
-      right: -0.1vw;
-      top: -0.1vw;
-      background-size: 100% 70px;
-      background-position: 50% 0%;
-    }
-  }
-  @media (min-width: 2100px) {
-    .shapedivider-top::before {
-      background-size: 100% calc(2vw + 70px);
-    }
-  }
-
-  .shapedivider-bottom {
-    overflow: hidden;
-    position: relative;
-  }
-
-  .shapedivider-bottom::before {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: -1px;
-    right: -1px;
-    top: -1px;
-    z-index: 3;
-    pointer-events: none;
-    background-repeat: no-repeat;
-    background-size: 100% 30px;
-    background-position: 50% 100%;
-    background-image: url('/patterns/shape-divider-bottom-light.svg');
-  }
-
-  .shapedivider-bottom::before {
-    @apply dark:bg-[url('/patterns/shape-divider-bottom-dark.svg')]
-  }
-
-  @media (min-width: 768px) {
-    .shapedivider-bottom::before {
-      background-size: 100% 50px;
+    &--bottom::before {
       background-position: 50% 100%;
+      background-image: url('/patterns/shape-divider-bottom-light.svg');
+      @apply dark:bg-[url('/patterns/shape-divider-bottom-dark.svg')];
     }
-  }
 
-  @media (min-width: 1024px) {
-    .shapedivider-bottom::before {
-      bottom: -0.1vw;
-      left: -0.1vw;
-      right: -0.1vw;
-      top: -0.1vw;
-      background-size: 100% 70px;
-      background-position: 50% 100%;
-    }
-  }
-  @media (min-width: 2100px) {
-    .shapedivider-bottom::before {
-      background-size: 100% calc(2vw + 70px);
-    }
-  }
-
-  .shapedivider-bottom-blue {
-    overflow: hidden;
-    position: relative;
-  }
-
-  .shapedivider-bottom-blue::before {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: -1px;
-    right: -1px;
-    top: -1px;
-    z-index: 3;
-    pointer-events: none;
-    background-repeat: no-repeat;
-    background-size: 100% 30px;
-    background-position: 50% 100%;
-    background-image: url('/patterns/shape-divider-bottom-light-blue.svg');
-  }
-
-  .shapedivider-bottom-blue::before {
-    @apply dark:bg-[url('/patterns/shape-divider-bottom-dark-blue.svg')]
-  }
-
-  @media (min-width: 768px) {
-    .shapedivider-bottom-blue::before {
-      background-size: 100% 50px;
-      background-position: 50% 100%;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .shapedivider-bottom-blue::before {
-      bottom: -0.1vw;
-      left: -0.1vw;
-      right: -0.1vw;
-      top: -0.1vw;
-      background-size: 100% 70px;
-      background-position: 50% 100%;
-    }
-  }
-  @media (min-width: 2100px) {
-    .shapedivider-bottom-blue::before {
-      background-size: 100% calc(2vw + 70px);
-    }
-  }
-
-  .shapedivider-top-blue {
-    overflow: hidden;
-    position: relative;
-  }
-
-  .shapedivider-top-blue::before {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: -1px;
-    right: -1px;
-    top: -1px;
-    z-index: 3;
-    pointer-events: none;
-    background-repeat: no-repeat;
-    background-size: 100% 30px;
-    background-position: 50% 0%;
-    background-image: url('/patterns/shape-divider-top-light-blue.svg');
-  }
-
-  .shapedivider-top-blue::before {
-    @apply dark:bg-[url('/patterns/shape-divider-top-dark-blue.svg')]
-  }
-
-  @media (min-width: 768px) {
-    .shapedivider-top-blue::before {
-      background-size: 100% 50px;
-      background-position: 50% 0%;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .shapedivider-top-blue::before {
-      bottom: -0.1vw;
-      left: -0.1vw;
-      right: -0.1vw;
-      top: -0.1vw;
-      background-size: 100% 70px;
-      background-position: 50% 0%;
-    }
-  }
-  @media (min-width: 2100px) {
-    .shapedivider-top-blue::before {
-      background-size: 100% calc(2vw + 70px);
-    }
-  }
-  
-  .shapedivider-left {
-    overflow: hidden;
-    position: relative;
-  }
-
-  .shapedivider-left::before {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: -1px;
-    right: -1px;
-    top: -1px;
-    z-index: 3;
-    pointer-events: none;
-    background-repeat: no-repeat;
-    background-size: 30px 100%;
-    background-position: 0% 0%;
-    background-image: url('/patterns/shape-divider-left-light.svg');
-  }
-
-  .shapedivider-left::before {
-    @apply dark:bg-[url('/patterns/shape-divider-left-dark.svg')]
-  }
-
-  @media (min-width: 768px) {
-    .shapedivider-left::before {
-      background-size: 50px 100%;
+    &--left::before {
       background-position: 0% 0%;
+      background-image: url('/patterns/shape-divider-left-light.svg');
+      @apply dark:bg-[url('/patterns/shape-divider-left-dark.svg')];
     }
-  }
 
-  @media (min-width: 1024px) {
-    .shapedivider-left::before {
-      bottom: -0.1vw;
-      left: -0.1vw;
-      right: -0.1vw;
-      top: -0.1vw;
-      background-size: 70px 100%;
-      background-position: 0% 0%;
-    }
-  }
-  @media (min-width: 2100px) {
-    .shapedivider-left::before {
-      background-size: 100% calc(2vw + 70px);
-    }
-  }
-  
-  .shapedivider-right {
-    overflow: hidden;
-    position: relative;
-  }
-
-  .shapedivider-right::before {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: -1px;
-    right: -1px;
-    top: -1px;
-    z-index: 3;
-    pointer-events: none;
-    background-repeat: no-repeat;
-    background-size: 30px 100%;
-    background-position: 100% 0%;
-    background-image: url('/patterns/shape-divider-right-light.svg');
-  }
-
-  .shapedivider-right::before {
-    @apply dark:bg-[url('/patterns/shape-divider-right-dark.svg')]
-  }
-
-  @media (min-width: 768px) {
-    .shapedivider-right::before {
-      background-size: 50px 100%;
+    &--right::before {
       background-position: 100% 0%;
+      background-image: url('/patterns/shape-divider-right-light.svg');
+      @apply dark:bg-[url('/patterns/shape-divider-right-dark.svg')];
     }
-  }
 
-  @media (min-width: 1024px) {
-    .shapedivider-right::before {
-      bottom: -0.1vw;
-      left: -0.1vw;
-      right: -0.1vw;
-      top: -0.1vw;
-      background-size: 70px 100%;
-      background-position: 100% 0%;
+    &--bottom-blue::before {
+      background-image: url('/patterns/shape-divider-bottom-light-blue.svg');
+      @apply dark:bg-[url('/patterns/shape-divider-bottom-dark-blue.svg')];
+    }
+    
+    &--top-blue::before {
+      background-image: url('/patterns/shape-divider-top-light-blue.svg');
+      @apply dark:bg-[url('/patterns/shape-divider-top-dark-blue.svg')];
     }
   }
-  @media (min-width: 2100px) {
-    .shapedivider-right::before {
-      background-size: 100% calc(2vw + 70px);
-    }
-  } 
 }

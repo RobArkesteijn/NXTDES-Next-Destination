@@ -4,7 +4,7 @@
     title="Whitewashed cliffs and blue domes"
     description="Santorini, a Greek paradise in the Aegean Sea, enchants with its iconic whitewashed architecture, perched atop dramatic cliffs. Famous for breathtaking sunsets, crystal-clear waters, and vibrant local culture, it beckons travelers to explore its timeless charm and discover the allure of this idyllic island escape."
     :ui="{
-      wrapper: 'shapedivider-top-blue',
+      wrapper: 'shapedivider shapedivider--top shapedivider--top-blue',
     }"
   >
     <NuxtLink to="/countries/greence" class="image-wrapper">

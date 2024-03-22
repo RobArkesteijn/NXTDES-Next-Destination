@@ -1,5 +1,5 @@
 <template>
-  <div class="shapedivider-bottom">
+  <div class="shapedivider shapedivider--bottom">
     <ULandingHero
       :style="backgroundStyles"
       class="bg-no-repeat bg-cover h-[calc(100dvh-var(--header-height)-136px)] sm:h-[calc(100dvh-var(--header-height)-144px)] hero-gradient"

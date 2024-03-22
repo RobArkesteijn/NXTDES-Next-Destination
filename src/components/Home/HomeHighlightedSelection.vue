@@ -7,7 +7,7 @@
     align="left"
     class=""
     :ui="{
-      wrapper: 'bg-boston-blue-100 dark:bg-boston-blue-900 shapedivider-top',
+      wrapper: 'bg-boston-blue-100 dark:bg-boston-blue-900 shapedivider shapedivider--top',
     }"
   >
     <div class="flex flex-col gap-6">
