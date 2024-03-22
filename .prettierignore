@@ -1,0 +1,6 @@
+.nuxt/
+.lighthouseci/
+openapi/
+src/config/redirects.js
+src/static/**
+src/api/**
