@@ -19,7 +19,5 @@ jobs:
           node-version: 20.x
       - name: Install Dependencies
         run: bun install
-      - name: Build so required ./nuxt/tsconfig.json is created
-        run: bun nuxi build
       - name: lint
         run: bun lint
