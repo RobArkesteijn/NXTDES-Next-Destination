@@ -5,9 +5,9 @@
 @font-face {
   font-family: 'Thermite';
   font-display: swap;
-  src: url('fonts/Thermite.ttf') format('ttf'),
+  src: url('/fonts/Thermite.ttf') format('ttf'),
     /* opentype file seems to gives errors */
-    url('fonts/Thermite.otf') format('opentype');
+    url('/fonts/Thermite.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
@@ -105,6 +105,22 @@
       background-position: 100% 0%;
       background-image: url('/patterns/shape-divider-right-light.svg');
       @apply dark:bg-[url('/patterns/shape-divider-right-dark.svg')];
+    }
+
+    &--right::before, &--left::before {
+      background-size: 30px 100%;
+
+      @media (min-width: 768px) {
+        background-size: 50px 100%;
+      }
+
+      @media (min-width: 1024px) {
+        background-size: 70px 100%;
+      }
+
+      @media (min-width: 2100px) {
+        background-size: calc(2vw + 70px) 100%;
+      }
     }
 
     &--bottom-blue::before {

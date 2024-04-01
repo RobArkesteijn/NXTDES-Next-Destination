@@ -2,7 +2,7 @@
   <div class="shapedivider shapedivider--bottom">
     <ULandingHero
       :style="backgroundStyles"
-      class="bg-no-repeat bg-cover h-[calc(100dvh-var(--header-height)-136px)] sm:h-[calc(100dvh-var(--header-height)-144px)] hero-gradient"
+      class="bg-no-repeat bg-cover h-[calc(100dvh-100px)] md:h-[calc(100dvh-132px)] lg:h-[calc(100dvh-144px)] hero-gradient"
     >
       <template #headline>
         <LogoWhite class="h-40 md:h-60 lg:h-80 mix-blend-difference z-10" />
@@ -14,9 +14,16 @@
 <script setup lang="ts">
 import LogoWhite from '~/assets/icons/logo-white.svg';
 
+const props = defineProps({
+  heroImage: {
+    type: Object as PropType<any>,
+    required: true,
+  },
+});
+
 const img = useImage();
 const backgroundStyles = computed(() => {
-  const imgUrl = img('/lanzarote.webp');
+  const imgUrl = img(`${props.heroImage?.data?.attributes?.url}`);
   return { backgroundImage: `url('${imgUrl}')` };
 });
 </script>

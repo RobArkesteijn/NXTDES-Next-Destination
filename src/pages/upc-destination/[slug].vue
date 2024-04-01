@@ -1,9 +1,10 @@
 <template>
-  <h1>Upc Destinations</h1>
+  <!-- <CountryHero :content="content" /> -->
+  <h1>UPC. Destinations</h1>
 </template>
 
 <script setup lang="ts">
-// @todo: Reimplement this when starting on the upc-destinations pages
+// @TODO: Add when starting with these pages
 // const route = useRoute();
 // const { fullPath } = route;
 // const { slug } = route.params;
@@ -20,6 +21,6 @@
 //     return showError('Unknown error');
 //   }
 // });
-</script>
 
-<style scoped></style>
+// const content = computed(() => data.value?.data[0]?.attributes);
+</script>

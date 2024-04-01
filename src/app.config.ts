@@ -15,8 +15,11 @@ export default defineAppConfig({
       light: 'material-symbols:light-mode',
       dynamic: true,
     },
+    avatar: {
+      rounded: 'object-cover',
+    },
     header: {
-      wrapper: 'lg:mb-0 lg:border-0',
+      wrapper: 'lg:mb-0 lg:border-0 fixed w-full bg-background/50',
       popover: {
         links: {
           active: 'dark:bg-gray-950/50',
@@ -24,7 +27,7 @@ export default defineAppConfig({
         },
       },
       panel: {
-        wrapper: 'bg-boston-blue-100 dark:bg-boston-blue-900',
+        wrapper: 'h-[calc(100vh-var(--header-height))] top-[var(--header-height)]',
       },
       button: {
         icon: {
@@ -34,12 +37,19 @@ export default defineAppConfig({
       },
       links: {
         wrapper: 'gap-x-12',
-        base: 'font-thermite uppercase items-stretch',
-        default: {
-          popover: {
-            ui: {
-              // width: 'w-full translate-x-[-8px]',
-            },
+        base: 'font-thermite uppercase items-stretch drop-shadow',
+      },
+    },
+    blog: {
+      post: {
+        wrapper: 'h-screen gap-y-4 sm:gap-y-6 lg:gap-y-8',
+        image: {
+          wrapper: 'h-full ring-0 rounded-none shapedivider shapedivider--bottom',
+        },
+        container: 'max-w-7xl px-4 sm:px-6 lg:px-8 pb-4 sm:pb-6 lg:pb-8 mx-auto',
+        authors: {
+          avatar: {
+            size: 'md',
           },
         },
       },
