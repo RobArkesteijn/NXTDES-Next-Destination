@@ -39,6 +39,12 @@ export default defineNuxtConfig({
     dir: 'assets/images',
     formats: ['webp'],
     quality: 80,
+    strapi: {
+      baseURL: process.env.STRAPI_BASE_URL,
+    },
+  },
+  mapbox: {
+    accessToken: process.env.MAPBOX_ACCESS_TOKEN,
   },
   modules: [
     '@nuxtjs/eslint-module',
@@ -47,6 +53,7 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxtjs/strapi',
     '@nuxt/image',
+    'nuxt-mapbox',
   ],
   plugins: [{ src: '@/plugins/gsap', mode: 'client' }],
   srcDir: './src',

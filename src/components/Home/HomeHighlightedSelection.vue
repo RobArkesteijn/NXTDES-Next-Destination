@@ -1,34 +1,27 @@
 <template>
   <ULandingSection
-    headline="Higlighted"
-    title="Broughten Your Horizon"
-    description="Embrace the thrill of the unknown. Dive into vibrant cultures, savor exotic flavors, and create memories that linger long after you return. This is your invitation to step outside your comfort zone, uncover hidden gems, and immerse yourself in the rich tapestry of global wonders. With each new destination, you're not just traveling; you're unlocking a world of unforgettable experiences and stories waiting to be written."
+    :headline="highlightedHeadline"
+    :title="highlightedTitle"
+    :description="highlightedDescription"
     :links="buttonLinks"
     align="left"
-    class=""
     :ui="{
       wrapper: 'bg-boston-blue-100 dark:bg-boston-blue-900 shapedivider shapedivider--top',
     }"
   >
     <div class="flex flex-col gap-6">
-      <NuxtLink to="/countries/vietnam" class="image-wrapper">
-        <NuxtImg src="/ho_chi_minh_city.webp" alt="" class="image" />
+      <NuxtLink
+        v-for="item in highlightedCountries"
+        :to="`/countries/${item.country.toLowerCase()}`"
+        class="image-wrapper"
+      >
+        <NuxtImg
+          :src="item.image.data.attributes.url"
+          :alt="item.image.data.attributes.alternativeText"
+          class="image"
+        />
         <span class="image-card-content">
-          <h3 class="image-card-text">Vietnam</h3>
-          <UIcon name="i-mdi-arrow-right-circle" class="image-card-text" />
-        </span>
-      </NuxtLink>
-      <NuxtLink to="/countries/monaco" class="image-wrapper">
-        <NuxtImg src="/monaco.webp" alt="" class="image" />
-        <span class="image-card-content">
-          <h3 class="image-card-text">Monaco</h3>
-          <UIcon name="i-mdi-arrow-right-circle" class="image-card-text" />
-        </span>
-      </NuxtLink>
-      <NuxtLink to="/countries/austria" class="image-wrapper">
-        <NuxtImg src="/austria.webp" alt="" class="image" />
-        <span class="image-card-content">
-          <h3 class="image-card-text">Austria</h3>
+          <h3 class="image-card-text">{{ item.country }}</h3>
           <UIcon name="i-mdi-arrow-right-circle" class="image-card-text" />
         </span>
       </NuxtLink>
@@ -37,11 +30,30 @@
 </template>
 
 <script setup lang="ts">
+defineProps({
+  highlightedHeadline: {
+    type: String as PropType<string>,
+    default: 'Higlighted',
+  },
+  highlightedTitle: {
+    type: String as PropType<string>,
+    default: 'Broughten Your Horizon',
+  },
+  highlightedDescription: {
+    type: String as PropType<string>,
+    default: '',
+  },
+  highlightedCountries: {
+    type: Array as PropType<any[]>,
+    default: [],
+  },
+});
+
 const buttonLinks: any[] = [
   {
     label: 'Explore Destinations',
     to: '/countries',
-    color: 'gray',
+    color: 'primary',
     'trailing-icon': 'i-heroicons-arrow-right',
     size: 'lg',
   },

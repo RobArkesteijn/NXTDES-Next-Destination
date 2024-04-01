@@ -8,3 +8,16 @@
     }"
   />
 </template>
+
+<script setup lang="ts">
+defineProps({
+  introTitle: {
+    type: String as PropType<string>,
+    required: true,
+  },
+  introDescription: {
+    type: String as PropType<string>,
+    required: true,
+  },
+});
+</script>
