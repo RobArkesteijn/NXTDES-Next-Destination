@@ -1,5 +1,6 @@
 <template>
   <CountryHero :content="content" />
+  <CountryAttractions :attractions="content.attractions" />
 </template>
 
 <script setup lang="ts">
@@ -11,7 +12,14 @@ const { data } = await useAsyncData(fullPath, async () => {
   const { find } = useStrapi();
   try {
     const response = await find('countries', {
-      populate: '*',
+      populate: {
+        attractions: {
+          populate: '*',
+        },
+        hero_image: {
+          populate: '*',
+        },
+      },
       filters: { country: { $eqi: slug } },
     });
     return response;

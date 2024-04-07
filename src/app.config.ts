@@ -7,7 +7,7 @@ export default defineAppConfig({
         background: 'var(--color-gray-950)',
       },
       header: {
-        height: '10vh',
+        height: '90px',
       },
     },
     icons: {
@@ -37,21 +37,13 @@ export default defineAppConfig({
       },
       links: {
         wrapper: 'gap-x-12',
-        base: 'font-thermite uppercase items-stretch drop-shadow',
+        base: 'font-thermite uppercase items-stretch drop-shadow text-md',
       },
     },
     blog: {
-      post: {
-        wrapper: 'h-screen gap-y-4 sm:gap-y-6 lg:gap-y-8',
-        image: {
-          wrapper: 'h-full ring-0 rounded-none shapedivider shapedivider--bottom',
-        },
-        container: 'max-w-7xl px-4 sm:px-6 lg:px-8 pb-4 sm:pb-6 lg:pb-8 mx-auto',
-        authors: {
-          avatar: {
-            size: 'md',
-          },
-        },
+      list: {
+        wrapper:
+          'mt-[var(--header-height)] max-w-7xl p-4 sm:p-6 lg:p-8 md:grid md:grid-cols-2 md:mx-auto',
       },
     },
     navigation: {

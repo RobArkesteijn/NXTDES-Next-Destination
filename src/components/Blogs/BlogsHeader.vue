@@ -4,8 +4,9 @@
     :title="blogTitle"
     :description="blogDescription"
     :date="blogDate"
-    :authors="blogAuthors"
+    :authors="[blogAuthor]"
     :badge="{ label: blogLabel }"
+    :ui="ui"
   >
     <template #image>
       <NuxtImg
@@ -32,9 +33,9 @@ defineProps({
     type: String as PropType<string>,
     default: '',
   },
-  blogAuthors: {
-    type: Array as PropType<any[]>,
-    default: [],
+  blogAuthor: {
+    type: Object as PropType<any>,
+    default: () => {},
   },
   blogLabel: {
     type: String as PropType<string>,
@@ -45,6 +46,15 @@ defineProps({
     default: null,
   },
 });
+
+const ui = {
+  wrapper: 'h-screen gap-y-4 sm:gap-y-6 lg:gap-y-8',
+  image: {
+    wrapper: 'h-full ring-0 rounded-none shapedivider shapedivider--bottom',
+    base: '',
+  },
+  container: 'max-w-7xl px-4 sm:px-6 lg:px-8 pb-4 sm:pb-6 lg:pb-8 mx-auto',
+};
 </script>
 
 <style scoped lang="postcss">

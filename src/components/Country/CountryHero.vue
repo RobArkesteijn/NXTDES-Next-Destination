@@ -1,18 +1,18 @@
 <template>
   <div class="flex flex-col-reverse lg:flex-row h-[100vh]">
     <div class="w-full lg:w-[45%] lg:mt-auto p-4 lg:p-8 flex flex-col gap-2 md:gap-4 lg:gap-6">
-      <h2
-        v-if="heroTitle"
-        class="text-2xl md:text-4xl lg:text-6xl font-bold text-shark-950 dark:text-shark-50"
-      >
-        {{ heroTitle }}
-      </h2>
       <span class="flex gap-2 py-2 items-stretch justify-center lg:justify-start text-2xl">
         <UIcon :name="heroIcon" dynamic />
         <h1 class="text-shark-950 dark:text-shark-50">
           {{ heroCountry }} ({{ heroCountryNative }})
         </h1>
       </span>
+      <h2
+        v-if="heroTitle"
+        class="text-2xl sm:text-4xl lg:text-6xl font-bold text-shark-950 dark:text-shark-50"
+      >
+        {{ heroTitle }}
+      </h2>
       <p v-if="heroDescription" class="md:text-xl lg:text-2xl">
         {{ heroDescription }}
       </p>

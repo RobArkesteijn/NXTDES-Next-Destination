@@ -43,10 +43,5 @@ const links = computed(() => [
     icon: 'i-material-symbols-map',
     to: '/interactive-map',
   },
-  {
-    label: 'Upc. Destinations',
-    icon: 'i-material-symbols-event-upcoming',
-    to: '/upc-destination',
-  },
 ]);
 </script>

@@ -1,5 +1,7 @@
 <template>
-  <div>Upcoming Destinations</div>
+  <div>
+    <h1>Attractions</h1>
+  </div>
 </template>
 
 <script setup lang="ts"></script>

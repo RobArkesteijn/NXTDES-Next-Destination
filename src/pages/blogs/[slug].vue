@@ -4,7 +4,7 @@
     :blog-description="content.description[0].children[0].text"
     :blog-image="content.hero_image"
     :blog-date="content.date"
-    :blog-authors="authors"
+    :blog-author="author"
     :blog-label="content.label"
   />
 </template>
@@ -19,7 +19,7 @@ const { data } = await useAsyncData(fullPath, async () => {
   try {
     const response = await find('blogs', {
       populate: {
-        authors: {
+        author: {
           populate: '*',
         },
         hero_image: {
@@ -34,16 +34,15 @@ const { data } = await useAsyncData(fullPath, async () => {
   }
 });
 
-const content = computed(() => data.value?.data[0].attributes);
-const authors = computed(() =>
-  content.value?.authors?.data?.map((author: any) => ({
-    name: author.attributes?.name,
-    avatar: {
-      src: author?.attributes?.avatar?.data?.attributes?.url,
-    },
-    to: `/authors/${author.attributes?.name.split(' ').join('-').toLowerCase()}`,
-  })),
-);
+const content = computed(() => data.value?.data[0]?.attributes);
+const author = computed(() => ({
+  name: content.value.author?.data?.attributes?.name,
+  avatar: {
+    src: content.value.author?.data?.attributes?.avatar?.data?.attributes?.url,
+    size: 'md',
+  },
+  to: `/authors/${content.value?.author?.data?.attributes?.name.split(' ').join('-').toLowerCase()}`,
+}));
 </script>
 
 <style scoped></style>
