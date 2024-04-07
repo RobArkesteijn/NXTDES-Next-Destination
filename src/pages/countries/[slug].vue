@@ -1,6 +1,7 @@
 <template>
   <CountryHero :content="content" />
-  <CountryAttractions :attractions="content.attractions" />
+  <CountryWeather />
+  <CountryAttractions v-if="content.attractions.length" :attractions="content.attractions" />
 </template>
 
 <script setup lang="ts">

@@ -56,6 +56,13 @@ export default defineNuxtConfig({
     'nuxt-mapbox',
   ],
   plugins: [{ src: '@/plugins/gsap', mode: 'client' }],
+  runtimeConfig: {
+    public: {
+      apiUrl: 'https://weatherapi-com.p.rapidapi.com',
+      xRapidApiHost: process.env.NUXT_X_RAPID_API_HOST,
+      xRapidApiKey: process.env.NUXT_X_RAPID_API_KEY,
+    },
+  },
   srcDir: './src',
   svgo: {
     defaultImport: 'component',

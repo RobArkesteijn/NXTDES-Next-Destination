@@ -9,7 +9,7 @@
       :links="buttonLink(index)"
       class="country-attractions__attraction"
       :ui="{
-        wrapper: 'py-8 sm:py-12',
+        wrapper: 'py-8 sm:py-12 ',
         container: 'gap-8 sm:gap-y-8 lg:gap-16',
       }"
     >
@@ -47,7 +47,7 @@ const buttonLink = (index: number): any[] => [
 
 <style scoped lang="postcss">
 .country-attractions {
-  @apply bg-boston-blue-100 dark:bg-boston-blue-900;
+  @apply bg-boston-blue-100 dark:bg-boston-blue-900 shapedivider shapedivider--top;
 
   &__title {
     @apply text-2xl sm:text-4xl lg:text-5xl text-shark-900 dark:text-white font-bold text-center pb-8 sm:pb-12 pt-16 sm:pt-24 px-4 sm:px-6 lg:px-8;
