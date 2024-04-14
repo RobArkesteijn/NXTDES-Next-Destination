@@ -50,12 +50,12 @@ const route = useRoute();
 const { slug } = route.params;
 const config = useRuntimeConfig();
 
-const { data } = await useFetch(`${config.public.apiUrl}/current.json`, {
+const { data } = await useFetch(`${config.public.weatherApiUrl}/current.json`, {
   method: 'GET',
   params: { q: slug },
   headers: {
     'X-RapidAPI-Key': config.public.xRapidApiKey,
-    'X-RapidAPI-Host': config.public.xRapidApiHost,
+    'X-RapidAPI-Host': config.public.xRapidWeatherApiHost,
   },
 });
 
@@ -74,7 +74,11 @@ const { getWeatherIcon, getGustPower } = useWeather();
   &__gust,
   &__humidity,
   &__uv {
-    @apply flex flex-col items-center gap-2;
+    @apply flex flex-col items-center gap-2 transition-transform drop-shadow-sm;
+
+    &:hover {
+      @apply scale-110;
+    }
   }
 
   &__weather-icon,

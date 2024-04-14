@@ -58,9 +58,11 @@ export default defineNuxtConfig({
   plugins: [{ src: '@/plugins/gsap', mode: 'client' }],
   runtimeConfig: {
     public: {
-      apiUrl: 'https://weatherapi-com.p.rapidapi.com',
-      xRapidApiHost: process.env.NUXT_X_RAPID_API_HOST,
-      xRapidApiKey: process.env.NUXT_X_RAPID_API_KEY,
+      weatherApiUrl: 'https://weatherapi-com.p.rapidapi.com',
+      currencyApiUrl: 'https://currency-converter18.p.rapidapi.com/api/v1',
+      xRapidWeatherApiHost: process.env.NUXT_PUBLIC_X_RAPID_WEATHER_API_HOST,
+      xRapidCurrencyApiHost: process.env.NUXT_PUBLIC_X_RAPID_CURRENCY_API_HOST,
+      xRapidApiKey: process.env.NUXT_PUBLIC_X_RAPID_WEATHER_API_KEY,
     },
   },
   srcDir: './src',
@@ -71,6 +73,6 @@ export default defineNuxtConfig({
     viewer: false,
   },
   ui: {
-    icons: ['material-symbols', 'mdi', 'twemoji'],
+    icons: ['material-symbols', 'mdi', 'twemoji', 'tabler'],
   },
 });

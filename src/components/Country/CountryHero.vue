@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col-reverse lg:flex-row h-[100vh]">
+  <div class="flex flex-col-reverse lg:flex-row h-[100vh] country-hero">
     <div
       class="w-full lg:w-[45%] lg:mt-auto p-4 sm:p-6 lg:p-8 flex flex-col gap-2 md:gap-4 lg:gap-6"
     >
@@ -40,7 +40,7 @@ const props = defineProps({
 const heroTitle = computed(() => props.content?.title);
 const heroCountry = computed(() => props.content?.country);
 const heroDescription = computed(() => props.content?.description);
-const heroIcon = computed(() => props.content?.icon);
+const heroIcon = computed(() => `i-twemoji-flag-${heroCountry.value.toLowerCase()}`);
 const heroCountryNative = computed(() => props.content?.country_native);
 const heroImageURL = computed(() => props.content?.hero_image?.data?.attributes?.url);
 const heroImageALT = computed(() => props.content?.hero_image?.data?.attributes?.alternativeText);

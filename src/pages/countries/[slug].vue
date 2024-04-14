@@ -1,6 +1,8 @@
 <template>
   <CountryHero :content="content" />
+  <CountryFlag v-if="content.flag_image.data" :flag-image="content.flag_image.data.attributes" />
   <CountryWeather />
+  <CurrencyCalculator :currency="content.currency ? content.currency : 'EUR'" />
   <CountryAttractions v-if="content.attractions.length" :attractions="content.attractions" />
 </template>
 
@@ -18,6 +20,9 @@ const { data } = await useAsyncData(fullPath, async () => {
           populate: '*',
         },
         hero_image: {
+          populate: '*',
+        },
+        flag_image: {
           populate: '*',
         },
       },

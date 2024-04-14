@@ -53,7 +53,7 @@ const ui = {
     wrapper: 'h-full ring-0 rounded-none shapedivider shapedivider--bottom',
     base: '',
   },
-  container: 'max-w-7xl px-4 sm:px-6 lg:px-8 pb-4 sm:pb-6 lg:pb-8 mx-auto',
+  container: 'max-full sm:max-w-7xl px-4 sm:px-6 lg:px-8 pb-4 sm:pb-6 lg:pb-8 mx-auto',
 };
 </script>
 

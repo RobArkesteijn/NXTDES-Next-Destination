@@ -5,14 +5,14 @@ export default function useWeather() {
     if (status === 'Sunny' || status === 'Clear') {
       return `clear-${dayStatus}`;
     }
-    if (status === 'Partly Cloudy') {
+    if (status === 'Partly Cloudy' || status === 'Partly cloudy') {
       return `partly-cloudy-${dayStatus}`;
     }
     if (status === 'Overcast') {
       return cloudsPercentage < 75 ? `overcast-${dayStatus}` : 'overcast';
     }
     if (status === 'Patchy rain nearby') {
-      return cloudsPercentage < 75 ? `overcast-${dayStatus}-drizzle` : 'overcast-drizzle';
+      return cloudsPercentage < 75 ? `partly-cloudy-${dayStatus}-rain` : 'drizzle';
     }
     if (status === 'Light drizzle') {
       return cloudsPercentage < 75 ? `drizzle-${dayStatus}` : 'drizzle';

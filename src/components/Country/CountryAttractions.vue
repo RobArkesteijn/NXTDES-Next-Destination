@@ -14,10 +14,10 @@
       }"
     >
       <NuxtImg
-        v-if="attraction.image.data[0]"
+        v-if="attraction.image.data"
         :src="attraction.image.data[0].attributes.url"
         :alt="attraction.image.data[0].attributes.alternativeText"
-        class="w-full rounded-md shadow-xl ring-1 ring-gray-300 dark:ring-gray-700"
+        class="w-full min-h-[300px] h-full object-cover rounded-md shadow-xl ring-1 ring-gray-300 dark:ring-gray-700"
       />
     </ULandingSection>
   </div>
@@ -47,8 +47,6 @@ const buttonLink = (index: number): any[] => [
 
 <style scoped lang="postcss">
 .country-attractions {
-  @apply bg-boston-blue-100 dark:bg-boston-blue-900 shapedivider shapedivider--top;
-
   &__title {
     @apply text-2xl sm:text-4xl lg:text-5xl text-shark-900 dark:text-white font-bold text-center pb-8 sm:pb-12 pt-16 sm:pt-24 px-4 sm:px-6 lg:px-8;
   }
