@@ -1,6 +1,6 @@
 # NXTDES | Next Destination
 
-<img width="1511" alt="Screenshot 2024-03-22 at 16 02 16" src="https://github.com/RobArkesteijn/NXTDES-Next-Destination/assets/106165450/17348585-e4db-4846-b10a-f808f41d1621">
+<img width="1512" alt="Screenshot 2024-04-14 at 13 54 43" src="https://github.com/RobArkesteijn/NXTDES-Next-Destination/assets/106165450/a95a64ae-7cf8-4dac-a6fd-812aed0f039e">
 
 ## Setup
 
