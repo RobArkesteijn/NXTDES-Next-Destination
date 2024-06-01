@@ -1,7 +1,8 @@
 <template>
   <div class="country-attractions">
     <!-- @TODO: Potential side image via strapi?  -->
-    <!-- <img src="/images/banana-leafs.webp" alt="" class="country-attractions__decorative-image" /> -->
+    <!-- <img src="/images/banana-leafs.webp" alt=""
+      class="country-attractions__decorative-image" /> -->
     <h2 class="country-attractions__title">Top Attractions of {{ slug }}</h2>
     <ULandingSection
       v-for="(attraction, index) in attractions"
@@ -45,8 +46,6 @@ const props = defineProps({
     default: () => [],
   },
 });
-
-console.log(props.attractions);
 </script>
 
 <style scoped lang="postcss">
