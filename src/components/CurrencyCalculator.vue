@@ -3,47 +3,43 @@
     <div class="currency-calculator">
       <div class="currency-calculator__wrapper">
         <h2 class="currency-calculator__title">Check the valuta of this country</h2>
-        <UForm class="currency-calculator__group">
+        <UForm
+          class="currency-calculator__group"
+          @submit="
+            calculateCurrencyAmount(selectedCurrency?.format!, currency, currencyAmountInputValue)
+          "
+        >
           <div class="currency-calculator__fields">
-            <USelectMenu
-              class="currency-calculator__select-menu"
-              v-model="selectedCurrencyValue"
-              value-attribute="abbreviation"
-              option-attribute="currency"
-              trailing
-              :options="currencies"
-              size="lg"
-            />
-            <UInput
-              class="currency-calculator__input-menu"
-              placeholder="Amount"
-              v-model="currencyAmountInputValue"
-              :step="0.01"
-              type="number"
-              size="lg"
-            >
-              <template #trailing>
-                <UIcon :name="selectedCurrency?.icon" />
-              </template>
-            </UInput>
+            <UFormGroup label="Currency" name="currency">
+              <USelectMenu
+                class="currency-calculator__select-menu"
+                v-model="selectedCurrencyValue"
+                value-attribute="format"
+                option-attribute="currency"
+                trailing
+                :options="currencies"
+                size="lg"
+              />
+            </UFormGroup>
+            <UFormGroup label="Amount" name="amount">
+              <UInput
+                class="currency-calculator__input-menu"
+                placeholder="Amount"
+                v-model="currencyAmountInputValue"
+                :step="0.01"
+                type="number"
+                size="lg"
+              >
+                <template #trailing>
+                  <UIcon :name="selectedCurrency?.icon" />
+                </template>
+              </UInput>
+            </UFormGroup>
           </div>
-          <UButton
-            class="currency-calculator__button"
-            label="Calculate"
-            size="lg"
-            type="submit"
-            @click="
-              calculateCurrencyAmount(
-                selectedCurrency?.abbreviation!,
-                props.currency,
-                currencyAmountInputValue,
-              )
-            "
-          />
+          <UButton class="currency-calculator__button" label="Calculate" size="lg" type="submit" />
         </UForm>
         <span class="currency-calculator__result">
           {{ calculatedAmount ? calculatedAmount : '........' }}
-          <UIcon :name="resultCurrency?.icon" />
         </span>
       </div>
     </div>
@@ -51,9 +47,12 @@
 </template>
 
 <script setup lang="ts">
+import type { Calculator } from '@/types/Calculator';
+import formatNumber from '@/utils';
+
 const props = defineProps({
   currency: {
-    type: String,
+    type: String as PropType<string>,
     required: true,
   },
 });
@@ -63,13 +62,32 @@ const config = useRuntimeConfig();
 const currencyAmountInputValue = ref(1.0);
 const calculatedAmount = ref<string>();
 
+const currencies = [
+  { currency: 'Euro', format: 'EUR', icon: 'i-tabler-currency-euro' },
+  { currency: 'Turkey Lira', format: 'TRY', icon: 'i-tabler-currency-lira' },
+  { currency: 'US Dollar', format: 'USD', icon: 'i-tabler-currency-dollar' },
+  { currency: 'Viet Nam Dong', format: 'VND', icon: 'i-tabler-currency-dong' },
+];
+
+const selectedCurrencyValue = ref(
+  props.currency === 'EUR' ? currencies[2].format : currencies[0].format,
+);
+
+const selectedCurrency = computed(() =>
+  currencies.find((currency: any) => currency.format === selectedCurrencyValue.value),
+);
+
+const resultCurrencyFormat = computed(
+  () => currencies.find((currency: any) => currency.format === props.currency)?.format,
+);
+
 // @TODO: Add limit to amount of calls (no more than 500)
 const calculateCurrencyAmount = async (
   currencyFrom: string,
   currencyTo: string,
   currencyAmount: number,
 ) => {
-  const data = await $fetch(`${config.public.currencyApiUrl}/convert`, {
+  const data: Calculator = await $fetch(`${config.public.currencyApiUrl}/convert`, {
     method: 'GET',
     params: {
       from: currencyFrom,
@@ -82,27 +100,8 @@ const calculateCurrencyAmount = async (
     },
   });
 
-  calculatedAmount.value = (Math.round(data.result.convertedAmount * 100) / 100).toFixed(2);
+  calculatedAmount.value = formatNumber(data.result.convertedAmount, 2, resultCurrencyFormat.value);
 };
-
-const currencies = [
-  { currency: 'Euro', abbreviation: 'EUR', icon: 'i-tabler-currency-euro' },
-  { currency: 'Turkey Lira', abbreviation: 'TRY', icon: 'i-tabler-currency-lira' },
-  { currency: 'US Dollar', abbreviation: 'USD', icon: 'i-tabler-currency-dollar' },
-  { currency: 'Viet Nam Dong', abbreviation: 'VND', icon: 'i-tabler-currency-dong' },
-];
-
-const selectedCurrencyValue = ref(
-  props.currency === 'EUR' ? currencies[2].abbreviation : currencies[0].abbreviation,
-);
-
-const selectedCurrency = computed(() =>
-  currencies.find((currency: any) => currency.abbreviation === selectedCurrencyValue.value),
-);
-
-const resultCurrency = computed(() =>
-  currencies.find((currency: any) => currency.abbreviation === props.currency),
-);
 </script>
 
 <style scoped lang="postcss">
@@ -110,7 +109,7 @@ const resultCurrency = computed(() =>
   @apply shapedivider shapedivider--top bg-boston-blue-100 dark:bg-boston-blue-900 h-[28rem] flex flex-col gap-2;
 
   &__wrapper {
-    @apply flex flex-col gap-2 text-center items-center justify-center shapedivider h-full w-full shapedivider shapedivider--bottom;
+    @apply flex flex-col gap-2 text-center items-center justify-center shapedivider h-full w-full shapedivider shapedivider--bottom py-8 sm:py-12 px-4 sm:px-6 lg:px-8;
   }
 
   &__title {
@@ -130,7 +129,7 @@ const resultCurrency = computed(() =>
   }
 
   &__result {
-    @apply font-thermite text-4xl p-8 mt-4 relative z-[1] text-shark-950 dark:text-shark-50;
+    @apply font-thermite text-4xl p-8 mt-4 relative z-[1] text-gray-950 dark:text-gray-50;
 
     &:before {
       position: absolute;

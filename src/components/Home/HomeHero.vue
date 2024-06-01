@@ -12,18 +12,19 @@
 </template>
 
 <script setup lang="ts">
-import LogoWhite from '~/assets/icons/logo-white.svg';
+import type { StrapiImage } from '@/types/Strapi';
+import LogoWhite from '@/assets/icons/logo-white.svg';
 
 const props = defineProps({
   heroImage: {
-    type: Object as PropType<any>,
+    type: Object as PropType<StrapiImage | null>,
     required: true,
   },
 });
 
 const img = useImage();
 const backgroundStyles = computed(() => {
-  const imgUrl = img(`${props.heroImage?.data?.attributes?.url}`);
+  const imgUrl = img(`${props.heroImage?.data.attributes.url}`);
   return { backgroundImage: `url('${imgUrl}')` };
 });
 </script>
@@ -34,6 +35,6 @@ const backgroundStyles = computed(() => {
 }
 
 .hero-gradient:before {
-  @apply content-[''] absolute top-0 left-0 h-full w-full opacity-30 lg:bg-gradient-to-r from-transparent via-shark-950 to-transparent;
+  @apply content-[''] absolute top-0 left-0 h-full w-full opacity-30 lg:bg-gradient-to-r from-transparent via-gray-950 to-transparent;
 }
 </style>

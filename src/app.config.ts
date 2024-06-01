@@ -19,7 +19,7 @@ export default defineAppConfig({
       rounded: 'object-cover',
     },
     header: {
-      wrapper: 'lg:mb-0 lg:border-0 fixed w-full bg-background/50',
+      wrapper: 'lg:mb-0 lg:border-0 fixed w-full bg-background lg:bg-background/50',
       popover: {
         links: {
           active: 'dark:bg-gray-950/50',
@@ -27,7 +27,8 @@ export default defineAppConfig({
         },
       },
       panel: {
-        wrapper: 'h-[calc(100vh-var(--header-height))] top-[var(--header-height)]',
+        wrapper: 'h-[calc(100vh-var(--header-height))] top-[var(--header-height)] bg-background/75',
+        body: 'p-[unset] sm:p-[unset] flex flex-col h-full',
       },
       button: {
         icon: {
@@ -43,12 +44,21 @@ export default defineAppConfig({
     blog: {
       list: {
         wrapper:
-          'mt-[var(--header-height)] max-w-7xl p-4 sm:p-6 lg:p-8 md:grid md:grid-cols-2 md:mx-auto',
+          'mt-[var(--header-height)] max-w-7xl p-4 sm:p-6 lg:p-8 md:grid md:grid-cols-2 lg:grid-cols-2 md:mx-auto',
       },
     },
     navigation: {
       links: {
-        base: 'font-thermite',
+        wrapper: 'space-y-0',
+        base: 'border-b-[1px] px-4 sm:px-6 py-5',
+        active:
+          'text-boston-blue-900 dark:text-boston-blue-100 border-boston-blue-900 dark:border-boston-blue-300 bg-boston-blue-400/30 backdrop-blur',
+        inactive:
+          'text-boston-blue-500 dark:text-boston-blue-300 border-boston-blue-700 dark:border-boston-blue-400 bg-boston-blue-50 dark:bg-gray-950',
+        icon: {
+          base: 'w-7 h-7',
+        },
+        label: 'text-xl font-thermite mt-[6px]',
       },
     },
     landing: {

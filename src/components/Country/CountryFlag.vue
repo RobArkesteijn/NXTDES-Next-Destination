@@ -1,15 +1,21 @@
 <template>
   <div class="country-flag">
     <div class="country-flag__container">
-      <NuxtImg class="country-flag__image" :src="flagImage.url" :alt="flagImage.alternativeText" />
+      <NuxtImg
+        class="country-flag__image"
+        :src="flagImage.data.attributes.url"
+        :alt="flagImage.data.attributes.alternativeText ?? ''"
+      />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import type { StrapiImage } from '@/types/Strapi';
+
 defineProps({
   flagImage: {
-    type: Object,
+    type: Object as PropType<StrapiImage>,
     required: true,
   },
 });
@@ -17,7 +23,13 @@ defineProps({
 
 <style scoped lang="postcss">
 .country-flag {
-  @apply shapedivider shapedivider--bottom h-[25vh] lg:h-[40vh];
+  height: 25vh;
+
+  @apply shapedivider shapedivider--bottom;
+
+  @media screen(lg) {
+    height: 60vh;
+  }
 
   &__container {
     position: relative;
@@ -31,12 +43,14 @@ defineProps({
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: linear-gradient(to bottom, rgba(35, 41, 41, 1), rgba(35, 41, 41, 0) 50%);
+      background-image: linear-gradient(to bottom, rgba(35, 41, 41, 0.75), rgba(35, 41, 41, 0) 50%);
     }
   }
 
   &__image {
-    @apply object-top object-cover h-full w-full;
+    object-fit: fill;
+    height: 100%;
+    width: 100%;
   }
 }
 </style>

@@ -26,4 +26,8 @@
     "titleBar.inactiveForeground": "#e7e7e799"
   },
   "peacock.color": "#4394b1",
+  "postcss.validate": false,
+  "[postcss]": {
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
+  },
 }

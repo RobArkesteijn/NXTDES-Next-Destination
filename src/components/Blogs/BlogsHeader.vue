@@ -1,49 +1,37 @@
 <template>
   <UBlogPost
     class="blogs-header"
-    :title="blogTitle"
-    :description="blogDescription"
-    :date="blogDate"
-    :authors="[blogAuthor]"
-    :badge="{ label: blogLabel }"
+    :title="data.title ?? undefined"
+    :description="data.description ?? undefined"
+    :date="data.date ?? undefined"
+    :authors="[
+      {
+        name: props.data.author.data.attributes.name ?? '',
+        avatar: { src: props.data.author.data.attributes.avatar?.data.attributes.url, size: 'md' },
+        to: `/authors/${props.data.author.data.attributes.name?.split(' ').join('-').toLowerCase()}`,
+      },
+    ]"
+    :badge="{ label: data.label ?? undefined }"
     :ui="ui"
   >
     <template #image>
       <NuxtImg
-        v-if="blogImage?.data?.attributes?.url"
+        v-if="data.hero_image?.data.attributes.url"
         class="blogs-header__image"
-        :src="blogImage?.data?.attributes?.url"
-        :alt="blogImage?.data?.attributes?.alternativeText"
+        :src="data.hero_image?.data.attributes.url"
+        :alt="data.hero_image?.data.attributes.alternativeText ?? ''"
       />
     </template>
   </UBlogPost>
 </template>
 
 <script setup lang="ts">
-defineProps({
-  blogTitle: {
-    type: String as PropType<string>,
-    default: '',
-  },
-  blogDescription: {
-    type: String as PropType<string>,
-    default: '',
-  },
-  blogDate: {
-    type: String as PropType<string>,
-    default: '',
-  },
-  blogAuthor: {
-    type: Object as PropType<any>,
-    default: () => {},
-  },
-  blogLabel: {
-    type: String as PropType<string>,
-    default: '',
-  },
-  blogImage: {
-    type: Object as PropType<any>,
-    default: null,
+import type { BlogsAttributes } from '@/types/Blogs';
+
+const props = defineProps({
+  data: {
+    type: Object as PropType<BlogsAttributes>,
+    required: true,
   },
 });
 
@@ -60,7 +48,10 @@ const ui = {
 <style scoped lang="postcss">
 .blogs-header {
   &__image {
-    @apply object-cover object-top w-full h-full;
+    object-fit: cover;
+    object-position: top;
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

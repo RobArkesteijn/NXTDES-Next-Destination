@@ -1,7 +1,7 @@
 <template>
   <UFooter>
     <template #left>
-      <p class="text-shark-700 dark:text-shark-300 text-sm">
+      <p class="text-gray-700 dark:text-gray-300 text-sm">
         Copyright © 2022-{{ new Date().getFullYear() }} NXTDES -
         <NuxtLink class="hover:underline" to="https://github.com/RobArkesteijn" target="_blank">
           MIT License

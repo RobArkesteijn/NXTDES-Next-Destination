@@ -14,12 +14,3 @@
     </Body>
   </Html>
 </template>
-
-<script setup lang="ts">
-// @TODO: Add after initliazing i18n
-// const head = useLocaleHead({
-//   addDirAttribute: true,
-//   identifierAttribute: 'id',
-//   addSeoAttributes: true,
-// });
-</script>

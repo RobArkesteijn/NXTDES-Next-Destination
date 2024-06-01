@@ -47,10 +47,10 @@ export default defineNuxtConfig({
     accessToken: process.env.MAPBOX_ACCESS_TOKEN,
   },
   modules: [
+    '@nuxt/ui',
     '@nuxtjs/eslint-module',
     'nuxt-svgo',
     '@nuxtjs/fontaine',
-    '@nuxt/ui',
     '@nuxtjs/strapi',
     '@nuxt/image',
     'nuxt-mapbox',
@@ -70,7 +70,7 @@ export default defineNuxtConfig({
     defaultImport: 'component',
   },
   tailwindcss: {
-    viewer: false,
+    editorSupport: true,
   },
   ui: {
     icons: ['material-symbols', 'mdi', 'twemoji', 'tabler'],
