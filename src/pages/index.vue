@@ -7,17 +7,19 @@
     :highlighted-description="highlightedDescription"
     :highlighted-countries="highlightedCountries"
   />
-  <!-- <HomeObscureDestination /> -->
 </template>
 
 <script setup lang="ts">
+import type { Strapi4ResponseSingle } from '@nuxtjs/strapi';
+import type { HomeAttributes } from '@/types/Home';
+
 const route = useRoute();
 const { fullPath } = route;
 
 const { data } = await useAsyncData(fullPath, async () => {
-  const { find } = useStrapi();
+  const { findOne } = useStrapi();
   try {
-    const contentData = await find('home', {
+    const response = await findOne<HomeAttributes>('home', {
       populate: {
         hero_image: {
           populate: '*',
@@ -31,24 +33,22 @@ const { data } = await useAsyncData(fullPath, async () => {
         },
       },
     });
-    return {
-      content: contentData,
-    };
-  } catch (e) {
-    return showError('Unknown error');
+    return response;
+  } catch (e: any) {
+    return showError(e);
   }
 });
 
-const content = computed(() => data.value?.content);
-const heroImage = computed(() => content.value?.data?.attributes?.hero_image);
-const introTitle = computed(() => content.value?.data?.attributes?.title);
-const introDescription = computed(() => content.value?.data?.attributes?.intro);
-const highlightedHeadline = computed(() => content.value?.data?.attributes?.Highlighted?.headline);
-const highlightedTitle = computed(() => content.value?.data?.attributes?.Highlighted?.title);
+const contentData = computed(() => data.value as Strapi4ResponseSingle<HomeAttributes>);
+const heroImage = computed(() => contentData.value?.data.attributes.hero_image);
+const introTitle = computed(() => contentData.value?.data.attributes.title);
+const introDescription = computed(() => contentData.value?.data.attributes?.intro);
+const highlightedHeadline = computed(() => contentData.value?.data.attributes.Highlighted.headline);
+const highlightedTitle = computed(() => contentData.value?.data.attributes.Highlighted.title);
 const highlightedDescription = computed(
-  () => content.value?.data?.attributes?.Highlighted?.description,
+  () => contentData.value?.data.attributes.Highlighted.description,
 );
 const highlightedCountries = computed(
-  () => content.value?.data?.attributes?.Highlighted?.countries,
+  () => contentData.value?.data.attributes.Highlighted.countries,
 );
 </script>

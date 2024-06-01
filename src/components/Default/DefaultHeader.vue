@@ -12,6 +12,7 @@
 
     <template #panel>
       <UNavigationTree :links="links" />
+      <div class="flex-grow bg-boston-blue-400/30 backdrop-blur" />
     </template>
   </UHeader>
 </template>

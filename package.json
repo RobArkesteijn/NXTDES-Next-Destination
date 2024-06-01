@@ -13,14 +13,13 @@
     "lintfix": "bun lint:js --fix"
   },
   "dependencies": {
-    "@nuxt/image": "^1.4.0",
-    "@nuxt/ui-pro": "^1.0.1",
+    "@nuxt/image": "^1.7.0",
+    "@nuxt/ui-pro": "1.1.0",
     "@nuxtjs/strapi": "^1.11.0",
     "gsap": "^3.12.5",
     "nuxt": "^3.10.3",
     "vue": "^3.4.19",
-    "vue-eslint-parser": "^9.4.2",
-    "vue-router": "^4.3.0"
+    "vue-eslint-parser": "^9.4.2"
   },
   "devDependencies": {
     "@iconify-json/material-symbols": "^1.1.73",
@@ -31,7 +30,7 @@
     "@nuxtjs/fontaine": "^0.4.1",
     "@rushstack/eslint-patch": "^1.7.2",
     "@vue/eslint-config-airbnb-with-typescript": "^8.0.0",
-    "eslint": "^8.57.0",
+    "eslint": "^9.0.0",
     "eslint-plugin-vue": "^9.24.0",
     "mapbox-gl": "^3.2.0",
     "nuxt-mapbox": "^1.5.9",
