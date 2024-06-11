@@ -18,8 +18,15 @@ export default defineAppConfig({
     avatar: {
       rounded: 'object-cover',
     },
+    button: {
+      variant: {
+        solid:
+          'text-copper-50 dark:text-copper-50 hover:bg-boston-blue-600 dark:bg-boston-blue-600 hover:dark:bg-boston-blue-500',
+      },
+    },
     header: {
-      wrapper: 'lg:mb-0 lg:border-0 fixed w-full bg-background lg:bg-background/50',
+      wrapper: 'lg:mb-0 lg:border-0 fixed w-full bg-background bg-background/50',
+      center: 'dark:text-copper-50 text-shark-900',
       popover: {
         links: {
           active: 'dark:bg-gray-950/50',
@@ -38,7 +45,8 @@ export default defineAppConfig({
       },
       links: {
         wrapper: 'gap-x-12',
-        base: 'font-thermite uppercase items-stretch drop-shadow text-md',
+        base: 'font-thermite uppercase items-stretch drop-shadow text-md hover:text-boston-blue-500',
+        inactive: 'hover:text-boston-blue-500',
       },
     },
     blog: {

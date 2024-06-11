@@ -1,7 +1,12 @@
 <template>
-  <HomeHero :hero-image="heroImage" />
-  <HomeIntro :intro-title="introTitle" :intro-description="introDescription" />
+  <HomeHero v-if="heroImage" :hero-image="heroImage" />
+  <HomeIntro
+    v-if="introTitle || introDescription"
+    :intro-title="introTitle"
+    :intro-description="introDescription"
+  />
   <HomeHighlightedSelection
+    v-if="contentData.data.attributes.Highlighted"
     :highlighted-headline="highlightedHeadline"
     :highlighted-title="highlightedTitle"
     :highlighted-description="highlightedDescription"

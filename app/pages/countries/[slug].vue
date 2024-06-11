@@ -1,13 +1,16 @@
 <template>
-  <CountryHero :content="content" />
+  <CountryHero v-if="content" :content="content" />
   <CountryWeather />
-  <CurrencyCalculator :currency="content.currency ?? 'EUR'" />
-  <CountryAttractions v-if="content.attractions?.length" :attractions="content.attractions" />
+  <!-- <CurrencyCalculator v-if="content" :currency="content.currency ?? 'EUR'" /> -->
+  <CountryAttractions
+    v-if="content && content.attractions?.length"
+    :attractions="content.attractions"
+  />
 </template>
 
 <script setup lang="ts">
-import type { CountriesAttributes } from '@/types/Countries';
 import type { Strapi4ResponseMany } from '@nuxtjs/strapi';
+import type { CountriesAttributes } from '@/types/Countries';
 
 const route = useRoute();
 const { fullPath } = route;
@@ -37,6 +40,6 @@ const { data } = await useAsyncData(fullPath, async () => {
 });
 
 const content = computed(
-  () => (data.value as Strapi4ResponseMany<CountriesAttributes>)?.data[0].attributes,
+  () => (data.value as Strapi4ResponseMany<CountriesAttributes>)?.data[0]?.attributes,
 );
 </script>
