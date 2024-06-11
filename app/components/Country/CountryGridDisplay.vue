@@ -2,6 +2,7 @@
   <div class="country-grid-display">
     <NuxtLink
       v-for="(item, index) in data"
+      :key="`country-${item.id}`"
       class="country-grid-display__item"
       loading="lazy"
       :class="
@@ -13,35 +14,40 @@
       :to="`/countries/${item.attributes.country?.toLowerCase()}`"
     >
       <div class="country-grid-display__cta">
-        <h2 class="country-grid-display__title">{{ item.attributes?.country }}</h2>
-        <UIcon name="i-mdi-arrow-right-circle" class="country-grid-display__icon" />
+        <h2 class="country-grid-display__title">
+          {{ item.attributes?.country }}
+        </h2>
+        <UIcon
+          name="i-mdi-arrow-right-circle"
+          class="country-grid-display__icon"
+        />
       </div>
     </NuxtLink>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { Strapi4ResponseData } from '@nuxtjs/strapi';
-import type { CountriesAttributes } from '@/types/Countries';
+import type { Strapi4ResponseData } from '@nuxtjs/strapi'
+import type { CountriesAttributes } from '@/types/Countries'
 
 defineProps({
   data: {
     type: Object as PropType<Strapi4ResponseData<CountriesAttributes>[]>,
     required: true,
   },
-});
+})
 
-const img = useImage();
+const img = useImage()
 
 const backgroundStyles = (url: string | undefined) => {
   if (!url) {
-    return;
+    return
   }
 
-  const imgUrl = img(url);
-  // eslint-disable-next-line consistent-return
-  return { backgroundImage: `url('${imgUrl}')`, backgroundSize: 'cover' };
-};
+  const imgUrl = img(url)
+
+  return { backgroundImage: `url('${imgUrl}')`, backgroundSize: 'cover' }
+}
 </script>
 
 <style scoped lang="postcss">

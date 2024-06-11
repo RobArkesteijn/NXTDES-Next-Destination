@@ -31,13 +31,13 @@
 </template>
 
 <script lang="ts" setup>
-const route = useRoute();
+const route = useRoute()
 
-const BLOG_PATH = '/blogs';
-const BOOKINGS_PATH = '/bookings';
-const COUNTRIES_PATH = '/countries';
-const FLIGHT_INFO_PATH = '/flight-info';
-const INTERACTIVE_MAP_PATH = '/interactive-map';
+const BLOG_PATH = '/blogs'
+const BOOKINGS_PATH = '/bookings'
+const COUNTRIES_PATH = '/countries'
+const FLIGHT_INFO_PATH = '/flight-info'
+const INTERACTIVE_MAP_PATH = '/interactive-map'
 
 const links = computed(() => [
   {
@@ -70,5 +70,5 @@ const links = computed(() => [
     to: INTERACTIVE_MAP_PATH,
     active: route.path.startsWith(INTERACTIVE_MAP_PATH),
   },
-]);
+])
 </script>

@@ -1,7 +1,9 @@
 <template>
   <div class="currency-calculator">
     <div class="currency-calculator__wrapper">
-      <h2 class="currency-calculator__title">Check the valuta of this country</h2>
+      <h2 class="currency-calculator__title">
+        Check the valuta of this country
+      </h2>
       <!-- @TODO: Find out what this error is about and fix it -->
       <UForm
         class="currency-calculator__group"
@@ -10,10 +12,13 @@
         "
       >
         <div class="currency-calculator__fields">
-          <UFormGroup label="Currency" name="currency">
+          <UFormGroup
+            label="Currency"
+            name="currency"
+          >
             <USelectMenu
-              class="currency-calculator__select-menu"
               v-model="selectedCurrencyValue"
+              class="currency-calculator__select-menu"
               value-attribute="format"
               option-attribute="currency"
               trailing
@@ -21,11 +26,14 @@
               size="lg"
             />
           </UFormGroup>
-          <UFormGroup label="Amount" name="amount">
+          <UFormGroup
+            label="Amount"
+            name="amount"
+          >
             <UInput
+              v-model="currencyAmountInputValue"
               class="currency-calculator__input-menu"
               placeholder="Amount"
-              v-model="currencyAmountInputValue"
               :step="0.01"
               type="number"
               size="lg"
@@ -39,7 +47,12 @@
             </UInput>
           </UFormGroup>
         </div>
-        <UButton class="currency-calculator__button" label="Calculate" size="lg" type="submit" />
+        <UButton
+          class="currency-calculator__button"
+          label="Calculate"
+          size="lg"
+          type="submit"
+        />
       </UForm>
       <span class="currency-calculator__result">
         {{ calculatedAmount ? calculatedAmount : '........' }}
@@ -49,39 +62,45 @@
 </template>
 
 <script setup lang="ts">
-import type { Calculator } from '@/types/Calculator';
-import formatNumber from '@/utils';
+import type { Calculator } from '@/types/Calculator'
+import formatNumber from '@/utils'
 
 const props = defineProps({
   currency: {
     type: String as PropType<string>,
     required: true,
   },
-});
+})
 
-const config = useRuntimeConfig();
+const config = useRuntimeConfig()
 
-const currencyAmountInputValue = ref(1.0);
-const calculatedAmount = ref<string>();
+const currencyAmountInputValue = ref(1.0)
+const calculatedAmount = ref<string>()
 
-const currencies = [
+interface Currency {
+  currency: string
+  format: string
+  icon: string
+}
+
+const currencies: Currency[] = [
   { currency: 'Euro', format: 'EUR', icon: 'i-tabler-currency-euro' },
   { currency: 'Turkey Lira', format: 'TRY', icon: 'i-tabler-currency-lira' },
   { currency: 'US Dollar', format: 'USD', icon: 'i-tabler-currency-dollar' },
   { currency: 'Viet Nam Dong', format: 'VND', icon: 'i-tabler-currency-dong' },
-];
+]
 
 const selectedCurrencyValue = ref(
   props.currency === 'EUR' ? currencies[2]?.format : currencies[0]?.format,
-);
+)
 
 const selectedCurrency = computed(() =>
-  currencies.find((currency: any) => currency.format === selectedCurrencyValue.value),
-);
+  currencies.find(currency => currency.format === selectedCurrencyValue.value),
+)
 
 const resultCurrencyFormat = computed(
-  () => currencies.find((currency: any) => currency.format === props.currency)?.format,
-);
+  () => currencies.find(currency => currency.format === props.currency)?.format,
+)
 
 // @TODO: Add limit to amount of calls (no more than 500)
 const calculateCurrencyAmount = async (
@@ -100,10 +119,10 @@ const calculateCurrencyAmount = async (
       'X-RapidAPI-Key': config.public.xRapidApiKey,
       'X-RapidAPI-Host': config.public.xRapidCurrencyApiHost,
     },
-  });
+  })
 
-  calculatedAmount.value = formatNumber(data.result.convertedAmount, 2, resultCurrencyFormat.value);
-};
+  calculatedAmount.value = formatNumber(data.result.convertedAmount, 2, resultCurrencyFormat.value)
+}
 </script>
 
 <style scoped lang="postcss">

@@ -3,6 +3,6 @@ const formatNumber = (value: number, decimals: number, currencyFormat: string | 
     style: 'currency',
     currency: currencyFormat,
     minimumFractionDigits: decimals,
-  }).format(value);
+  }).format(value)
 
-export default formatNumber;
+export default formatNumber
