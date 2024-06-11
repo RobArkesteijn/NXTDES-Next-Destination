@@ -118,4 +118,3 @@ const weatherData = computed(() => data.value as WeatherData);
   }
 }
 </style>
-~/types/Weather

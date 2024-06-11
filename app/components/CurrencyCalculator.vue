@@ -1,49 +1,51 @@
 <template>
-  <ClientOnly>
-    <div class="currency-calculator">
-      <div class="currency-calculator__wrapper">
-        <h2 class="currency-calculator__title">Check the valuta of this country</h2>
-        <UForm
-          class="currency-calculator__group"
-          @submit="
-            calculateCurrencyAmount(selectedCurrency?.format!, currency, currencyAmountInputValue)
-          "
-        >
-          <div class="currency-calculator__fields">
-            <UFormGroup label="Currency" name="currency">
-              <USelectMenu
-                class="currency-calculator__select-menu"
-                v-model="selectedCurrencyValue"
-                value-attribute="format"
-                option-attribute="currency"
-                trailing
-                :options="currencies"
-                size="lg"
-              />
-            </UFormGroup>
-            <UFormGroup label="Amount" name="amount">
-              <UInput
-                class="currency-calculator__input-menu"
-                placeholder="Amount"
-                v-model="currencyAmountInputValue"
-                :step="0.01"
-                type="number"
-                size="lg"
-              >
-                <template #trailing>
-                  <UIcon :name="selectedCurrency?.icon" />
-                </template>
-              </UInput>
-            </UFormGroup>
-          </div>
-          <UButton class="currency-calculator__button" label="Calculate" size="lg" type="submit" />
-        </UForm>
-        <span class="currency-calculator__result">
-          {{ calculatedAmount ? calculatedAmount : '........' }}
-        </span>
-      </div>
+  <div class="currency-calculator">
+    <div class="currency-calculator__wrapper">
+      <h2 class="currency-calculator__title">Check the valuta of this country</h2>
+      <!-- @TODO: Find out what this error is about and fix it -->
+      <UForm
+        class="currency-calculator__group"
+        @submit="
+          calculateCurrencyAmount(selectedCurrency?.format!, currency, currencyAmountInputValue)
+        "
+      >
+        <div class="currency-calculator__fields">
+          <UFormGroup label="Currency" name="currency">
+            <USelectMenu
+              class="currency-calculator__select-menu"
+              v-model="selectedCurrencyValue"
+              value-attribute="format"
+              option-attribute="currency"
+              trailing
+              :options="currencies"
+              size="lg"
+            />
+          </UFormGroup>
+          <UFormGroup label="Amount" name="amount">
+            <UInput
+              class="currency-calculator__input-menu"
+              placeholder="Amount"
+              v-model="currencyAmountInputValue"
+              :step="0.01"
+              type="number"
+              size="lg"
+            >
+              <template #trailing>
+                <UIcon
+                  v-if="selectedCurrency && selectedCurrency.icon"
+                  :name="selectedCurrency?.icon"
+                />
+              </template>
+            </UInput>
+          </UFormGroup>
+        </div>
+        <UButton class="currency-calculator__button" label="Calculate" size="lg" type="submit" />
+      </UForm>
+      <span class="currency-calculator__result">
+        {{ calculatedAmount ? calculatedAmount : '........' }}
+      </span>
     </div>
-  </ClientOnly>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -70,7 +72,7 @@ const currencies = [
 ];
 
 const selectedCurrencyValue = ref(
-  props.currency === 'EUR' ? currencies[2].format : currencies[0].format,
+  props.currency === 'EUR' ? currencies[2]?.format : currencies[0]?.format,
 );
 
 const selectedCurrency = computed(() =>
@@ -106,10 +108,10 @@ const calculateCurrencyAmount = async (
 
 <style scoped lang="postcss">
 .currency-calculator {
-  @apply shapedivider shapedivider--top bg-boston-blue-100 dark:bg-boston-blue-900 h-[28rem] flex flex-col gap-2;
+  /* @apply shapedivider shapedivider--top bg-boston-blue-100 dark:bg-boston-blue-900 h-[28rem] flex flex-col gap-2; */
 
   &__wrapper {
-    @apply flex flex-col gap-2 text-center items-center justify-center shapedivider h-full w-full shapedivider shapedivider--bottom py-8 sm:py-12 px-4 sm:px-6 lg:px-8;
+    /* @apply flex flex-col gap-2 text-center items-center justify-center shapedivider h-full w-full shapedivider shapedivider--bottom py-8 sm:py-12 px-4 sm:px-6 lg:px-8; */
   }
 
   &__title {

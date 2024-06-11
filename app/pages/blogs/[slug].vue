@@ -1,11 +1,11 @@
 <template>
   <!-- @TODO: Check why description comes with an array instead of string -->
-  <BlogsHeader :data="content" />
+  <BlogsHeader v-if="content" :data="content" />
 </template>
 
 <script setup lang="ts">
-import type { BlogsAttributes } from '@/types/Blogs';
 import type { Strapi4ResponseMany } from '@nuxtjs/strapi';
+import type { BlogsAttributes } from '@/types/Blogs';
 
 const route = useRoute();
 const { fullPath } = route;
@@ -32,7 +32,7 @@ const { data } = await useAsyncData(fullPath, async () => {
 });
 
 const content = computed(
-  () => (data.value as Strapi4ResponseMany<BlogsAttributes>).data[0].attributes,
+  () => (data.value as Strapi4ResponseMany<BlogsAttributes>).data[0]?.attributes,
 );
 </script>
 

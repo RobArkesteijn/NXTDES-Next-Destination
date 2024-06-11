@@ -35,6 +35,9 @@ export default defineNuxtConfig({
     lintOnStart: false,
   },
   extends: ['@nuxt/ui-pro'],
+  future: {
+    compatibilityVersion: 4,
+  },
   image: {
     dir: 'assets/images',
     formats: ['webp'],
@@ -65,7 +68,6 @@ export default defineNuxtConfig({
       xRapidApiKey: process.env.NUXT_PUBLIC_X_RAPID_WEATHER_API_KEY,
     },
   },
-  srcDir: './src',
   svgo: {
     defaultImport: 'component',
   },

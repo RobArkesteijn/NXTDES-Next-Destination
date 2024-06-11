@@ -46,7 +46,7 @@
 @layer components {
   .logo {    
     path {
-      @apply fill-gray-900  dark:fill-gray-100;
+      @apply fill-shark-950  dark:fill-shark-50;
     }
   }
 

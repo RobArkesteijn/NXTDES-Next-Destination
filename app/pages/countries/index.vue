@@ -3,8 +3,8 @@
 </template>
 
 <script setup lang="ts">
-import type { CountriesAttributes } from '@/types/Countries';
 import type { Strapi4ResponseMany } from '@nuxtjs/strapi';
+import type { CountriesAttributes } from '@/types/Countries';
 
 const route = useRoute();
 const { fullPath } = route;

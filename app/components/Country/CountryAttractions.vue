@@ -12,7 +12,7 @@
       :links="[
         {
           label: 'Explore Attraction',
-          to: `/countries/${slug}/${props.attractions[index].attraction?.toLowerCase().split(' ').join('-')}`,
+          to: `/countries/${slug}/${props.attractions[index]?.attraction?.toLowerCase().split(' ').join('-')}`,
           color: 'boston-blue',
           trailingIcon: 'i-heroicons-arrow-right',
           size: 'lg',
@@ -22,6 +22,8 @@
       :ui="{
         wrapper: 'py-8 sm:py-12 ',
         container: 'gap-8 sm:gap-y-8 lg:gap-16',
+        title: 'dark:text-copper-50',
+        description: 'dark:text-copper-50',
       }"
     >
       <NuxtImg
@@ -57,7 +59,7 @@ const props = defineProps({
     text-align: center;
     padding: 4rem 1rem 2rem;
 
-    @apply text-2xl text-gray-900 dark:text-white;
+    @apply text-2xl text-gray-900 dark:text-copper-50;
 
     @media screen(sm) {
       padding: 6rem 1.5rem 3rem;

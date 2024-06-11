@@ -7,7 +7,7 @@
     align="left"
     class="home-highlighted-section"
     :ui="{
-      wrapper: 'bg-boston-blue-100 dark:bg-boston-blue-900 shapedivider shapedivider--top',
+      wrapper: 'bg-copper-100 dark:bg-boston-blue-900 shapedivider shapedivider--top',
     }"
   >
     <div class="flex flex-col gap-6">

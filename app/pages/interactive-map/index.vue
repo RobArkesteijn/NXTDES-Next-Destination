@@ -3,9 +3,9 @@
     map-id="{ID}"
     class="w-full h-full"
     :options="{
-      style: 'mapbox://styles/mapbox/light-v11',
-      center: [-68.137343, 45.137451],
-      zoom: 5,
+      style: 'mapbox://styles/rob-arkesteijn/clx7creqv00ck01qqcka7fmjj',
+      center: [20, 30],
+      zoom: 2,
     }"
   />
 </template>
