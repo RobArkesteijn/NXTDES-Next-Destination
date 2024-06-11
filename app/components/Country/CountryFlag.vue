@@ -11,14 +11,14 @@
 </template>
 
 <script setup lang="ts">
-import type { StrapiImage } from '@/types/Strapi';
+import type { StrapiImage } from '@/types/Strapi'
 
 defineProps({
   flagImage: {
     type: Object as PropType<StrapiImage>,
     required: true,
   },
-});
+})
 </script>
 
 <style scoped lang="postcss">

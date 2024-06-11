@@ -12,21 +12,21 @@
 </template>
 
 <script setup lang="ts">
-import type { StrapiImage } from '@/types/Strapi';
-import LogoWhite from '@/assets/icons/logo-white.svg';
+import type { StrapiImage } from '@/types/Strapi'
+import LogoWhite from '@/assets/icons/logo-white.svg'
 
 const props = defineProps({
   heroImage: {
     type: Object as PropType<StrapiImage | null>,
     required: true,
   },
-});
+})
 
-const img = useImage();
+const img = useImage()
 const backgroundStyles = computed(() => {
-  const imgUrl = img(`${props.heroImage?.data.attributes.url}`);
-  return { backgroundImage: `url('${imgUrl}')` };
-});
+  const imgUrl = img(`${props.heroImage?.data.attributes.url}`)
+  return { backgroundImage: `url('${imgUrl}')` }
+})
 </script>
 
 <style scoped lang="postcss">

@@ -19,5 +19,5 @@ defineProps({
     type: String as PropType<string | null>,
     required: true,
   },
-});
+})
 </script>

@@ -33,6 +33,9 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   eslint: {
     lintOnStart: false,
+    config: {
+      stylistic: true,
+    },
   },
   extends: ['@nuxt/ui-pro'],
   future: {
@@ -51,7 +54,7 @@ export default defineNuxtConfig({
   },
   modules: [
     '@nuxt/ui',
-    '@nuxtjs/eslint-module',
+    '@nuxt/eslint',
     'nuxt-svgo',
     '@nuxtjs/fontaine',
     '@nuxtjs/strapi',
@@ -77,4 +80,4 @@ export default defineNuxtConfig({
   ui: {
     icons: ['material-symbols', 'mdi', 'twemoji', 'tabler'],
   },
-});
+})

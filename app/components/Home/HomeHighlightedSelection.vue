@@ -3,7 +3,15 @@
     :headline="highlightedHeadline ?? undefined"
     :title="highlightedTitle ?? undefined"
     :description="highlightedDescription ?? undefined"
-    :links="buttonLinks"
+    :links="[
+      {
+        label: 'Explore Destinations',
+        to: '/countries',
+        color: 'boston-blue',
+        trailingIcon: 'i-heroicons-arrow-right',
+        size: 'lg',
+      },
+    ]"
     align="left"
     class="home-highlighted-section"
     :ui="{
@@ -13,6 +21,7 @@
     <div class="flex flex-col gap-6">
       <NuxtLink
         v-for="item in highlightedCountries"
+        :key="`highlightedCountry-${item.id}`"
         :to="`/countries/${item.country?.toLowerCase()}`"
         class="home-highlighted-section__image-wrapper"
       >
@@ -34,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Country } from '@/types/Home';
+import type { Country } from '@/types/Home'
 
 defineProps({
   highlightedHeadline: {
@@ -53,17 +62,7 @@ defineProps({
     type: Array as PropType<Country[]>,
     default: () => [],
   },
-});
-
-const buttonLinks: any[] = [
-  {
-    label: 'Explore Destinations',
-    to: '/countries',
-    color: 'boston-blue',
-    'trailing-icon': 'i-heroicons-arrow-right',
-    size: 'lg',
-  },
-];
+})
 </script>
 
 <style scoped lang="postcss">

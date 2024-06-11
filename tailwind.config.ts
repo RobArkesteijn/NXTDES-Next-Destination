@@ -1,5 +1,5 @@
-import type { Config } from 'tailwindcss';
-import defaultTheme from 'tailwindcss/defaultTheme';
+import type { Config } from 'tailwindcss'
+import defaultTheme from 'tailwindcss/defaultTheme'
 
 export default <Partial<Config>>{
   theme: {
@@ -18,7 +18,7 @@ export default <Partial<Config>>{
           900: '#2a414f',
           950: '#182934',
         },
-        copper: {
+        'copper': {
           50: '#f8f4ee',
           100: '#efe3d2',
           200: '#e0c7a8',
@@ -31,7 +31,7 @@ export default <Partial<Config>>{
           900: '#58322b',
           950: '#321916',
         },
-        ming: {
+        'ming': {
           50: '#f0fbfb',
           100: '#daf2f3',
           200: '#b9e6e8',
@@ -70,7 +70,7 @@ export default <Partial<Config>>{
           900: '#144a65',
           950: '#073045',
         },
-        shark: {
+        'shark': {
           50: '#f5f6f6',
           100: '#e4e9e9',
           200: '#ccd5d3',
@@ -90,4 +90,4 @@ export default <Partial<Config>>{
       },
     },
   },
-};
+}

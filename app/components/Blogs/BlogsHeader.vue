@@ -26,14 +26,14 @@
 </template>
 
 <script setup lang="ts">
-import type { BlogsAttributes } from '@/types/Blogs';
+import type { BlogsAttributes } from '@/types/Blogs'
 
 const props = defineProps({
   data: {
     type: Object as PropType<BlogsAttributes>,
     required: true,
   },
-});
+})
 
 const ui = {
   wrapper: 'h-screen gap-y-4 sm:gap-y-6 lg:gap-y-8',
@@ -42,7 +42,7 @@ const ui = {
     base: '',
   },
   container: 'max-full sm:max-w-7xl px-4 sm:px-6 lg:px-8 pb-4 sm:pb-6 lg:pb-8 mx-auto',
-};
+}
 </script>
 
 <style scoped lang="postcss">

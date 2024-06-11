@@ -1,10 +1,12 @@
 {
-  "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
-  "editor.formatOnType": false, // required
-  "editor.formatOnPaste": true, // optional
-  "editor.formatOnSave": true, // optional
-  "editor.formatOnSaveMode": "file", // required to format on save
-  "files.autoSave": "onFocusChange", // optional but recommended
+  "editor.formatOnSaveMode": "file",
+  "eslint.experimental.useFlatConfig": true,
+  "files.autoSave": "onFocusChange",
+  "peacock.color": "#4394b1",
+  "postcss.validate": false,
+  "[postcss]": {
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
+  },
   "vs-code-prettier-eslint.prettierLast": false,
   "workbench.colorCustomizations": {
     "activityBar.activeBackground": "#63aac4",
@@ -24,10 +26,5 @@
     "titleBar.activeForeground": "#e7e7e7",
     "titleBar.inactiveBackground": "#4394b199",
     "titleBar.inactiveForeground": "#e7e7e799"
-  },
-  "peacock.color": "#4394b1",
-  "postcss.validate": false,
-  "[postcss]": {
-    "editor.defaultFormatter": "stylelint.vscode-stylelint"
   },
 }

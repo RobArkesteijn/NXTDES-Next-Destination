@@ -3,9 +3,12 @@
     <!-- @TODO: Potential side image via strapi?  -->
     <!-- <img src="/images/banana-leafs.webp" alt=""
       class="country-attractions__decorative-image" /> -->
-    <h2 class="country-attractions__title">Top Attractions of {{ slug }}</h2>
+    <h2 class="country-attractions__title">
+      Top Attractions of {{ slug }}
+    </h2>
     <ULandingSection
       v-for="(attraction, index) in attractions"
+      :key="`attraction-${attraction.id}`"
       :title="attraction.attraction ?? undefined"
       :description="attraction.description ?? undefined"
       :align="index % 2 === 0 ? 'left' : 'right'"
@@ -37,17 +40,17 @@
 </template>
 
 <script setup lang="ts">
-import type { Attraction } from '@/types/Countries';
+import type { Attraction } from '@/types/Countries'
 
-const route = useRoute();
-const { slug } = route.params;
+const route = useRoute()
+const { slug } = route.params
 
 const props = defineProps({
   attractions: {
     type: Array as PropType<Attraction[]>,
     default: () => [],
   },
-});
+})
 </script>
 
 <style scoped lang="postcss">

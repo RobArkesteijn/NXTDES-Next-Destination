@@ -1,45 +1,60 @@
 <template>
-  <div v-if="weatherData" class="country-weather">
+  <div
+    v-if="weatherData"
+    class="country-weather"
+  >
     <h3 class="country-weather__location">
       <UIcon name="i-material-symbols-location-on" />
       <span v-if="weatherData.location.name">{{ weatherData.location.name }}</span>
       <span v-if="weatherData.location.region"> / {{ weatherData.location.region }}</span>
     </h3>
     <div class="country-weather__data">
-      <span v-if="weatherData.current.temp_c" class="country-weather__weather">
+      <span
+        v-if="weatherData.current.temp_c"
+        class="country-weather__weather"
+      >
         <img
           class="country-weather__weather-icon"
           :alt="weatherData.current.condition.text"
           :src="`/meteocons/${getWeatherIcon(weatherData.current.condition.text, weatherData.current.is_day, weatherData.current.cloud)}.svg`"
-        />
+        >
         <span class="country-weather__weather-value">
           {{ Math.round(weatherData.current.temp_c) }} °C
         </span>
       </span>
-      <span v-if="weatherData.current.gust_kph" class="country-weather__gust">
+      <span
+        v-if="weatherData.current.gust_kph"
+        class="country-weather__gust"
+      >
         <img
           class="country-weather__gust-icon"
           :alt="`Wind power ${getGustPower(weatherData.current.gust_kph)}`"
           :src="`/meteocons/wind-beaufort-${getGustPower(Math.round(weatherData.current.gust_kph))}.svg`"
-        />
+        >
         <span class="country-weather__gust-value">
           {{ Math.round(weatherData.current.gust_kph) }} km/h
         </span>
       </span>
-      <span v-if="weatherData.current.humidity" class="country-weather__humidity">
+      <span
+        v-if="weatherData.current.humidity"
+        class="country-weather__humidity"
+      >
         <img
           class="country-weather__humidity-icon"
           alt="Humidity"
           :src="`/meteocons/humidity.svg`"
-        />
+        >
         <span class="country-weather__humidity-value">{{ weatherData.current.humidity }} %</span>
       </span>
-      <span v-if="weatherData.current.uv" class="country-weather__uv">
+      <span
+        v-if="weatherData.current.uv"
+        class="country-weather__uv"
+      >
         <img
           class="country-weather__uv-icon"
           :alt="`UV power ${weatherData.current.uv}`"
           :src="`/meteocons/uv-index-${weatherData.current.uv}.svg`"
-        />
+        >
         <span class="country-weather__uv-value">UV index</span>
       </span>
     </div>
@@ -47,11 +62,11 @@
 </template>
 
 <script setup lang="ts">
-import { type WeatherData } from '@/types/Weather';
+import { type WeatherData } from '@/types/Weather'
 
-const route = useRoute();
-const { slug } = route.params;
-const config = useRuntimeConfig();
+const route = useRoute()
+const { slug } = route.params
+const config = useRuntimeConfig()
 
 const { data } = await useFetch(`${config.public.weatherApiUrl}/current.json`, {
   method: 'GET',
@@ -60,11 +75,11 @@ const { data } = await useFetch(`${config.public.weatherApiUrl}/current.json`, {
     'X-RapidAPI-Key': config.public.xRapidApiKey,
     'X-RapidAPI-Host': config.public.xRapidWeatherApiHost,
   },
-});
+})
 
-const { getWeatherIcon, getGustPower } = useWeather();
+const { getWeatherIcon, getGustPower } = useWeather()
 
-const weatherData = computed(() => data.value as WeatherData);
+const weatherData = computed(() => data.value as WeatherData)
 </script>
 
 <style scoped lang="postcss">

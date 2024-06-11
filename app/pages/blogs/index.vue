@@ -2,6 +2,7 @@
   <UBlogList orientation="horizontal">
     <UBlogPost
       v-for="post in content"
+      :key="`blogPost-${post.id}`"
       :to="`/blogs/${post.attributes.title?.split(' ').join('-').toLowerCase()}`"
       :ui="{
         wrapper: 'gap-y-0 rounded-lg ring-1 ring-copper-500 dark:ring-copper-300',
@@ -32,8 +33,18 @@
       </template>
       <template #default>
         <div class="blogs__default">
-          <h2 v-if="post.attributes.title" class="blogs__title">{{ post.attributes.title }}</h2>
-          <p v-if="post.attributes.date" class="blogs__date">{{ post.attributes.date }}</p>
+          <h2
+            v-if="post.attributes.title"
+            class="blogs__title"
+          >
+            {{ post.attributes.title }}
+          </h2>
+          <p
+            v-if="post.attributes.date"
+            class="blogs__date"
+          >
+            {{ post.attributes.date }}
+          </p>
         </div>
       </template>
     </UBlogPost>
@@ -41,32 +52,28 @@
 </template>
 
 <script setup lang="ts">
-import type { Strapi4ResponseMany } from '@nuxtjs/strapi';
-import type { BlogsAttributes } from '@/types/Blogs';
+import type { Strapi4ResponseMany } from '@nuxtjs/strapi'
+import type { BlogsAttributes } from '@/types/Blogs'
 
-const route = useRoute();
-const { fullPath } = route;
+const route = useRoute()
+const { fullPath } = route
 
 const { data } = await useAsyncData(fullPath, async () => {
-  const { find } = useStrapi();
-  try {
-    const response = await find<BlogsAttributes>('blogs', {
-      populate: {
-        author: {
-          populate: '*',
-        },
-        hero_image: {
-          populate: '*',
-        },
+  const { find } = useStrapi()
+  const response = await find<BlogsAttributes>('blogs', {
+    populate: {
+      author: {
+        populate: '*',
       },
-    });
-    return response;
-  } catch (e: any) {
-    return showError(e);
-  }
-});
+      hero_image: {
+        populate: '*',
+      },
+    },
+  })
+  return response
+})
 
-const content = computed(() => (data.value as Strapi4ResponseMany<BlogsAttributes>).data);
+const content = computed(() => (data.value as Strapi4ResponseMany<BlogsAttributes>).data)
 </script>
 
 <style scoped lang="postcss">
