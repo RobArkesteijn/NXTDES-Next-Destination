@@ -32,5 +32,3 @@ const alphabeticalContent = computed(() => {
   return sortedContent
 })
 </script>
-
-<style scoped></style>

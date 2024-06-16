@@ -35,5 +35,3 @@ const content = computed(
   () => (data.value as Strapi4ResponseMany<BlogsAttributes>).data[0]?.attributes,
 )
 </script>
-
-<style scoped lang="postcss"></style>

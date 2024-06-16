@@ -1,10 +1,10 @@
 <template>
-  <div class="currency-calculator">
-    <div class="currency-calculator__wrapper">
+  <div class="currency-calculator shapedivider shapedivider--top">
+    <div class="currency-calculator__wrapper shapedivider shapedivider--bottom">
       <h2 class="currency-calculator__title">
         Check the valuta of this country
       </h2>
-      <!-- @TODO: Find out what this error is about and fix it -->
+      <!-- @TODO: add state and schema props and add form validation -->
       <UForm
         class="currency-calculator__group"
         @submit="
@@ -127,10 +127,32 @@ const calculateCurrencyAmount = async (
 
 <style scoped lang="postcss">
 .currency-calculator {
-  /* @apply shapedivider shapedivider--top bg-boston-blue-100 dark:bg-boston-blue-900 h-[28rem] flex flex-col gap-2; */
+  height: 28rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  @apply bg-boston-blue-100 dark:bg-boston-blue-900;
 
   &__wrapper {
-    /* @apply flex flex-col gap-2 text-center items-center justify-center shapedivider h-full w-full shapedivider shapedivider--bottom py-8 sm:py-12 px-4 sm:px-6 lg:px-8; */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding-block: 2rem;
+    padding-inline: 1rem;;
+
+    @media screen(sm) {
+      padding-block: 3rem;
+      padding-inline: 1.5rem;
+    }
+
+    @media screen(lg) {
+      padding-inline: 2rem;
+    }
   }
 
   &__title {
@@ -138,19 +160,28 @@ const calculateCurrencyAmount = async (
   }
 
   &__group {
-    @apply flex gap-2;
+    display: flex;
+    gap: 0.5rem;
   }
 
   &__fields {
-    @apply flex flex-col gap-2;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
   &__button {
-    @apply flex justify-center;
+    display: flex;
+    justify-content: center;
   }
 
   &__result {
-    @apply font-thermite text-4xl p-8 mt-4 relative z-[1] text-gray-950 dark:text-gray-50;
+    padding: 2rem;
+    margin-top: 1rem;
+    position: relative;
+    z-index: 1;
+
+    @apply font-thermite text-4xl text-gray-950 dark:text-gray-50;
 
     &:before {
       position: absolute;

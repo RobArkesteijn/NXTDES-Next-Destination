@@ -8,16 +8,14 @@ export default defineNuxtConfig({
         { name: 'format-detection', content: 'telephone=no' },
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon-default.svg' },
+        { rel: 'icon', href: '/favicon-default.svg' },
         {
           rel: 'icon',
-          type: 'image/x-icon',
           href: '/favicon-white.svg',
           media: '(prefers-color-scheme:dark)',
         },
         {
           rel: 'icon',
-          type: 'image/x-icon',
           href: '/favicon-black.svg',
           media: '(prefers-color-scheme:light)',
         },
@@ -32,7 +30,6 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
   eslint: {
-    lintOnStart: false,
     config: {
       stylistic: true,
     },
@@ -61,7 +58,10 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'nuxt-mapbox',
   ],
-  plugins: [{ src: '@/plugins/gsap', mode: 'client' }],
+  plugins: [
+    // Activate plugin once you start working with gsap
+    // { src: '@/plugins/gsap', mode: 'client' },
+  ],
   runtimeConfig: {
     public: {
       weatherApiUrl: 'https://weatherapi-com.p.rapidapi.com',

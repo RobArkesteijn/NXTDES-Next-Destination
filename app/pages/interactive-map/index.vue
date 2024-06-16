@@ -1,6 +1,6 @@
 <template>
   <MapboxMap
-    map-id="{ID}"
+    map-id="map-1"
     class="w-full h-full"
     :options="{
       style: 'mapbox://styles/rob-arkesteijn/clx7creqv00ck01qqcka7fmjj',
@@ -9,7 +9,3 @@
     }"
   />
 </template>
-
-<script setup lang="ts"></script>
-
-<style scoped></style>

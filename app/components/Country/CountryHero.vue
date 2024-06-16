@@ -1,34 +1,35 @@
 <template>
-  <div class="country-hero flex flex-col-reverse lg:flex-row h-[100vh] country-hero">
+  <div class="country-hero">
     <div
       class="w-full lg:w-[45%] lg:mt-auto p-4 sm:p-6 lg:p-8 flex flex-col gap-2 md:gap-4 lg:gap-6"
     >
-      <span class="flex gap-2 py-2 items-stretch justify-center lg:justify-start text-2xl">
+      <span class="country-hero__toponym-wrapper">
         <UIcon
           :name="heroIcon"
           dynamic
+          class="country-hero__toponym-icon"
         />
-        <h1 class="text-gray-950 dark:text-gray-50">{{ heroCountry }} ({{ heroCountryNative }})</h1>
+        <h1 class="country-hero__toponym">{{ heroCountry }} ({{ heroCountryNative }})</h1>
       </span>
       <h2
         v-if="heroTitle"
-        class="text-2xl sm:text-4xl lg:text-6xl font-bold text-gray-950 dark:text-gray-50"
+        class="country-hero__title"
       >
         {{ heroTitle }}
       </h2>
       <p
         v-if="heroDescription"
-        class="md:text-xl lg:text-2xl"
+        class="country-hero__description"
       >
         {{ heroDescription }}
       </p>
     </div>
-    <div class="h-full w-full lg:w-[55%] shapedivider shapedivider--bottom lg:shapedivider--left">
+    <div class="country-hero__image-wrapper shapedivider shapedivider--bottom lg:shapedivider--left">
       <NuxtImg
         v-if="heroImageURL"
         :src="heroImageURL"
         :alt="heroImageALT"
-        class="w-full h-full object-cover"
+        class="country-hero__image"
       />
     </div>
   </div>
@@ -57,5 +58,63 @@ const heroImageALT = computed(
 
 <style lang="postcss" scoped>
 .country-hero {
+  display: flex;
+  flex-direction: column-reverse;
+  height: 100vh;
+
+  @media screen(lg) {
+    flex-direction: row;
+  }
+
+  &__toponym-wrapper {
+    display: flex;
+    gap: 0.5rem;
+    padding-block: 0.5rem;
+    align-items: stretch;
+    justify-content: center;
+
+    @apply text-2xl;
+
+    @media screen(lg) {
+      justify-content: flex-start;
+    }
+  }
+
+  &__toponym {
+    @apply text-gray-950 dark:text-gray-50;
+  }
+
+  &__title {
+    font-weight: 700;
+
+    @apply text-2xl text-gray-950 dark:text-gray-50;
+
+    @media screen(sm) {
+      @apply text-4xl;
+    }
+
+    @media screen(lg) {
+      @apply text-6xl;
+    }
+  }
+
+  &__description {
+    @apply md:text-xl lg:text-2xl;
+  }
+
+  &__image-wrapper {
+    height: 100%;
+    width: 100%;
+
+    @media screen(lg) {
+      width: 55%;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 </style>

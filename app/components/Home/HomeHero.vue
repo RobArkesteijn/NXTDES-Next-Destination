@@ -1,11 +1,11 @@
 <template>
-  <div class="shapedivider shapedivider--bottom">
+  <div class="home-hero shapedivider shapedivider--bottom">
     <ULandingHero
+      class="home-hero__landing-hero"
       :style="backgroundStyles"
-      class="bg-no-repeat bg-cover h-[calc(100dvh-100px)] md:h-[calc(100dvh-132px)] lg:h-[calc(100dvh-144px)] hero-gradient"
     >
       <template #headline>
-        <LogoWhite class="h-40 md:h-60 lg:h-80 mix-blend-difference z-10" />
+        <LogoWhite class="home-hero__logo" />
       </template>
     </ULandingHero>
   </div>
@@ -30,11 +30,51 @@ const backgroundStyles = computed(() => {
 </script>
 
 <style scoped lang="postcss">
-.hero-gradient {
-  @apply relative;
-}
+.home-hero {
+  &__landing-hero {
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: calc(100dvh - 100px);
+    position: relative;
 
-.hero-gradient:before {
-  @apply content-[''] absolute top-0 left-0 h-full w-full opacity-30 lg:bg-gradient-to-r from-transparent via-gray-950 to-transparent;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.3;
+
+      @apply from-transparent via-gray-950 to-transparent;
+
+      @media screen(lg) {
+        @apply bg-gradient-to-r;
+      }
+    }
+
+    @media screen(md) {
+      height: calc(100dvh - 132px);
+    }
+
+    @media screen(lg) {
+      height: calc(100dvh - 144px);
+    }
+  }
+
+  &__logo {
+    height: 10rem;
+    mix-blend-mode: difference;
+
+    @apply z-10;
+
+    @media screen(md) {
+      height: 15rem;
+    }
+
+    @media screen(lg) {
+      height: 20rem;
+    }
+  }
 }
 </style>
