@@ -4,7 +4,7 @@
       :content="content"
     />
     <CountryWeather />
-    <!-- <CurrencyCalculator :currency="content.currency ?? 'EUR'" /> -->
+    <CurrencyCalculator :currency="content.currency ?? 'EUR'" />
     <CountryAttractions
       v-if="content.attractions?.length"
       :attractions="content.attractions"

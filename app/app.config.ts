@@ -52,7 +52,7 @@ export default defineAppConfig({
     blog: {
       list: {
         wrapper:
-          'mt-[var(--header-height)] max-w-7xl p-4 sm:p-6 lg:p-8 md:grid md:grid-cols-2 lg:grid-cols-2 md:mx-auto',
+          'mt-[var(--header-height)] max-w-7xl gap-y-8 p-4 sm:p-6 lg:p-8 md:grid md:grid-cols-2 lg:grid-cols-2 md:mx-auto',
       },
     },
     navigation: {

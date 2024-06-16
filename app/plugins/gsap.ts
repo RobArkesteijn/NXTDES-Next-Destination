@@ -1,7 +1,7 @@
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { gsap } from 'gsap-trial'
+import { ScrollSmoother } from 'gsap-trial/ScrollSmoother'
 import { defineNuxtPlugin } from 'nuxt/app'
 
 export default defineNuxtPlugin(() => {
-  gsap.registerPlugin(ScrollTrigger)
+  gsap.registerPlugin(ScrollSmoother)
 })

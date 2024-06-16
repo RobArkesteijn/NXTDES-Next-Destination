@@ -1,7 +1,10 @@
 <template>
-  <UHeader :links="links">
+  <UHeader
+    :links="links"
+    class="header"
+  >
     <template #logo>
-      <SvgoLogo class="w-auto h-14 logo" />
+      <SvgoLogo class="header__logo logo" />
     </template>
 
     <template #right>
@@ -25,7 +28,7 @@
 
     <template #panel>
       <UNavigationTree :links="links" />
-      <div class="flex-grow bg-boston-blue-400/30 backdrop-blur" />
+      <div class="header__sidemenu-background" />
     </template>
   </UHeader>
 </template>
@@ -72,3 +75,18 @@ const links = computed(() => [
   },
 ])
 </script>
+
+<style scoped lang="postcss">
+.header {
+  &__logo {
+    width: auto;
+    height: 3.5rem;
+  }
+
+  &__sidemenu-background {
+    flex-grow: 1;
+
+    @apply bg-boston-blue-400/30 backdrop-blur
+  }
+}
+</style>

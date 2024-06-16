@@ -105,7 +105,7 @@ const content = computed(() => (data.value as Strapi4ResponseMany<BlogsAttribute
     z-index: 1;
     aspect-ratio: 1/1.2;
 
-    @apply ring-1 ring-copper-800 drop-shadow-xl;
+    @apply ring-1 border-copper-100 border-solid border ring-copper-800 drop-shadow-xl;
   }
 
   &__default {

@@ -90,7 +90,17 @@ const weatherData = computed(() => data.value as WeatherData)
   padding: 2rem 1rem;
   text-align: center;
 
-  @apply sm:py-12 sm:px-6 lg:px-8 text-center text-xl sm:text-2xl;
+  @apply text-xl;
+
+  @media screen(sm) {
+    padding: 3rem 1.5rem;
+
+    @apply text-2xl;
+  }
+
+  @media screen(lg) {
+    padding-inline: 2rem;
+  }
 
   &__location {
     display: flex;
@@ -98,6 +108,7 @@ const weatherData = computed(() => data.value as WeatherData)
     align-items: flex-start;
     gap: 8px;
     font-size: 36px;
+
     @apply text-gray-950 dark:text-gray-50;
 
     span {
@@ -118,6 +129,7 @@ const weatherData = computed(() => data.value as WeatherData)
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
+
     @apply transition-transform drop-shadow-sm;
 
     &:hover {

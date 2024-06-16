@@ -24,6 +24,7 @@ export interface StrapiImage {
       name: string
       previewUrl: string | null
       provider: string
+      // provider_metadata seems unclear in what its type is
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       provider_metadata: any
       related: StrapiImageRelated[]
