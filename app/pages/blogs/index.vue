@@ -57,6 +57,11 @@ import type { BlogsAttributes } from '@/types/Blogs'
 
 const route = useRoute()
 const { fullPath } = route
+const { t } = useI18n()
+
+useHead({
+  title: t('blogs.meta_title'),
+})
 
 const { data } = await useAsyncData(fullPath, async () => {
   const { find } = useStrapi()

@@ -6,8 +6,19 @@
 import type { Strapi4ResponseMany } from '@nuxtjs/strapi'
 import type { CountriesAttributes } from '@/types/Countries'
 
+definePageMeta({
+  breadcrumb: {
+    icon: 'i-material-symbols-globe',
+  },
+})
+
 const route = useRoute()
 const { fullPath } = route
+const { t } = useI18n()
+
+useHead({
+  title: t('countries.meta_title'),
+})
 
 const { data } = await useAsyncData(fullPath, async () => {
   const { find } = useStrapi()

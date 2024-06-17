@@ -4,4 +4,5 @@ import { defineNuxtPlugin } from 'nuxt/app'
 
 export default defineNuxtPlugin(() => {
   gsap.registerPlugin(ScrollSmoother)
+  gsap.config({ trialWarn: false })
 })

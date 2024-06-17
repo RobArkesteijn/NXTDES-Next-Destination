@@ -3,6 +3,9 @@
     <CountryHero
       :content="content"
     />
+    <UBreadcrumb
+      :links="links"
+    />
     <CountryWeather />
     <CurrencyCalculator :currency="content.currency ?? 'EUR'" />
     <CountryAttractions
@@ -42,4 +45,17 @@ const { data } = await useAsyncData(fullPath, async () => {
 const content = computed(
   () => (data.value as Strapi4ResponseMany<CountriesAttributes>)?.data[0]?.attributes,
 )
+
+const countryIcon = computed(() => `i-twemoji-flag-${content.value?.country?.toLowerCase()}`)
+
+const links = useBreadcrumbItems({
+  overrides: [
+    undefined,
+    undefined,
+    {
+      label: content.value?.country ?? '',
+      icon: countryIcon.value,
+    },
+  ],
+})
 </script>
