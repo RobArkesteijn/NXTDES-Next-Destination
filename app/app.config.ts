@@ -24,6 +24,14 @@ export default defineAppConfig({
           'text-copper-50 dark:text-copper-50 hover:bg-boston-blue-600 dark:bg-boston-blue-600 hover:dark:bg-boston-blue-500',
       },
     },
+    breadcrumb: {
+      wrapper: 'pt-4 md:pt-6 lg:pt-12',
+      ol: 'justify-center',
+      li: 'text-md lg:text-xl',
+      default: {
+        divider: 'i-material-symbols-chevron-right',
+      },
+    },
     header: {
       wrapper: 'lg:mb-0 lg:border-0 fixed w-full bg-background bg-background/50',
       center: 'dark:text-copper-50 text-shark-900',

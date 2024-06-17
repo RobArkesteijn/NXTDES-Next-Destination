@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Bookings</h1>
+    <h1>Authors</h1>
   </div>
 </template>
 
@@ -8,6 +8,6 @@
 const { t } = useI18n()
 
 useHead({
-  title: t('bookings.meta_title'),
+  title: t('authors.meta_title'),
 })
 </script>

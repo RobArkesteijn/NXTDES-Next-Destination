@@ -6,7 +6,8 @@
     <h3 class="country-weather__location">
       <UIcon name="i-material-symbols-location-on" />
       <span v-if="weatherData.location.name">{{ weatherData.location.name }}</span>
-      <span v-if="weatherData.location.region"> / {{ weatherData.location.region }}</span>
+      <!-- @TODO: Decide if this should be kept or deleted -->
+      <!-- <span v-if="weatherData.location.region"> / {{ weatherData.location.region }}</span> -->
     </h3>
     <div class="country-weather__data">
       <span

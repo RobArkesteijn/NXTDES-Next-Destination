@@ -9,3 +9,11 @@
     }"
   />
 </template>
+
+<script setup lang="ts">
+const { t } = useI18n()
+
+useHead({
+  title: t('interactive_map.meta_title'),
+})
+</script>

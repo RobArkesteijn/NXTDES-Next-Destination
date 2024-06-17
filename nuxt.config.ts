@@ -6,6 +6,7 @@ export default defineNuxtConfig({
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'format-detection', content: 'telephone=no' },
+        { name: 'theme-color', content: '#233746' },
       ],
       link: [
         { rel: 'icon', href: '/favicon-default.svg' },
@@ -38,6 +39,22 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
   },
+  i18n: {
+    baseUrl: 'https://www.nxtdes.com',
+    vueI18n: './i18n.config.ts',
+    defaultLocale: 'en',
+    locales: [
+      {
+        code: 'en',
+        iso: 'en-US',
+        name: 'English',
+        dir: 'ltr',
+      },
+    ],
+    detectBrowserLanguage: {
+      useCookie: false,
+    },
+  },
   image: {
     dir: 'assets/images',
     formats: ['webp'],
@@ -46,22 +63,33 @@ export default defineNuxtConfig({
       baseURL: process.env.STRAPI_BASE_URL,
     },
   },
+  linkChecker: {
+    enabled: false,
+  },
   mapbox: {
     accessToken: process.env.MAPBOX_ACCESS_TOKEN,
   },
   modules: [
-    '@nuxt/ui',
     '@nuxt/eslint',
-    'nuxt-svgo',
-    '@nuxtjs/fontaine',
-    '@nuxtjs/strapi',
     '@nuxt/image',
+    '@nuxt/ui',
+    '@nuxtjs/fontaine',
+    '@nuxtjs/i18n',
+    '@nuxtjs/seo',
+    '@nuxtjs/strapi',
     'nuxt-mapbox',
+    'nuxt-svgo',
   ],
+  ogImage: {
+    enabled: false,
+  },
   plugins: [
     // Activate plugin once you start working with gsap
     // { src: '@/plugins/gsap', mode: 'client' },
   ],
+  robots: {
+    enabled: false,
+  },
   runtimeConfig: {
     public: {
       weatherApiUrl: 'https://weatherapi-com.p.rapidapi.com',
@@ -70,6 +98,17 @@ export default defineNuxtConfig({
       xRapidCurrencyApiHost: process.env.NUXT_PUBLIC_X_RAPID_CURRENCY_API_HOST,
       xRapidApiKey: process.env.NUXT_PUBLIC_X_RAPID_WEATHER_API_KEY,
     },
+  },
+  seo: {
+    redirectToCanonicalSiteUrl: true,
+  },
+  site: {
+    url: 'https://www.nxtdes.com',
+    name: 'Next Destination',
+    description: 'Step into the world of your Next Destination',
+  },
+  sitemap: {
+    enabled: false,
   },
   svgo: {
     defaultImport: 'component',

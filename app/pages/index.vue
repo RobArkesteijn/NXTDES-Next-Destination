@@ -23,8 +23,19 @@
 import type { Strapi4ResponseSingle } from '@nuxtjs/strapi'
 import type { HomeAttributes } from '@/types/Home'
 
+definePageMeta({
+  breadcrumb: {
+    icon: 'i-material-symbols-home-rounded',
+  },
+})
+
 const route = useRoute()
 const { fullPath } = route
+const { t } = useI18n()
+
+useHead({
+  title: t('home.meta_title'),
+})
 
 const { data } = await useAsyncData(fullPath, async () => {
   const { findOne } = useStrapi()
