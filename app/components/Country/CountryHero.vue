@@ -13,7 +13,7 @@
           <h1 class="country-hero__toponym">{{ heroCountry }} ({{ heroCountryNative }})</h1>
         </span>
         <h2
-          v-if="heroTitle"
+          v-if="heroTitle && !isMobileOrTablet"
           class="country-hero__title"
         >
           {{ heroTitle }}
@@ -35,7 +35,7 @@
       </div>
     </div>
     <p
-      v-if="heroDescription"
+      v-if="heroDescription && isMobileOrTablet"
       class="country-hero__description country-hero__description--mobile"
     >
       {{ heroDescription }}
@@ -45,6 +45,8 @@
 
 <script setup lang="ts">
 import type { CountriesAttributes } from '@/types/Countries'
+
+const { isMobileOrTablet } = useDevice()
 
 const props = defineProps({
   content: {
@@ -138,23 +140,11 @@ const heroImageALT = computed(
   &__description {
     @apply md:text-xl lg:text-2xl;
 
-    &--desktop {
-      display: none;
-
-      @media screen(lg) {
-        display: block;
-      }
-    }
-
     &--mobile {
       padding: 0 1rem 1rem;
 
       @media screen(sm) {
         padding: 0 1.5rem 1.5rem;
-      }
-
-      @media screen(lg) {
-        display: none;
       }
     }
   }
