@@ -33,7 +33,6 @@
     "@nuxtjs/device": "^3.1.1",
     "@nuxtjs/fontaine": "^0.4.3",
     "@nuxtjs/stylelint-module": "^5.2.0",
-    "@types/bun": "latest",
     "eslint": "^9.5.0",
     "husky": "^9.0.11",
     "mapbox-gl": "^3.4.0",
