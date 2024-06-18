@@ -10,7 +10,7 @@
     <template #right>
       <ClientOnly>
         <UColorModeToggle
-          size="xl"
+          :size="isMobile ? 'lg' : 'xl'"
           :ui="{
             active: 'dark:bg-boston-blue-400',
             inactive: 'bg-shark-300',
@@ -35,6 +35,7 @@
 
 <script lang="ts" setup>
 const route = useRoute()
+const { isMobile } = useDevice()
 
 const BLOG_PATH = '/blogs'
 const BOOKINGS_PATH = '/bookings'

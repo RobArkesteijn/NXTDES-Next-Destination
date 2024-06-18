@@ -67,6 +67,10 @@ const backgroundStyles = (url: string | undefined) => {
     margin-top: unset;
   }
 
+  &__icon {
+    @apply transition-transform;
+  }
+
   &__item {
     width: 100%;
     display: flex;
@@ -133,10 +137,6 @@ const backgroundStyles = (url: string | undefined) => {
     padding: 1rem;
 
     @apply text-gray-50 dark:text-gray-50 text-5xl drop-shadow-lg;
-  }
-
-  &__icon {
-    @apply transition-transform;
   }
 }
 </style>

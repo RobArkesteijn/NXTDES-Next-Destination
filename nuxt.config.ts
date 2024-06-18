@@ -29,6 +29,9 @@ export default defineNuxtConfig({
   colorMode: {
     preference: 'light',
   },
+  device: {
+    refreshOnResize: true,
+  },
   devtools: { enabled: true },
   eslint: {
     config: {
@@ -74,10 +77,12 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/ui',
     '@nuxt/content',
+    '@nuxtjs/device',
     '@nuxtjs/fontaine',
     '@nuxtjs/i18n',
     '@nuxtjs/seo',
     '@nuxtjs/strapi',
+    '@nuxtjs/stylelint-module',
     '@nuxthq/studio',
     'nuxt-mapbox',
     'nuxt-svgo',
