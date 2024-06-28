@@ -34,6 +34,9 @@
 </template>
 
 <script lang="ts" setup>
+import type { Strapi4ResponseMany } from '@nuxtjs/strapi'
+import type CountriesNavigationAttributes from '@/types/Navigation'
+
 const route = useRoute()
 const { isMobile } = useDevice()
 
@@ -42,6 +45,28 @@ const BOOKINGS_PATH = '/bookings'
 const COUNTRIES_PATH = '/countries'
 const FLIGHT_INFO_PATH = '/flight-info'
 const INTERACTIVE_MAP_PATH = '/interactive-map'
+
+const { data: countriesData } = await useAsyncData('navigation', async () => {
+  const { find } = useStrapi()
+  const response = await find<CountriesNavigationAttributes>('countries', {
+    pagination: {
+      start: 0,
+      limit: 100,
+    },
+    fields: ['country', 'continent'],
+  })
+  return response
+})
+
+const countriesChildren = (countriesData.value as Strapi4ResponseMany<CountriesNavigationAttributes>).data.map((country) => {
+  const countryName = country.attributes.country ?? ''
+
+  return {
+    label: countryName,
+    to: `/countries/${countryName.toLowerCase()}`,
+    icon: `i-twemoji-flag-${countryName.toLowerCase()}`,
+  }
+})
 
 const links = computed(() => [
   {
@@ -61,6 +86,7 @@ const links = computed(() => [
     icon: 'i-material-symbols-globe',
     to: COUNTRIES_PATH,
     active: route.path.startsWith(COUNTRIES_PATH),
+    children: countriesChildren,
   },
   {
     label: 'Flight Info',

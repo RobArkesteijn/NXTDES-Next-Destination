@@ -10,7 +10,7 @@
           ? `country-grid-display--${data.length % 3 === 1 ? 'last-row-one' : 'last-row-two'}`
           : ''
       "
-      :style="backgroundStyles(item.attributes.hero_image?.data.attributes.url ?? undefined)"
+      :style="backgroundStyles(item.attributes?.hero_image?.data.attributes.url ?? undefined)"
       :to="`/countries/${item.attributes.country?.toLowerCase()}`"
     >
       <div class="country-grid-display__cta">
@@ -125,7 +125,7 @@ const backgroundStyles = (url: string | undefined) => {
 
   &--last-row-two {
     @media screen(lg) {
-      grid-column: span 1.5;
+      grid-column: span 2;
     }
   }
 

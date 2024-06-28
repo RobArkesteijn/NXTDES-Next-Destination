@@ -13,13 +13,13 @@
           <h1 class="country-hero__toponym">{{ heroCountry }} ({{ heroCountryNative }})</h1>
         </span>
         <h2
-          v-if="heroTitle && !isMobileOrTablet"
+          v-if="heroTitle"
           class="country-hero__title"
         >
           {{ heroTitle }}
         </h2>
         <p
-          v-if="heroDescription"
+          v-if="heroDescription && !isMobileOrTablet"
           class="country-hero__description country-hero__description--desktop"
         >
           {{ heroDescription }}
