@@ -66,7 +66,7 @@ const countriesChildren = (countriesData.value as Strapi4ResponseMany<CountriesN
     to: `/countries/${countryName.toLowerCase()}`,
     icon: `i-twemoji-flag-${countryName.toLowerCase()}`,
   }
-})
+}).sort((a, b) => a.label.localeCompare(b.label))
 
 const links = computed(() => [
   {

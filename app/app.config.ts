@@ -33,12 +33,17 @@ export default defineAppConfig({
       },
     },
     header: {
-      wrapper: 'lg:mb-0 lg:border-0 fixed w-full bg-background bg-background/50',
-      center: 'dark:text-copper-50 text-shark-900',
+      wrapper: 'lg:mb-0 lg:border-0 fixed w-full bg-background/50 dark:bg-background/50',
       popover: {
         links: {
+          wrapper: 'grid grid-cols-4 p-4 gap-2 space-y-0',
+          base: 'px-3 py-2 items-center',
           active: 'dark:bg-gray-950/50',
           inactive: 'dark:hover:bg-gray-950/50',
+          label: 'text-md dark:text-copper-50 text-shark-950',
+          icon: {
+            base: 'w-6 h-6 m-0',
+          },
         },
       },
       panel: {
@@ -52,9 +57,19 @@ export default defineAppConfig({
         },
       },
       links: {
-        wrapper: 'gap-x-12',
-        base: 'font-thermite uppercase items-stretch drop-shadow text-md hover:text-boston-blue-500',
+        wrapper: 'gap-x-12 hidden lg:flex',
+        base: 'font-thermite dark:text-copper-50 text-shark-900 uppercase items-stretch drop-shadow text-md hover:text-boston-blue-500',
         inactive: 'hover:text-boston-blue-500',
+        default: {
+          popover: {
+            ui: {
+              width: 'auto',
+              base: 'overflow-visible',
+              ring: 'ring-2 ring-boston-blue-800 dark:ring-boston-blue-200',
+              background: 'bg-boston-blue-200/95 dark:bg-boston-blue-800/95 backdrop-blur',
+            },
+          },
+        },
       },
     },
     blog: {
