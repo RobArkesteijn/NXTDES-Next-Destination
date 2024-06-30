@@ -1,6 +1,6 @@
 {
   "extends": "stylelint-config-recommended-vue",
   "rules": {
-    "media-query-no-invalid": null,
-  },
+    "media-query-no-invalid": null
+  }
 }

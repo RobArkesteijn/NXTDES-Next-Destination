@@ -32,6 +32,14 @@ export default defineAppConfig({
         divider: 'i-material-symbols-chevron-right',
       },
     },
+    footer: {
+      columns: {
+        wrapper: 'md:grid md:grid-cols-3 md:gap-8',
+        center: 'grid col-span-2',
+        base: 'border-solid border-b-0 border-boston-blue-400 transition-[border]',
+        inactive: 'hover:border-b-2',
+      },
+    },
     header: {
       wrapper: 'lg:mb-0 lg:border-0 fixed w-full bg-background/50 dark:bg-background/50',
       popover: {
