@@ -1,7 +1,7 @@
 <template>
   <UBlogList orientation="horizontal">
     <UBlogPost
-      v-for="post in content"
+      v-for="post in sortedContent"
       :key="`blogPost-${post.id}`"
       :to="`/blogs/${post.attributes.title?.split(' ').join('-').toLowerCase()}`"
       :ui="{
@@ -78,7 +78,12 @@ const { data } = await useAsyncData(fullPath, async () => {
   return response
 })
 
-const content = computed(() => (data.value as Strapi4ResponseMany<BlogsAttributes>).data)
+const content = (data.value as Strapi4ResponseMany<BlogsAttributes>).data
+const sortedContent = content.sort((a, b) => {
+  const dateA = new Date(a.attributes.createdAt)
+  const dateB = new Date(b.attributes.createdAt)
+  return dateB.getTime() - dateA.getTime()
+})
 </script>
 
 <style scoped lang="postcss">

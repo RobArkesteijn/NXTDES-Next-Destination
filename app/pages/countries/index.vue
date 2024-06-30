@@ -24,6 +24,10 @@ const { data } = await useAsyncData(fullPath, async () => {
   const { find } = useStrapi()
   const response = await find<CountriesAttributes>('countries', {
     populate: '*',
+    pagination: {
+      start: 0,
+      limit: 100,
+    },
   })
   return response
 })

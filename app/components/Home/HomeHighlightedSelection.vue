@@ -70,15 +70,32 @@ defineProps({
   position: relative;
 
   &__image-wrapper {
-    @apply w-full h-[300px] rounded-md shadow-xl ring-1 ring-gray-300 dark:ring-gray-700 overflow-hidden relative;
+    width: 100%;
+    height: 300px;
+    border-radius: 0.375rem;
+    overflow: hidden;
+    position: relative;
+
+    @apply shadow-xl ring-1 ring-gray-300 dark:ring-gray-700;
   }
 
   &__image {
-    @apply w-full h-full object-cover transition-transform hover:scale-105;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    @apply transition-transform hover:scale-105;
   }
 
   &__image-card-content {
-    @apply w-full p-4 absolute bottom-0 left-0 flex justify-between pointer-events-none;
+    width: 100%;
+    padding: 1rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none
   }
 
   &__image-card-text {
@@ -86,7 +103,28 @@ defineProps({
   }
 
   &__decorative-image {
-    @apply absolute  bottom-0 left-0 w-[180px] sm:w-[250px] md:w-[300px] lg:w-[350px] xl:w-[400px] h-auto z-10;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 180px;
+    height: auto;
+    z-index: 10;
+
+    @media screen(sm) {
+      width: 250px;
+    }
+
+    @media screen(md) {
+      width: 300px;
+    }
+
+    @media screen(lg) {
+      width: 350px;
+    }
+
+    @media screen(xl) {
+      width: 400px;
+    }
   }
 }
 </style>
