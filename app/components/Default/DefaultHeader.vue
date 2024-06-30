@@ -27,7 +27,11 @@
     </template>
 
     <template #panel>
-      <UNavigationTree :links="links" />
+      <UNavigationTree
+        :links="links"
+        :level="0"
+        default-open
+      />
       <div class="header__sidemenu-background" />
     </template>
   </UHeader>

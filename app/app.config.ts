@@ -79,24 +79,50 @@ export default defineAppConfig({
       },
     },
     navigation: {
-      links: {
-        wrapper: 'space-y-0',
-        base: 'border-b-[1px] px-4 sm:px-6 py-5',
-        active:
-          'text-boston-blue-900 dark:text-boston-blue-100 border-boston-blue-900 dark:border-boston-blue-300 bg-boston-blue-400/30 backdrop-blur',
-        inactive:
-          'text-boston-blue-500 dark:text-boston-blue-300 border-boston-blue-700 dark:border-boston-blue-400 bg-boston-blue-50 dark:bg-gray-950',
-        icon: {
-          base: 'w-7 h-7',
+      tree: {
+        wrapper: 'space-y-0 ml-0',
+        accordion: {
+          wrapper: 'space-y-0',
+          container: 'space-y-0',
+          button: {
+            base: 'border-b-[1px] px-4 sm:px-6 py-5',
+            active:
+            'text-boston-blue-900 dark:text-boston-blue-100 border-boston-blue-900 dark:border-boston-blue-300 bg-boston-blue-400/30 backdrop-blur',
+            inactive:
+            'text-shark-900 dark:text-copper-50 border-boston-blue-700 dark:border-boston-blue-400 bg-boston-blue-50 dark:bg-gray-950',
+            icon: {
+              base: 'w-7 h-7 text-boston-blue-500',
+            },
+            label: 'text-xl font-thermite mt-[6px]',
+            trailingIcon: {
+              name: 'i-mdi-chevron-down',
+              base: 'w-7 h-7',
+            },
+          },
+          tree: 'ml-0 border-none',
         },
-        label: 'text-xl font-thermite mt-[6px]',
+        links: {
+          wrapper: 'space-y-0 ml-0',
+          wrapperLevel: 'space-y-0 ml-0',
+          base: 'border-b-[1px] px-4 sm:px-6 py-5',
+          active:
+            'text-boston-blue-900 dark:text-boston-blue-100 border-boston-blue-900 dark:border-boston-blue-300 bg-boston-blue-400/30 backdrop-blur',
+          inactive:
+            'text-shark-900 dark:text-copper-50 border-boston-blue-700 dark:border-boston-blue-400 bg-boston-blue-50 dark:bg-gray-950',
+          icon: {
+            base: 'w-7 h-7 text-boston-blue-500',
+          },
+          label: 'text-xl font-thermite mt-[6px]',
+        },
       },
     },
     landing: {
       hero: {
-        wrapper: 'flex flex-col items-center justify-center',
+        wrapper: 'p-0 sm:p-0 md:p-0 m-0',
+        container: 'h-full p-0 sm:p-0 md:p-0 lg:p-0 m-0 gap-0 sm:gap-0 max-w-full',
         title: 'hidden',
-        headline: 'mb-0',
+        base: '',
+        headline: 'absolute inset-0 mb-0',
       },
     },
   },

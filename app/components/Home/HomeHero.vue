@@ -2,10 +2,28 @@
   <div class="home-hero shapedivider shapedivider--bottom">
     <ULandingHero
       class="home-hero__landing-hero"
-      :style="backgroundStyles"
+      :style="heroImage?.data.attributes.mime.startsWith('image') ? backgroundStyles : ''"
     >
       <template #headline>
         <LogoWhite class="home-hero__logo" />
+      </template>
+
+      <template
+        v-if="heroImage?.data.attributes.mime.startsWith('video')"
+        #default
+      >
+        <video
+          class="home-hero__video"
+          autoplay
+          muted
+          loop
+          playsinline
+        >
+          <source
+            :src="heroImage?.data.attributes.url"
+            :type="heroImage?.data.attributes.mime"
+          >
+        </video>
       </template>
     </ULandingHero>
   </div>
@@ -34,7 +52,7 @@ const backgroundStyles = computed(() => {
   &__landing-hero {
     background-repeat: no-repeat;
     background-size: cover;
-    height: calc(100dvh - 100px);
+    height: calc(100dvh - 132px);
     position: relative;
 
     &::before {
@@ -53,18 +71,24 @@ const backgroundStyles = computed(() => {
       }
     }
 
-    @media screen(md) {
-      height: calc(100dvh - 132px);
-    }
-
     @media screen(lg) {
-      height: calc(100dvh - 144px);
+      height: calc(100vh - 144px);
     }
+  }
+
+  &__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   &__logo {
     height: 10rem;
     mix-blend-mode: difference;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
     @apply z-10;
 
