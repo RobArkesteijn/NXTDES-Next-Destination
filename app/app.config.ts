@@ -13,7 +13,6 @@ export default defineAppConfig({
     icons: {
       dark: 'material-symbols:dark-mode',
       light: 'material-symbols:light-mode',
-      dynamic: true,
     },
     avatar: {
       rounded: 'object-cover',
@@ -25,7 +24,7 @@ export default defineAppConfig({
       },
     },
     breadcrumb: {
-      wrapper: 'pt-4 md:pt-6 lg:pt-12',
+      wrapper: 'pb-2',
       ol: 'justify-center',
       li: 'text-md lg:text-xl',
       default: {
@@ -36,7 +35,7 @@ export default defineAppConfig({
       columns: {
         wrapper: 'md:grid md:grid-cols-3 md:gap-8',
         center: 'grid col-span-2',
-        base: 'border-solid border-b-0 border-boston-blue-400 transition-[border]',
+        base: 'border-solid border-b-0 border-boston-blue-400',
         inactive: 'hover:border-b-2',
       },
     },
@@ -54,6 +53,8 @@ export default defineAppConfig({
           },
         },
       },
+      left: '',
+      right: 'lg:gap-x-12 items-end',
       panel: {
         wrapper: 'h-[calc(100vh-var(--header-height))] top-[var(--header-height)] bg-background/75',
         body: 'p-[unset] sm:p-[unset] flex flex-col h-full',
@@ -66,8 +67,9 @@ export default defineAppConfig({
       },
       links: {
         wrapper: 'gap-x-12 hidden lg:flex',
-        base: 'font-thermite dark:text-copper-50 text-shark-900 uppercase items-stretch drop-shadow text-md hover:text-boston-blue-500',
-        inactive: 'hover:text-boston-blue-500',
+        base: 'font-thermite uppercase items-stretch drop-shadow text-md break-keep',
+        inactive: 'text-shark-900 dark:text-copper-50 hover:text-boston-blue-500 dark:hover:text-boston-blue-500',
+        active: 'text-boston-blue-500',
         default: {
           popover: {
             ui: {
@@ -125,6 +127,9 @@ export default defineAppConfig({
       },
     },
     landing: {
+      faq: {
+        wrapper: 'mt-[var(--header-height)] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+      },
       hero: {
         wrapper: 'p-0 sm:p-0 md:p-0 m-0',
         container: 'h-full p-0 sm:p-0 md:p-0 lg:p-0 m-0 gap-0 sm:gap-0 max-w-full',

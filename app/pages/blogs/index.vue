@@ -3,33 +3,38 @@
     <UBlogPost
       v-for="post in sortedContent"
       :key="`blogPost-${post.id}`"
-      :to="`/blogs/${post.attributes.title?.split(' ').join('-').toLowerCase()}`"
+      :to="`/${$i18n.locale}/blogs/${post.attributes.title?.split(' ').join('-').toLowerCase()}`"
       :ui="{
         wrapper: 'gap-y-0 rounded-lg ring-1 ring-copper-500 dark:ring-copper-300',
         // Error below is a Nuxt UI bug. Remove if this is no longer the case.
         image: {
-          wrapper: 'ring-0 shapedivider shapedivider--bottom',
+          wrapper: 'ring-0',
         },
       }"
     >
       <template #image>
-        <NuxtImg
-          :src="post.attributes.hero_image?.data.attributes.url"
-          :alt="
-            post.attributes.hero_image
-              ? (post.attributes.hero_image?.data.attributes.alternativeText as string)
-              : undefined
-          "
-          class="blogs__main-image"
-        />
-        <span class="blogs__avatar">
+        <SectionDivider
+          :side="['bottom']"
+          size="sm"
+        >
           <NuxtImg
-            :src="post.attributes.author.data.attributes.avatar?.data.attributes.url"
-            quality="20"
-            width="40px"
-            class="blogs__avatar-image"
+            :src="post.attributes.hero_image?.data.attributes.url"
+            :alt="
+              post.attributes.hero_image
+                ? (post.attributes.hero_image?.data.attributes.alternativeText as string)
+                : undefined
+            "
+            class="blogs__main-image"
           />
-        </span>
+          <span class="blogs__avatar">
+            <NuxtImg
+              :src="post.attributes.author.data.attributes.avatar?.data.attributes.url"
+              quality="20"
+              width="40px"
+              class="blogs__avatar-image"
+            />
+          </span>
+        </SectionDivider>
       </template>
       <template #default>
         <div class="blogs__default">
@@ -55,13 +60,23 @@
 import type { Strapi4ResponseMany } from '@nuxtjs/strapi'
 import type { BlogsAttributes } from '@/types/Blogs'
 
+defineI18nRoute({
+  paths: {
+    dk: '/blogs',
+    de: '/blogs',
+    uk: '/blogs',
+    es: '/blogs',
+    fr: '/blogs',
+    no: '/blogger',
+    nl: '/blogs',
+    pt: '/blogs',
+    se: '/bloggar',
+  },
+})
+
 const route = useRoute()
 const { fullPath } = route
 const { t } = useI18n()
-
-useHead({
-  title: t('blogs.meta_title'),
-})
 
 const { data } = await useAsyncData(fullPath, async () => {
   const { find } = useStrapi()
@@ -84,6 +99,16 @@ const sortedContent = content.sort((a, b) => {
   const dateB = new Date(b.attributes.createdAt)
   return dateB.getTime() - dateA.getTime()
 })
+
+if (!data.value) {
+  throw createError({
+    statusCode: 500,
+    statusMessage: t('error.500.statusMessage'),
+    message: t('error.500.message'),
+  })
+}
+
+defineOgImageComponent('ContentPage')
 </script>
 
 <style scoped lang="postcss">

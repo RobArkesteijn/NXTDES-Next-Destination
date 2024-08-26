@@ -1,9 +1,21 @@
 <template>
   <NuxtLayout>
     <UPageError
-      :status="404"
-      name="Page not found"
-      message="The page you are looking for does not exist."
+      :status="error?.statusCode"
+      :name="error?.statusMessage"
+      :message="error?.message"
     />
   </NuxtLayout>
 </template>
+
+<script setup lang="ts">
+import type { NuxtError } from '#app'
+
+useSeoMeta({
+  title: 'Error',
+})
+
+defineProps({
+  error: Object as () => NuxtError,
+})
+</script>

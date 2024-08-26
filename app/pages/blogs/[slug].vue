@@ -10,9 +10,24 @@
 import type { Strapi4ResponseMany } from '@nuxtjs/strapi'
 import type { BlogsAttributes } from '@/types/Blogs'
 
+defineI18nRoute({
+  paths: {
+    dk: '/blogs/[slug]',
+    de: '/blogs/[slug]',
+    uk: '/blogs/[slug]',
+    es: '/blogs/[slug]',
+    fr: '/blogs/[slug]',
+    no: '/blogger/[slug]',
+    nl: '/blogs/[slug]',
+    pt: '/blogs/[slug]',
+    se: '/bloggar/[slug]',
+  },
+})
+
 const route = useRoute()
 const { fullPath } = route
 const { slug } = route.params
+const { t } = useI18n()
 
 const { data } = await useAsyncData(fullPath, async () => {
   const { find } = useStrapi()
@@ -34,4 +49,32 @@ const { data } = await useAsyncData(fullPath, async () => {
 const content = computed(
   () => (data.value as Strapi4ResponseMany<BlogsAttributes>).data[0]?.attributes,
 )
+
+if (!content.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: t('error.404.statusMessage'),
+    message: t('error.404.message'),
+  })
+}
+
+useSchemaOrg([
+  defineArticle({
+    '@type': 'BlogPosting',
+    'image': content.value?.hero_image?.data.attributes.url,
+    'datePublished': content.value?.publishedAt,
+    'dateModified': content.value?.updatedAt,
+    'author': [
+      {
+        name: content.value?.author?.data.attributes.name,
+      },
+    ],
+  }),
+])
+
+defineOgImageComponent('ContentPage', {
+  imageUrl: content.value?.hero_image?.data.attributes.url,
+  title: 'Blog Post',
+  description: content.value?.title,
+})
 </script>

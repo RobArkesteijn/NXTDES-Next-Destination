@@ -1,5 +1,5 @@
 <template>
-  <div class="home-hero shapedivider shapedivider--bottom">
+  <div class="home-hero">
     <ULandingHero
       class="home-hero__landing-hero"
       :style="heroImage?.data.attributes.mime.startsWith('image') ? backgroundStyles : ''"

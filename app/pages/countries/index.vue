@@ -6,19 +6,23 @@
 import type { Strapi4ResponseMany } from '@nuxtjs/strapi'
 import type { CountriesAttributes } from '@/types/Countries'
 
-definePageMeta({
-  breadcrumb: {
-    icon: 'i-material-symbols-globe',
+defineI18nRoute({
+  paths: {
+    dk: '/lande',
+    de: '/lander',
+    uk: '/countries',
+    es: '/paises',
+    fr: '/pays',
+    no: '/land',
+    nl: '/landen',
+    pt: '/paises',
+    se: '/lander',
   },
 })
 
 const route = useRoute()
 const { fullPath } = route
 const { t } = useI18n()
-
-useHead({
-  title: t('countries.meta_title'),
-})
 
 const { data } = await useAsyncData(fullPath, async () => {
   const { find } = useStrapi()
@@ -46,4 +50,20 @@ const alphabeticalContent = computed(() => {
 
   return sortedContent
 })
+
+if (!data.value) {
+  throw createError({
+    statusCode: 500,
+    statusMessage: t('error.500.statusMessage'),
+    message: t('error.500.message'),
+  })
+}
+
+definePageMeta({
+  breadcrumb: {
+    icon: 'i-material-symbols-globe',
+  },
+})
+
+defineOgImageComponent('ContentPage')
 </script>

@@ -5,9 +5,17 @@
 </template>
 
 <script setup lang="ts">
-const { t } = useI18n()
-
-useHead({
-  title: t('bookings.meta_title'),
+defineI18nRoute({
+  paths: {
+    dk: '/bookinger',
+    de: '/buchungen',
+    uk: '/bookings',
+    es: '/reservas',
+    fr: '/reservations',
+    no: '/bestillinger',
+    nl: '/boekingen',
+    pt: '/reservas',
+    se: '/bokningar',
+  },
 })
 </script>

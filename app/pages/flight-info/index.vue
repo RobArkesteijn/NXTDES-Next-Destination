@@ -3,9 +3,17 @@
 </template>
 
 <script setup lang="ts">
-const { t } = useI18n()
-
-useHead({
-  title: t('flight_info.meta_title'),
+defineI18nRoute({
+  paths: {
+    dk: '/flyinformation',
+    de: '/fluginformationen',
+    uk: '/flight-info',
+    es: '/informacion-de-vuelo',
+    fr: '/infos-vol',
+    no: '/flyinformasjon',
+    nl: '/vluchttinformatie',
+    pt: '/informacoes-de-voo',
+    se: '/flyginformation',
+  },
 })
 </script>

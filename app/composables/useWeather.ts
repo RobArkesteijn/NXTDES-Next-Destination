@@ -14,6 +14,9 @@ export default function useWeather() {
     if (status === 'Patchy rain nearby') {
       return cloudsPercentage < 75 ? `partly-cloudy-${dayStatus}-rain` : 'drizzle'
     }
+    if (status === 'Patchy light rain with thunder' || status === 'Moderate or heavy rain with thunder') {
+      return 'thunderstorms-rain'
+    }
     if (status === 'Light drizzle') {
       return cloudsPercentage < 75 ? `drizzle-${dayStatus}` : 'drizzle'
     }
@@ -24,7 +27,7 @@ export default function useWeather() {
       return cloudsPercentage < 75 ? `drizzle-${dayStatus}` : 'drizzle'
     }
     if (status === 'Moderate rain') {
-      return cloudsPercentage < 75 ? `overcast-${dayStatus}-rain` : 'overcast-rain'
+      return cloudsPercentage < 75 ? `partly-cloudy-${dayStatus}-rain` : 'rain'
     }
     if (status === 'Mist') {
       return 'mist'

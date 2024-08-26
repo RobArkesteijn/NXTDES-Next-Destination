@@ -1,6 +1,6 @@
 {
   "editor.formatOnSaveMode": "file",
-  "eslint.experimental.useFlatConfig": true,
+  "eslint.useFlatConfig": true,
   "files.autoSave": "onFocusChange",
   "peacock.color": "#4394b1",
   "postcss.validate": false,

@@ -1,21 +1,25 @@
 <template>
   <div>
-    <HomeHero
-      v-if="heroImage"
-      :hero-image="heroImage"
-    />
+    <SectionDivider :side="['bottom']">
+      <HomeHero
+        v-if="heroImage"
+        :hero-image="heroImage"
+      />
+    </SectionDivider>
     <HomeIntro
       v-if="introTitle || introDescription"
       :intro-title="introTitle"
       :intro-description="introDescription"
     />
-    <HomeHighlightedSelection
-      v-if="contentData.data.attributes.Highlighted"
-      :highlighted-headline="highlightedHeadline"
-      :highlighted-title="highlightedTitle"
-      :highlighted-description="highlightedDescription"
-      :highlighted-countries="highlightedCountries"
-    />
+    <SectionDivider>
+      <HomeHighlightedSelection
+        v-if="contentData.data.attributes.Highlighted"
+        :highlighted-headline="highlightedHeadline"
+        :highlighted-title="highlightedTitle"
+        :highlighted-description="highlightedDescription"
+        :highlighted-countries="highlightedCountries"
+      />
+    </SectionDivider>
   </div>
 </template>
 
@@ -23,19 +27,9 @@
 import type { Strapi4ResponseSingle } from '@nuxtjs/strapi'
 import type { HomeAttributes } from '@/types/Home'
 
-definePageMeta({
-  breadcrumb: {
-    icon: 'i-material-symbols-home-rounded',
-  },
-})
-
 const route = useRoute()
 const { fullPath } = route
 const { t } = useI18n()
-
-useHead({
-  title: t('home.meta_title'),
-})
 
 const { data } = await useAsyncData(fullPath, async () => {
   const { findOne } = useStrapi()
@@ -68,4 +62,26 @@ const highlightedDescription = computed(
 const highlightedCountries = computed(
   () => contentData.value?.data.attributes.Highlighted.countries,
 )
+
+if (!data.value) {
+  throw createError({
+    statusCode: 500,
+    statusMessage: t('error.500.statusMessage'),
+    message: t('error.500.message'),
+  })
+}
+
+defineOgImageComponent('ContentPage', {
+  title: 'NXTDES',
+})
+
+definePageMeta({
+  breadcrumb: {
+    icon: 'i-material-symbols-home-rounded',
+  },
+})
+
+useSeoMeta({
+  title: t('home.meta_title'),
+})
 </script>

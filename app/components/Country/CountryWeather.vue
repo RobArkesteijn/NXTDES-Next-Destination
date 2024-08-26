@@ -67,16 +67,8 @@ import { type WeatherData } from '@/types/Weather'
 
 const route = useRoute()
 const { slug } = route.params
-const config = useRuntimeConfig()
 
-const { data } = await useFetch(`${config.public.weatherApiUrl}/current.json`, {
-  method: 'GET',
-  params: { q: slug },
-  headers: {
-    'X-RapidAPI-Key': config.public.xRapidApiKey,
-    'X-RapidAPI-Host': config.public.xRapidWeatherApiHost,
-  },
-})
+const { data } = await useFetch(`/api/weather?slug=${slug}`)
 
 const { getWeatherIcon, getGustPower } = useWeather()
 

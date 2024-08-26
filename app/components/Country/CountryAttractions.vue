@@ -15,7 +15,7 @@
       :links="[
         {
           label: 'Explore Attraction',
-          to: `/countries/${slug}/${props.attractions[index]?.attraction?.toLowerCase().split(' ').join('-')}`,
+          to: `/${$i18n.locale}/${$t('countries.url')}/${slug}/${props.attractions[index]?.attraction?.toLowerCase().split(' ').join('-')}`,
           color: 'boston-blue',
           trailingIcon: 'i-heroicons-arrow-right',
           size: 'lg',

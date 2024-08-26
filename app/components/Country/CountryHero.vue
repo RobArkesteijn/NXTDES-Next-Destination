@@ -2,37 +2,47 @@
   <div class="country-hero">
     <div class="country-hero__wrapper">
       <div
-        class="country-hero__intro-container"
+        class="country-hero__intro-wrapper"
       >
-        <span class="country-hero__toponym-wrapper">
-          <UIcon
-            :name="heroIcon"
-            dynamic
-            class="country-hero__toponym-icon"
-          />
-          <h1 class="country-hero__toponym">{{ heroCountry }} ({{ heroCountryNative }})</h1>
-        </span>
-        <h2
-          v-if="heroTitle"
-          class="country-hero__title"
-        >
-          {{ heroTitle }}
-        </h2>
-        <p
-          v-if="heroDescription && !isMobileOrTablet"
-          class="country-hero__description country-hero__description--desktop"
-        >
-          {{ heroDescription }}
-        </p>
-      </div>
-      <div class="country-hero__image-wrapper shapedivider shapedivider--bottom lg:shapedivider--left">
-        <NuxtImg
-          v-if="heroImageURL"
-          :src="heroImageURL"
-          :alt="heroImageALT"
-          class="country-hero__image"
+        <UBreadcrumb
+          :links="links"
         />
+        <div class="country-hero__intro-container">
+          <span class="country-hero__toponym-wrapper">
+            <UIcon
+              :name="heroIcon"
+              dynamic
+              class="country-hero__toponym-icon"
+            />
+            <h1 class="country-hero__toponym">{{ heroCountry }} ({{ heroCountryNative }})</h1>
+          </span>
+          <h2
+            v-if="heroTitle"
+            class="country-hero__title"
+          >
+            {{ heroTitle }}
+          </h2>
+          <p
+            v-if="heroDescription && !isMobileOrTablet"
+            class="country-hero__description country-hero__description--desktop"
+          >
+            {{ heroDescription }}
+          </p>
+        </div>
       </div>
+      <SectionDivider
+        class="country-hero__divider"
+        :side="isMobileOrTablet ? ['bottom'] : ['left']"
+      >
+        <div class="country-hero__image-wrapper">
+          <NuxtImg
+            v-if="heroImageURL"
+            :src="heroImageURL"
+            :alt="heroImageALT"
+            class="country-hero__image"
+          />
+        </div>
+      </SectionDivider>
     </div>
     <p
       v-if="heroDescription && isMobileOrTablet"
@@ -46,7 +56,7 @@
 <script setup lang="ts">
 import type { CountriesAttributes } from '@/types/Countries'
 
-const { isMobileOrTablet } = useDevice()
+const { isMobileOrTablet } = useUIHelper()
 
 const props = defineProps({
   content: {
@@ -64,6 +74,17 @@ const heroImageURL = computed(() => props.content.hero_image?.data.attributes.ur
 const heroImageALT = computed(
   () => props.content.hero_image?.data.attributes.alternativeText ?? undefined,
 )
+
+const links = useBreadcrumbItems({
+  overrides: [
+    undefined,
+    undefined,
+    {
+      label: heroCountry.value ?? '',
+      icon: heroIcon.value,
+    },
+  ],
+})
 </script>
 
 <style lang="postcss" scoped>
@@ -75,20 +96,33 @@ const heroImageALT = computed(
 
     @media screen(lg) {
       flex-direction: row;
-      height: 100vh;
+      height: calc(100vh + 80px);
     }
   }
 
-  &__intro-container {
+  &__intro-wrapper {
     width: 100%;
     padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
 
     @media screen(sm) {
       padding: 1.5rem 1.5rem .5rem;
     }
+
+    @media screen(lg) {
+      width: 45%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: calc(var(--header-height) + 2rem) 2rem 2rem;
+      margin-bottom: 80px;
+    }
+  }
+
+  &__intro-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 
     @media screen(md) {
       gap: 1rem;
@@ -96,9 +130,6 @@ const heroImageALT = computed(
 
     @media screen(lg) {
       gap: 1.5rem;
-      margin-top: auto;
-      width: 45%;
-      padding: 2rem;
     }
   }
 
@@ -149,7 +180,7 @@ const heroImageALT = computed(
     }
   }
 
-  &__image-wrapper {
+  &__divider {
     flex-grow: 1;
     width: 100%;
 
@@ -158,6 +189,11 @@ const heroImageALT = computed(
       height: 100%;
       flex-grow: 0;
     }
+  }
+
+  &__image-wrapper {
+    height: 100%;
+    width: 100%;
   }
 
   &__image {
