@@ -99,6 +99,7 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
     '@nuxt/image',
+    '@nuxt/test-utils/module',
     '@nuxt/ui',
     '@nuxtjs/fontaine',
     '@nuxtjs/i18n',
