@@ -1,7 +1,7 @@
 <template>
   <Html>
     <Body>
-      <DefaultHeader />
+      <AppHeader />
       <NuxtLoadingIndicator
         color="#4394b1"
         :height="5"
@@ -9,7 +9,7 @@
       <UMain>
         <slot />
       </UMain>
-      <DefaultFooter />
+      <AppFooter />
     </Body>
   </Html>
 </template>

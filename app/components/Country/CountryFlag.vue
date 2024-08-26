@@ -25,8 +25,6 @@ defineProps({
 .country-flag {
   height: 25vh;
 
-  @apply shapedivider shapedivider--bottom;
-
   @media screen(lg) {
     height: 60vh;
   }

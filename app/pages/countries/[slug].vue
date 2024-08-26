@@ -1,13 +1,14 @@
 <template>
   <div v-if="content">
-    <CountryHero
-      :content="content"
-    />
-    <UBreadcrumb
-      :links="links"
-    />
+    <SectionDivider :side="['bottom']">
+      <CountryHero
+        :content="content"
+      />
+    </SectionDivider>
     <CountryWeather />
-    <CurrencyCalculator :currency="content.currency ?? 'EUR'" />
+    <SectionDivider :side="['bottom', 'top']">
+      <CurrencyCalculator :currency="content.currency ?? 'EUR'" />
+    </SectionDivider>
     <CountryAttractions
       v-if="content.attractions?.length"
       :attractions="content.attractions"
@@ -19,9 +20,24 @@
 import type { Strapi4ResponseMany } from '@nuxtjs/strapi'
 import type { CountriesAttributes } from '@/types/Countries'
 
+defineI18nRoute({
+  paths: {
+    dk: '/lande/[slug]',
+    de: '/lander/[slug]',
+    uk: '/countries/[slug]',
+    es: '/paises/[slug]',
+    fr: '/pays/[slug]',
+    no: '/land/[slug]',
+    nl: '/landen/[slug]',
+    pt: '/paises/[slug]',
+    se: '/lander/[slug]',
+  },
+})
+
 const route = useRoute()
 const { fullPath } = route
 const { slug } = route.params
+const { t } = useI18n()
 
 const { data } = await useAsyncData(fullPath, async () => {
   const { find } = useStrapi()
@@ -46,16 +62,17 @@ const content = computed(
   () => (data.value as Strapi4ResponseMany<CountriesAttributes>)?.data[0]?.attributes,
 )
 
-const countryIcon = computed(() => `i-twemoji-flag-${content.value?.country?.toLowerCase()}`)
+if (!content.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: t('error.404.statusMessage'),
+    message: t('error.404.message'),
+  })
+}
 
-const links = useBreadcrumbItems({
-  overrides: [
-    undefined,
-    undefined,
-    {
-      label: content.value?.country ?? '',
-      icon: countryIcon.value,
-    },
-  ],
+defineOgImageComponent('ContentPage', {
+  imageUrl: content.value.hero_image?.data.attributes.url,
+  icon: `i-twemoji-flag-${content.value?.country?.toLowerCase()}`,
+  description: content.value.title,
 })
 </script>

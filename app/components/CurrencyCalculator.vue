@@ -1,6 +1,6 @@
 <template>
-  <div class="currency-calculator shapedivider shapedivider--top">
-    <div class="currency-calculator__wrapper shapedivider shapedivider--bottom">
+  <div class="currency-calculator">
+    <div class="currency-calculator__wrapper">
       <h2 class="currency-calculator__title">
         Check the valuta of this country
       </h2>

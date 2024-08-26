@@ -6,7 +6,7 @@
     :links="[
       {
         label: 'Explore Destinations',
-        to: '/countries',
+        to: `/${$i18n.locale}/${$t('countries.url')}`,
         color: 'boston-blue',
         trailingIcon: 'i-heroicons-arrow-right',
         size: 'lg',
@@ -15,14 +15,14 @@
     align="left"
     class="home-highlighted-section"
     :ui="{
-      wrapper: 'bg-copper-100 dark:bg-boston-blue-900 shapedivider shapedivider--top',
+      wrapper: 'bg-copper-100 dark:bg-boston-blue-900',
     }"
   >
     <div class="flex flex-col gap-6">
-      <NuxtLink
+      <SiteLink
         v-for="item in highlightedCountries"
         :key="`highlightedCountry-${item.id}`"
-        :to="`/countries/${item.country?.toLowerCase()}`"
+        :to="`/${$i18n.locale}/${$t('countries.url')}/${item.country?.toLowerCase()}`"
         class="home-highlighted-section__image-wrapper"
       >
         <NuxtImg
@@ -34,10 +34,10 @@
           <h3 class="home-highlighted-section__image-card-text">{{ item.country }}</h3>
           <UIcon
             name="i-mdi-arrow-right-circle"
-            class="home-highlighted-section__image-card-text"
+            class="home-highlighted-section__image-card-icon"
           />
         </span>
-      </NuxtLink>
+      </SiteLink>
     </div>
   </ULandingSection>
 </template>
@@ -98,8 +98,13 @@ defineProps({
     pointer-events: none
   }
 
-  &__image-card-text {
+  &__image-card-text,
+  &__image-card-icon {
     @apply text-gray-50 drop-shadow text-3xl;
+  }
+
+  &__image-card-icon {
+    @apply text-4xl;
   }
 
   &__decorative-image {

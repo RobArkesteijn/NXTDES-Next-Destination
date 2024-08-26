@@ -1,6 +1,6 @@
 <template>
   <div class="country-grid-display">
-    <NuxtLink
+    <SiteLink
       v-for="(item, index) in data"
       :key="`country-${item.id}`"
       class="country-grid-display__item"
@@ -11,7 +11,7 @@
           : ''
       "
       :style="backgroundStyles(item.attributes?.hero_image?.data.attributes.url ?? undefined)"
-      :to="`/countries/${item.attributes.country?.toLowerCase()}`"
+      :to="`/${$i18n.locale}/${$t('countries.url')}/${item.attributes.country?.toLowerCase()}`"
     >
       <div class="country-grid-display__cta">
         <h2 class="country-grid-display__title">
@@ -22,7 +22,7 @@
           class="country-grid-display__icon"
         />
       </div>
-    </NuxtLink>
+    </SiteLink>
   </div>
 </template>
 
