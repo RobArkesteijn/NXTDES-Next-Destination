@@ -1,3 +1,21 @@
+<script setup lang="ts">
+import type { StrapiImage } from '@/types/Strapi'
+import LogoWhite from '@/assets/icons/logo-white.svg'
+
+const props = defineProps({
+  heroImage: {
+    type: Object as PropType<StrapiImage | null>,
+    required: true,
+  },
+})
+
+const img = useImage()
+const backgroundStyles = computed(() => {
+  const imgUrl = img(`${props.heroImage?.data.attributes.url}`)
+  return { backgroundImage: `url('${imgUrl}')` }
+})
+</script>
+
 <template>
   <div class="home-hero">
     <ULandingHero
@@ -28,24 +46,6 @@
     </ULandingHero>
   </div>
 </template>
-
-<script setup lang="ts">
-import type { StrapiImage } from '@/types/Strapi'
-import LogoWhite from '@/assets/icons/logo-white.svg'
-
-const props = defineProps({
-  heroImage: {
-    type: Object as PropType<StrapiImage | null>,
-    required: true,
-  },
-})
-
-const img = useImage()
-const backgroundStyles = computed(() => {
-  const imgUrl = img(`${props.heroImage?.data.attributes.url}`)
-  return { backgroundImage: `url('${imgUrl}')` }
-})
-</script>
 
 <style scoped lang="postcss">
 .home-hero {

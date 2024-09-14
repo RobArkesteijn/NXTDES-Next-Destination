@@ -1,3 +1,23 @@
+<script setup lang="ts">
+import type { BlogsAttributes } from '@/types/Blogs'
+
+defineProps({
+  data: {
+    type: Object as PropType<BlogsAttributes>,
+    required: true,
+  },
+})
+
+const ui = {
+  wrapper: 'h-screen gap-y-4 sm:gap-y-6 lg:gap-y-8',
+  image: {
+    wrapper: 'h-full ring-0 rounded-none',
+    base: '',
+  },
+  container: 'max-full sm:max-w-7xl px-4 sm:px-6 lg:px-8 pb-4 sm:pb-6 lg:pb-8 mx-auto',
+}
+</script>
+
 <template>
   <UBlogPost
     class="blogs-header"
@@ -6,9 +26,9 @@
     :date="data.date ?? undefined"
     :authors="[
       {
-        name: props.data.author.data.attributes.name ?? '',
-        avatar: { src: props.data.author.data.attributes.avatar?.data.attributes.url, size: 'md' },
-        to: `/${$i18n.locale}/authors/${props.data.author.data.attributes.name?.split(' ').join('-').toLowerCase()}`,
+        name: data.author.data.attributes.name ?? '',
+        avatar: { src: data.author.data.attributes.avatar?.data.attributes.url, size: 'md' },
+        to: `/${$i18n.locale}/authors/${data.author.data.attributes.name?.split(' ').join('-').toLowerCase()}`,
       },
     ]"
     :badge="{ label: data.label ?? undefined }"
@@ -29,26 +49,6 @@
     </template>
   </UBlogPost>
 </template>
-
-<script setup lang="ts">
-import type { BlogsAttributes } from '@/types/Blogs'
-
-const props = defineProps({
-  data: {
-    type: Object as PropType<BlogsAttributes>,
-    required: true,
-  },
-})
-
-const ui = {
-  wrapper: 'h-screen gap-y-4 sm:gap-y-6 lg:gap-y-8',
-  image: {
-    wrapper: 'h-full ring-0 rounded-none',
-    base: '',
-  },
-  container: 'max-full sm:max-w-7xl px-4 sm:px-6 lg:px-8 pb-4 sm:pb-6 lg:pb-8 mx-auto',
-}
-</script>
 
 <style scoped lang="postcss">
 .blogs-header {

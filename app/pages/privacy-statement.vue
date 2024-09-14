@@ -1,14 +1,12 @@
 <script setup lang="ts">
 defineI18nRoute({
   paths: {
-    uk: '/authors/[slug]',
-    nl: '/auteurs/[slug]',
+    uk: '/privacy-statement',
+    nl: '/privacyverklaring',
   },
 })
 </script>
 
 <template>
-  <div>
-    <h1>Authors</h1>
-  </div>
+  <h1>Privacy statement</h1>
 </template>

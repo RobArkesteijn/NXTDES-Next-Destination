@@ -1,37 +1,83 @@
+<script setup lang="ts">
+import { object, string, type InferType } from 'yup'
+import type { FormSubmitEvent } from '#ui/types'
+import type { Calculator } from '@/types/Calculator'
+import formatNumber from '@/utils'
+
+const props = defineProps({
+  currency: {
+    type: String as PropType<string>,
+    required: true,
+  },
+})
+
+const config = useRuntimeConfig()
+const i18n = useI18n()
+
+const calculatedAmount = ref<string>()
+
+interface Currency {
+  currency: string
+  format: string
+  icon: string
+}
+
+const schema = object({
+  amount: string().required('Please enter an amount'),
+})
+
+type Schema = InferType<typeof schema>
+
+const currencies: Currency[] = [
+  { currency: 'Euro', format: 'EUR', icon: 'i-tabler-currency-euro' },
+  { currency: 'US Dollar', format: 'USD', icon: 'i-tabler-currency-pound' },
+]
+
+const currencyOfReader = i18n.locale.value === 'nl' ? currencies[0] : currencies[1]
+
+const state = reactive({
+  amount: 1.0,
+})
+
+// @TODO: Add limit to amount of calls (no more than 500)
+const calculateCurrencyAmount = async (event: FormSubmitEvent<Schema>) => {
+  console.log(currencyOfReader?.format, props.currency)
+  const data: Calculator = await $fetch(`${config.public.currencyApiUrl}/convert`, {
+    method: 'GET',
+    params: {
+      from: currencyOfReader?.format,
+      to: props.currency,
+      amount: event.data.amount,
+    },
+    headers: {
+      'X-RapidAPI-Key': config.public.xRapidApiKey,
+      'X-RapidAPI-Host': config.public.xRapidCurrencyApiHost,
+    },
+  })
+
+  calculatedAmount.value = formatNumber(data.result.convertedAmount, 2, props.currency)
+}
+</script>
+
 <template>
   <div class="currency-calculator">
     <div class="currency-calculator__wrapper">
       <h2 class="currency-calculator__title">
         Check the valuta of this country
       </h2>
-      <!-- @TODO: add state and schema props and add form validation -->
       <UForm
+        :schema="schema"
+        :state="state"
         class="currency-calculator__group"
-        @submit="
-          calculateCurrencyAmount(selectedCurrency?.format!, currency, currencyAmountInputValue)
-        "
+        @submit="calculateCurrencyAmount"
       >
         <div class="currency-calculator__fields">
-          <UFormGroup
-            label="Currency"
-            name="currency"
-          >
-            <USelectMenu
-              v-model="selectedCurrencyValue"
-              class="currency-calculator__select-menu"
-              value-attribute="format"
-              option-attribute="currency"
-              trailing
-              :options="currencies"
-              size="lg"
-            />
-          </UFormGroup>
           <UFormGroup
             label="Amount"
             name="amount"
           >
             <UInput
-              v-model="currencyAmountInputValue"
+              v-model="state.amount"
               class="currency-calculator__input-menu"
               placeholder="Amount"
               :step="0.01"
@@ -40,8 +86,8 @@
             >
               <template #trailing>
                 <UIcon
-                  v-if="selectedCurrency && selectedCurrency.icon"
-                  :name="selectedCurrency?.icon"
+                  v-if="currencyOfReader && currencyOfReader.icon"
+                  :name="currencyOfReader.icon"
                 />
               </template>
             </UInput>
@@ -55,75 +101,11 @@
         />
       </UForm>
       <span class="currency-calculator__result">
-        {{ calculatedAmount ? calculatedAmount : '........' }}
+        {{ calculatedAmount ? calculatedAmount : `${currency} ........` }}
       </span>
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import type { Calculator } from '@/types/Calculator'
-import formatNumber from '@/utils'
-
-const props = defineProps({
-  currency: {
-    type: String as PropType<string>,
-    required: true,
-  },
-})
-
-const config = useRuntimeConfig()
-
-const currencyAmountInputValue = ref(1.0)
-const calculatedAmount = ref<string>()
-
-interface Currency {
-  currency: string
-  format: string
-  icon: string
-}
-
-const currencies: Currency[] = [
-  { currency: 'Euro', format: 'EUR', icon: 'i-tabler-currency-euro' },
-  { currency: 'Turkey Lira', format: 'TRY', icon: 'i-tabler-currency-lira' },
-  { currency: 'US Dollar', format: 'USD', icon: 'i-tabler-currency-dollar' },
-  { currency: 'Viet Nam Dong', format: 'VND', icon: 'i-tabler-currency-dong' },
-]
-
-const selectedCurrencyValue = ref(
-  props.currency === 'EUR' ? currencies[2]?.format : currencies[0]?.format,
-)
-
-const selectedCurrency = computed(() =>
-  currencies.find(currency => currency.format === selectedCurrencyValue.value),
-)
-
-const resultCurrencyFormat = computed(
-  () => currencies.find(currency => currency.format === props.currency)?.format,
-)
-
-// @TODO: Add limit to amount of calls (no more than 500)
-const calculateCurrencyAmount = async (
-  currencyFrom: string,
-  currencyTo: string,
-  currencyAmount: number,
-) => {
-  const data: Calculator = await $fetch(`${config.public.currencyApiUrl}/convert`, {
-    method: 'GET',
-    params: {
-      from: currencyFrom,
-      to: currencyTo,
-      amount: currencyAmount,
-    },
-    headers: {
-      'X-RapidAPI-Key': config.public.xRapidApiKey,
-      'X-RapidAPI-Host': config.public.xRapidCurrencyApiHost,
-    },
-  })
-
-  calculatedAmount.value = formatNumber(data.result.convertedAmount, 2, resultCurrencyFormat.value)
-}
-</script>
 
 <style scoped lang="postcss">
 .currency-calculator {

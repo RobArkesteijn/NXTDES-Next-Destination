@@ -1,3 +1,16 @@
+<script setup lang="ts">
+import type { WeatherData } from '@/types/Weather'
+
+const route = useRoute()
+const { slug } = route.params
+
+const { data } = await useFetch(`/api/weather?slug=${slug}`)
+
+const { getWeatherIcon, getGustPower } = useWeather()
+
+const weatherData = computed(() => data.value as WeatherData)
+</script>
+
 <template>
   <div
     v-if="weatherData"
@@ -61,19 +74,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { type WeatherData } from '@/types/Weather'
-
-const route = useRoute()
-const { slug } = route.params
-
-const { data } = await useFetch(`/api/weather?slug=${slug}`)
-
-const { getWeatherIcon, getGustPower } = useWeather()
-
-const weatherData = computed(() => data.value as WeatherData)
-</script>
 
 <style scoped lang="postcss">
 .country-weather {

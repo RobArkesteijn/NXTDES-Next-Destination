@@ -1,3 +1,14 @@
+<script setup lang="ts">
+import type { StrapiImage } from '@/types/Strapi'
+
+defineProps({
+  flagImage: {
+    type: Object as PropType<StrapiImage>,
+    required: true,
+  },
+})
+</script>
+
 <template>
   <div class="country-flag">
     <div class="country-flag__container">
@@ -9,17 +20,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import type { StrapiImage } from '@/types/Strapi'
-
-defineProps({
-  flagImage: {
-    type: Object as PropType<StrapiImage>,
-    required: true,
-  },
-})
-</script>
 
 <style scoped lang="postcss">
 .country-flag {

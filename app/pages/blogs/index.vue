@@ -1,3 +1,44 @@
+<script setup lang="ts">
+import type { Strapi4ResponseMany } from '@nuxtjs/strapi'
+import type { BlogsAttributes } from '@/types/Blogs'
+
+const route = useRoute()
+const { fullPath } = route
+const { t } = useI18n()
+
+const { data } = await useAsyncData(fullPath, async () => {
+  const { find } = useStrapi()
+  const response = await find<BlogsAttributes>('blogs', {
+    populate: {
+      author: {
+        populate: '*',
+      },
+      hero_image: {
+        populate: '*',
+      },
+    },
+  })
+  return response
+})
+
+const content = (data.value as Strapi4ResponseMany<BlogsAttributes>).data
+const sortedContent = content.sort((a, b) => {
+  const dateA = new Date(a.attributes.createdAt)
+  const dateB = new Date(b.attributes.createdAt)
+  return dateB.getTime() - dateA.getTime()
+})
+
+if (!data.value) {
+  throw createError({
+    statusCode: 500,
+    statusMessage: t('error.500.statusMessage'),
+    message: t('error.500.message'),
+  })
+}
+
+defineOgImageComponent('ContentPage')
+</script>
+
 <template>
   <UBlogList orientation="horizontal">
     <UBlogPost
@@ -55,61 +96,6 @@
     </UBlogPost>
   </UBlogList>
 </template>
-
-<script setup lang="ts">
-import type { Strapi4ResponseMany } from '@nuxtjs/strapi'
-import type { BlogsAttributes } from '@/types/Blogs'
-
-defineI18nRoute({
-  paths: {
-    dk: '/blogs',
-    de: '/blogs',
-    uk: '/blogs',
-    es: '/blogs',
-    fr: '/blogs',
-    no: '/blogger',
-    nl: '/blogs',
-    pt: '/blogs',
-    se: '/bloggar',
-  },
-})
-
-const route = useRoute()
-const { fullPath } = route
-const { t } = useI18n()
-
-const { data } = await useAsyncData(fullPath, async () => {
-  const { find } = useStrapi()
-  const response = await find<BlogsAttributes>('blogs', {
-    populate: {
-      author: {
-        populate: '*',
-      },
-      hero_image: {
-        populate: '*',
-      },
-    },
-  })
-  return response
-})
-
-const content = (data.value as Strapi4ResponseMany<BlogsAttributes>).data
-const sortedContent = content.sort((a, b) => {
-  const dateA = new Date(a.attributes.createdAt)
-  const dateB = new Date(b.attributes.createdAt)
-  return dateB.getTime() - dateA.getTime()
-})
-
-if (!data.value) {
-  throw createError({
-    statusCode: 500,
-    statusMessage: t('error.500.statusMessage'),
-    message: t('error.500.message'),
-  })
-}
-
-defineOgImageComponent('ContentPage')
-</script>
 
 <style scoped lang="postcss">
 .blogs {

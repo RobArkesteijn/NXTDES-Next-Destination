@@ -1,22 +1,11 @@
-<template>
-  <CountryGridDisplay :data="alphabeticalContent" />
-</template>
-
 <script setup lang="ts">
 import type { Strapi4ResponseMany } from '@nuxtjs/strapi'
 import type { CountriesAttributes } from '@/types/Countries'
 
 defineI18nRoute({
   paths: {
-    dk: '/lande',
-    de: '/lander',
     uk: '/countries',
-    es: '/paises',
-    fr: '/pays',
-    no: '/land',
     nl: '/landen',
-    pt: '/paises',
-    se: '/lander',
   },
 })
 
@@ -67,3 +56,7 @@ definePageMeta({
 
 defineOgImageComponent('ContentPage')
 </script>
+
+<template>
+  <CountryGridDisplay :data="alphabeticalContent" />
+</template>

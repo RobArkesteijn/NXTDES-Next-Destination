@@ -19,6 +19,10 @@ export default {
     title: 'Bookings',
     url: 'bookings',
   },
+  contact: {
+    title: 'Contact',
+    url: 'contact',
+  },
   countries: {
     title: 'Countries',
     url: 'countries',

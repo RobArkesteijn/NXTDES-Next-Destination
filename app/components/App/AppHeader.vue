@@ -1,48 +1,3 @@
-<template>
-  <UHeader
-    class="header"
-    :to="localePath('/')"
-  >
-    <template #logo>
-      <SvgoLogo
-        class="header__logo logo"
-      />
-    </template>
-
-    <template #right>
-      <UHeaderLinks :links="links" />
-      <div class="header__toggles">
-        <ClientOnly>
-          <UColorModeToggle
-            size="xl"
-            :ui="{
-              active: 'dark:bg-boston-blue-400',
-              inactive: 'bg-shark-300',
-              container: {
-                base: 'bg-copper-50 dark:bg-shark-700',
-              },
-              icon: {
-                on: 'dark:text-copper-50',
-                off: 'text-boston-blue-400',
-              },
-            }"
-          />
-        </ClientOnly>
-        <LanguageSwitcher />
-      </div>
-    </template>
-
-    <template #panel>
-      <UNavigationTree
-        :links="links"
-        :level="0"
-        default-open
-      />
-      <div class="header__sidemenu-background" />
-    </template>
-  </UHeader>
-</template>
-
 <script lang="ts" setup>
 import type { Strapi4ResponseMany } from '@nuxtjs/strapi'
 import type CountriesNavigationAttributes from '@/types/Navigation'
@@ -90,6 +45,12 @@ const links = computed(() => [
     active: route.path.startsWith(`/${t('blogs.url')}`),
   },
   {
+    label: t('contact.title'),
+    icon: 'i-material-symbols-article',
+    to: `/${currentLocale}/${t('contact.url')}`,
+    active: route.path.startsWith(`/${t('contact.url')}`),
+  },
+  {
     label: t('countries.title'),
     icon: 'i-material-symbols-globe',
     to: `/${currentLocale}/${t('countries.url')}`,
@@ -104,6 +65,51 @@ const links = computed(() => [
   },
 ])
 </script>
+
+<template>
+  <UHeader
+    class="header"
+    :to="localePath('/')"
+  >
+    <template #logo>
+      <SvgoLogo
+        class="header__logo logo"
+      />
+    </template>
+
+    <template #right>
+      <UHeaderLinks :links="links" />
+      <div class="header__toggles">
+        <ClientOnly>
+          <UColorModeToggle
+            size="xl"
+            :ui="{
+              active: 'dark:bg-boston-blue-400',
+              inactive: 'bg-shark-300',
+              container: {
+                base: 'bg-copper-50 dark:bg-shark-700',
+              },
+              icon: {
+                on: 'dark:text-copper-50',
+                off: 'text-boston-blue-400',
+              },
+            }"
+          />
+        </ClientOnly>
+        <LanguageSwitcher />
+      </div>
+    </template>
+
+    <template #panel>
+      <UNavigationTree
+        :links="links"
+        :level="0"
+        default-open
+      />
+      <div class="header__sidemenu-background" />
+    </template>
+  </UHeader>
+</template>
 
 <style scoped lang="postcss">
 .header {

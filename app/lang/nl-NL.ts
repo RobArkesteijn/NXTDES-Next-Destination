@@ -19,6 +19,10 @@ export default {
     title: 'Boekingen',
     url: 'boekingen',
   },
+  contact: {
+    title: 'Contact',
+    url: 'contact',
+  },
   countries: {
     title: 'Landen',
     url: 'landen',
