@@ -1,3 +1,26 @@
+<script setup lang="ts">
+import type { Country } from '@/types/Home'
+
+defineProps({
+  highlightedHeadline: {
+    type: String as PropType<string | null>,
+    default: '',
+  },
+  highlightedTitle: {
+    type: String as PropType<string | null>,
+    default: '',
+  },
+  highlightedDescription: {
+    type: String as PropType<string | null>,
+    default: '',
+  },
+  highlightedCountries: {
+    type: Array as PropType<Country[]>,
+    default: () => [],
+  },
+})
+</script>
+
 <template>
   <ULandingSection
     :headline="highlightedHeadline ?? undefined"
@@ -41,29 +64,6 @@
     </div>
   </ULandingSection>
 </template>
-
-<script setup lang="ts">
-import type { Country } from '@/types/Home'
-
-defineProps({
-  highlightedHeadline: {
-    type: String as PropType<string | null>,
-    default: '',
-  },
-  highlightedTitle: {
-    type: String as PropType<string | null>,
-    default: '',
-  },
-  highlightedDescription: {
-    type: String as PropType<string | null>,
-    default: '',
-  },
-  highlightedCountries: {
-    type: Array as PropType<Country[]>,
-    default: () => [],
-  },
-})
-</script>
 
 <style scoped lang="postcss">
 .home-highlighted-section {

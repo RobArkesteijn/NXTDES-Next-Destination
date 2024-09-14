@@ -1,3 +1,17 @@
+<script setup lang="ts">
+import type { Attraction } from '@/types/Countries'
+
+const route = useRoute()
+const { slug } = route.params
+
+defineProps({
+  attractions: {
+    type: Array as PropType<Attraction[]>,
+    default: () => [],
+  },
+})
+</script>
+
 <template>
   <div class="country-attractions">
     <!-- @TODO: Potential side image via strapi?  -->
@@ -15,7 +29,7 @@
       :links="[
         {
           label: 'Explore Attraction',
-          to: `/${$i18n.locale}/${$t('countries.url')}/${slug}/${props.attractions[index]?.attraction?.toLowerCase().split(' ').join('-')}`,
+          to: `/${$i18n.locale}/${$t('countries.url')}/${slug}/${attractions[index]?.attraction?.toLowerCase().split(' ').join('-')}`,
           color: 'boston-blue',
           trailingIcon: 'i-heroicons-arrow-right',
           size: 'lg',
@@ -38,20 +52,6 @@
     </ULandingSection>
   </div>
 </template>
-
-<script setup lang="ts">
-import type { Attraction } from '@/types/Countries'
-
-const route = useRoute()
-const { slug } = route.params
-
-const props = defineProps({
-  attractions: {
-    type: Array as PropType<Attraction[]>,
-    default: () => [],
-  },
-})
-</script>
 
 <style scoped lang="postcss">
 .country-attractions {

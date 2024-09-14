@@ -1,3 +1,27 @@
+<script setup lang="ts">
+import type { Strapi4ResponseData } from '@nuxtjs/strapi'
+import type { CountriesAttributes } from '@/types/Countries'
+
+defineProps({
+  data: {
+    type: Object as PropType<Strapi4ResponseData<CountriesAttributes>[]>,
+    required: true,
+  },
+})
+
+const img = useImage()
+
+const backgroundStyles = (url: string | undefined) => {
+  if (!url) {
+    return
+  }
+
+  const imgUrl = img(url)
+
+  return { backgroundImage: `url('${imgUrl}')`, backgroundSize: 'cover' }
+}
+</script>
+
 <template>
   <div class="country-grid-display">
     <SiteLink
@@ -25,30 +49,6 @@
     </SiteLink>
   </div>
 </template>
-
-<script setup lang="ts">
-import type { Strapi4ResponseData } from '@nuxtjs/strapi'
-import type { CountriesAttributes } from '@/types/Countries'
-
-defineProps({
-  data: {
-    type: Object as PropType<Strapi4ResponseData<CountriesAttributes>[]>,
-    required: true,
-  },
-})
-
-const img = useImage()
-
-const backgroundStyles = (url: string | undefined) => {
-  if (!url) {
-    return
-  }
-
-  const imgUrl = img(url)
-
-  return { backgroundImage: `url('${imgUrl}')`, backgroundSize: 'cover' }
-}
-</script>
 
 <style scoped lang="postcss">
 .country-grid-display {

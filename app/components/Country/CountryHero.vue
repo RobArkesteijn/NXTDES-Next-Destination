@@ -1,3 +1,37 @@
+<script setup lang="ts">
+import type { CountriesAttributes } from '@/types/Countries'
+
+const { isMobileOrTablet } = useUIHelper()
+
+const props = defineProps({
+  content: {
+    type: Object as PropType<CountriesAttributes>,
+    required: true,
+  },
+})
+
+const heroTitle = computed(() => props.content.title)
+const heroCountry = computed(() => props.content.country)
+const heroDescription = computed(() => props.content.description)
+const heroIcon = computed(() => `i-twemoji-flag-${heroCountry.value?.toLowerCase()}`)
+const heroCountryNative = computed(() => props.content.country_native)
+const heroImageURL = computed(() => props.content.hero_image?.data.attributes.url)
+const heroImageALT = computed(
+  () => props.content.hero_image?.data.attributes.alternativeText ?? undefined,
+)
+
+const links = useBreadcrumbItems({
+  overrides: [
+    undefined,
+    undefined,
+    {
+      label: heroCountry.value ?? '',
+      icon: heroIcon.value,
+    },
+  ],
+})
+</script>
+
 <template>
   <div class="country-hero">
     <div class="country-hero__wrapper">
@@ -52,40 +86,6 @@
     </p>
   </div>
 </template>
-
-<script setup lang="ts">
-import type { CountriesAttributes } from '@/types/Countries'
-
-const { isMobileOrTablet } = useUIHelper()
-
-const props = defineProps({
-  content: {
-    type: Object as PropType<CountriesAttributes>,
-    required: true,
-  },
-})
-
-const heroTitle = computed(() => props.content.title)
-const heroCountry = computed(() => props.content.country)
-const heroDescription = computed(() => props.content.description)
-const heroIcon = computed(() => `i-twemoji-flag-${heroCountry.value?.toLowerCase()}`)
-const heroCountryNative = computed(() => props.content.country_native)
-const heroImageURL = computed(() => props.content.hero_image?.data.attributes.url)
-const heroImageALT = computed(
-  () => props.content.hero_image?.data.attributes.alternativeText ?? undefined,
-)
-
-const links = useBreadcrumbItems({
-  overrides: [
-    undefined,
-    undefined,
-    {
-      label: heroCountry.value ?? '',
-      icon: heroIcon.value,
-    },
-  ],
-})
-</script>
 
 <style lang="postcss" scoped>
 .country-hero {

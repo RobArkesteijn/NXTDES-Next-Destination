@@ -1,36 +1,11 @@
-<template>
-  <div v-if="content">
-    <SectionDivider :side="['bottom']">
-      <CountryHero
-        :content="content"
-      />
-    </SectionDivider>
-    <CountryWeather />
-    <SectionDivider :side="['bottom', 'top']">
-      <CurrencyCalculator :currency="content.currency ?? 'EUR'" />
-    </SectionDivider>
-    <CountryAttractions
-      v-if="content.attractions?.length"
-      :attractions="content.attractions"
-    />
-  </div>
-</template>
-
 <script setup lang="ts">
 import type { Strapi4ResponseMany } from '@nuxtjs/strapi'
 import type { CountriesAttributes } from '@/types/Countries'
 
 defineI18nRoute({
   paths: {
-    dk: '/lande/[slug]',
-    de: '/lander/[slug]',
     uk: '/countries/[slug]',
-    es: '/paises/[slug]',
-    fr: '/pays/[slug]',
-    no: '/land/[slug]',
     nl: '/landen/[slug]',
-    pt: '/paises/[slug]',
-    se: '/lander/[slug]',
   },
 })
 
@@ -76,3 +51,21 @@ defineOgImageComponent('ContentPage', {
   description: content.value.title,
 })
 </script>
+
+<template>
+  <div v-if="content">
+    <SectionDivider :side="['bottom']">
+      <CountryHero
+        :content="content"
+      />
+    </SectionDivider>
+    <CountryWeather />
+    <SectionDivider :side="['bottom', 'top']">
+      <CurrencyCalculator :currency="content.currency ?? 'EUR'" />
+    </SectionDivider>
+    <CountryAttractions
+      v-if="content.attractions?.length"
+      :attractions="content.attractions"
+    />
+  </div>
+</template>

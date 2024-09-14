@@ -1,3 +1,35 @@
+<script setup lang="ts">
+const { t } = useI18n()
+const i18n = useI18n()
+
+const currentLocale = i18n.locale.value
+
+const links = computed(() => {
+  return [{
+    label: t('about_us.title'),
+    children: [{
+      label: t('faq.title'),
+      to: `/${currentLocale}/faq`,
+    }, {
+      label: t('the_story.title'),
+      to: `/${currentLocale}/${t('the_story.url')}`,
+    }, {
+      label: t('the_goal.title'),
+      to: `/${currentLocale}/${t('the_goal.url')}`,
+    }],
+  }, {
+    label: t('legal_info.title'),
+    children: [{
+      label: t('privacy_statement.title'),
+      to: `/${currentLocale}/${t('privacy_statement.url')}`,
+    }, {
+      label: t('terms_and_conditions.title'),
+      to: `/${currentLocale}/${t('terms_and_conditions.url')}`,
+    }],
+  }]
+})
+</script>
+
 <template>
   <UFooter
     class="footer"
@@ -58,38 +90,6 @@
     </template>
   </UFooter>
 </template>
-
-<script setup lang="ts">
-const { t } = useI18n()
-const i18n = useI18n()
-
-const currentLocale = i18n.locale.value
-
-const links = computed(() => {
-  return [{
-    label: t('about_us.title'),
-    children: [{
-      label: t('faq.title'),
-      to: `/${currentLocale}/faq`,
-    }, {
-      label: t('the_story.title'),
-      to: `/${currentLocale}/${t('the_story.url')}`,
-    }, {
-      label: t('the_goal.title'),
-      to: `/${currentLocale}/${t('the_goal.url')}`,
-    }],
-  }, {
-    label: t('legal_info.title'),
-    children: [{
-      label: t('privacy_statement.title'),
-      to: `/${currentLocale}/${t('privacy_statement.url')}`,
-    }, {
-      label: t('terms_and_conditions.title'),
-      to: `/${currentLocale}/${t('terms_and_conditions.url')}`,
-    }],
-  }]
-})
-</script>
 
 <style scoped lang="postcss">
 .footer {

@@ -1,14 +1,3 @@
-<template>
-  <ULandingSection
-    :title="introTitle ?? 'Placeholder title'"
-    :description="introDescription ?? 'Placeholder description'"
-    :ui="{
-      wrapper: 'sm:py-12 py-8',
-      description: 'mt-12',
-    }"
-  />
-</template>
-
 <script setup lang="ts">
 defineProps({
   introTitle: {
@@ -21,3 +10,14 @@ defineProps({
   },
 })
 </script>
+
+<template>
+  <ULandingSection
+    :title="introTitle ?? 'Placeholder title'"
+    :description="introDescription ?? 'Placeholder description'"
+    :ui="{
+      wrapper: 'sm:py-12 py-8',
+      description: 'mt-12',
+    }"
+  />
+</template>

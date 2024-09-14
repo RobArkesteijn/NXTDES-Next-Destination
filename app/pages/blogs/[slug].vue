@@ -1,28 +1,6 @@
-<template>
-  <!-- @TODO: Check why description comes with an array instead of string -->
-  <BlogsHeader
-    v-if="content"
-    :data="content"
-  />
-</template>
-
 <script setup lang="ts">
 import type { Strapi4ResponseMany } from '@nuxtjs/strapi'
 import type { BlogsAttributes } from '@/types/Blogs'
-
-defineI18nRoute({
-  paths: {
-    dk: '/blogs/[slug]',
-    de: '/blogs/[slug]',
-    uk: '/blogs/[slug]',
-    es: '/blogs/[slug]',
-    fr: '/blogs/[slug]',
-    no: '/blogger/[slug]',
-    nl: '/blogs/[slug]',
-    pt: '/blogs/[slug]',
-    se: '/bloggar/[slug]',
-  },
-})
 
 const route = useRoute()
 const { fullPath } = route
@@ -78,3 +56,11 @@ defineOgImageComponent('ContentPage', {
   description: content.value?.title,
 })
 </script>
+
+<template>
+  <!-- @TODO: Check why description comes with an array instead of string -->
+  <BlogsHeader
+    v-if="content"
+    :data="content"
+  />
+</template>

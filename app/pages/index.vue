@@ -1,28 +1,3 @@
-<template>
-  <div>
-    <SectionDivider :side="['bottom']">
-      <HomeHero
-        v-if="heroImage"
-        :hero-image="heroImage"
-      />
-    </SectionDivider>
-    <HomeIntro
-      v-if="introTitle || introDescription"
-      :intro-title="introTitle"
-      :intro-description="introDescription"
-    />
-    <SectionDivider>
-      <HomeHighlightedSelection
-        v-if="contentData.data.attributes.Highlighted"
-        :highlighted-headline="highlightedHeadline"
-        :highlighted-title="highlightedTitle"
-        :highlighted-description="highlightedDescription"
-        :highlighted-countries="highlightedCountries"
-      />
-    </SectionDivider>
-  </div>
-</template>
-
 <script setup lang="ts">
 import type { Strapi4ResponseSingle } from '@nuxtjs/strapi'
 import type { HomeAttributes } from '@/types/Home'
@@ -85,3 +60,28 @@ useSeoMeta({
   title: t('home.meta_title'),
 })
 </script>
+
+<template>
+  <div>
+    <SectionDivider :side="['bottom']">
+      <HomeHero
+        v-if="heroImage"
+        :hero-image="heroImage"
+      />
+    </SectionDivider>
+    <HomeIntro
+      v-if="introTitle || introDescription"
+      :intro-title="introTitle"
+      :intro-description="introDescription"
+    />
+    <SectionDivider>
+      <HomeHighlightedSelection
+        v-if="contentData.data.attributes.Highlighted"
+        :highlighted-headline="highlightedHeadline"
+        :highlighted-title="highlightedTitle"
+        :highlighted-description="highlightedDescription"
+        :highlighted-countries="highlightedCountries"
+      />
+    </SectionDivider>
+  </div>
+</template>
