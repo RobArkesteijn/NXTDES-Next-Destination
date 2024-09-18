@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { gsap } from 'gsap-trial'
+import { gsap } from 'gsap'
 import type { Strapi4ResponseMany } from '@nuxtjs/strapi'
 import type { CountriesAttributes } from '@/types/Countries'
 

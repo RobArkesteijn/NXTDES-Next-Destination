@@ -40,10 +40,6 @@ export default defineNuxtConfig({
     preference: 'light',
   },
 
-  device: {
-    refreshOnResize: true,
-  },
-
   devtools: {
     enabled: true,
   },
@@ -163,10 +159,6 @@ export default defineNuxtConfig({
   tailwindcss: {
     editorSupport: true,
     viewer: false,
-  },
-
-  ui: {
-    icons: ['material-symbols', 'mdi', 'twemoji', 'tabler'],
   },
 
   compatibilityDate: '2024-09-18',

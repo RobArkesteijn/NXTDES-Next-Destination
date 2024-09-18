@@ -63,6 +63,7 @@ useSchemaOrg({
       :ui="{
         wrapper: 'gap-y-0 rounded-lg ring-1 ring-copper-500 dark:ring-copper-300',
         // Error below is a Nuxt UI bug. Remove if this is no longer the case.
+        // @ts-ignore
         image: {
           wrapper: 'ring-0',
         },
