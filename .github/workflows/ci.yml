@@ -1,11 +1,11 @@
-name: CI
+CI - Lint, Type Check, and Build
 on:
   pull_request:
     branches:
       - '*'
 jobs:
-  lint:
-    name: Lint project code
+  lint-typecheck-build:
+    name: Lint, Type Check, and Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,6 +21,8 @@ jobs:
         run: bun install
       - name: Lint
         run: bun lint
+      - name: Type check
+        run: bun type-check
       - name: Build
         run: bun run build
         env:
