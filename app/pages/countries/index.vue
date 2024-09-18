@@ -11,7 +11,7 @@ defineI18nRoute({
 
 const route = useRoute()
 const { fullPath } = route
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
 const { data } = await useAsyncData(fullPath, async () => {
   const { find } = useStrapi()
@@ -24,6 +24,14 @@ const { data } = await useAsyncData(fullPath, async () => {
   })
   return response
 })
+
+if (!data.value) {
+  throw createError({
+    statusCode: 500,
+    statusMessage: t('error.500.statusMessage'),
+    message: t('error.500.message'),
+  })
+}
 
 const content = computed(() => (data.value as Strapi4ResponseMany<CountriesAttributes>)?.data)
 
@@ -40,14 +48,6 @@ const alphabeticalContent = computed(() => {
   return sortedContent
 })
 
-if (!data.value) {
-  throw createError({
-    statusCode: 500,
-    statusMessage: t('error.500.statusMessage'),
-    message: t('error.500.message'),
-  })
-}
-
 definePageMeta({
   breadcrumb: {
     icon: 'i-material-symbols-globe',
@@ -55,6 +55,21 @@ definePageMeta({
 })
 
 defineOgImageComponent('ContentPage')
+
+const listItemSchemas = alphabeticalContent.value.map((country, index) => {
+  return {
+    '@type': 'ListItem',
+    'position': index + 1,
+    'name': country.attributes.country,
+    'url': `https://nxtdes.eu/${locale.value}/${t('countries.url')}/${country.attributes.country?.toLowerCase()}`,
+  }
+})
+
+useSchemaOrg({
+  '@type': 'ItemList',
+  'itemListElement': listItemSchemas,
+  'numberOfItems': content.value.length,
+})
 </script>
 
 <template>

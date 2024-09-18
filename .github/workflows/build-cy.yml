@@ -19,5 +19,7 @@ jobs:
           node-version: 20.x
       - name: Install Dependencies
         run: bun install
-      - name: lint
+      - name: Lit
         run: bun lint
+      - name: Build
+        run: bun build

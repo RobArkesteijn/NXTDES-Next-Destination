@@ -4,7 +4,7 @@ import type { BlogsAttributes } from '@/types/Blogs'
 
 const route = useRoute()
 const { fullPath } = route
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
 const { data } = await useAsyncData(fullPath, async () => {
   const { find } = useStrapi()
@@ -37,6 +37,21 @@ if (!data.value) {
 }
 
 defineOgImageComponent('ContentPage')
+
+const listItemSchemas = sortedContent.map((blog, index) => {
+  return {
+    '@type': 'ListItem',
+    'position': index + 1,
+    'name': blog.attributes.title,
+    'url': `https://nxtdes.eu/${locale.value}/${t('blogs.url')}/${blog.attributes.title?.split(' ').join('-').toLowerCase()}`,
+  }
+})
+
+useSchemaOrg({
+  '@type': 'ItemList',
+  'itemListElement': listItemSchemas,
+  'numberOfItems': sortedContent.length,
+})
 </script>
 
 <template>

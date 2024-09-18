@@ -41,7 +41,6 @@ const state = reactive({
 
 // @TODO: Add limit to amount of calls (no more than 500)
 const calculateCurrencyAmount = async (event: FormSubmitEvent<Schema>) => {
-  console.log(currencyOfReader?.format, props.currency)
   const data: Calculator = await $fetch(`${config.public.currencyApiUrl}/convert`, {
     method: 'GET',
     params: {

@@ -8,5 +8,5 @@ defineI18nRoute({
 </script>
 
 <template>
-  <h1>The goal</h1>
+  <h1>The story</h1>
 </template>
