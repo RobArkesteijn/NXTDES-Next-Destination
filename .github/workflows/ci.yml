@@ -1,4 +1,4 @@
-CI - Lint, Type Check, and Build
+name: CI - Lint, Type Check, and Build
 on:
   pull_request:
     branches:
