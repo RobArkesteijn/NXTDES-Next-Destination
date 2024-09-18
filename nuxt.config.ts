@@ -169,5 +169,5 @@ export default defineNuxtConfig({
     icons: ['material-symbols', 'mdi', 'twemoji', 'tabler'],
   },
 
-  compatibilityDate: '2024-07-04',
+  compatibilityDate: '2024-09-18',
 })
