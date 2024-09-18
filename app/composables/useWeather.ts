@@ -17,14 +17,8 @@ export default function useWeather() {
     if (status === 'Patchy light rain with thunder' || status === 'Moderate or heavy rain with thunder') {
       return 'thunderstorms-rain'
     }
-    if (status === 'Light drizzle') {
-      return cloudsPercentage < 75 ? `drizzle-${dayStatus}` : 'drizzle'
-    }
-    if (status === 'Light rain shower') {
-      return cloudsPercentage < 75 ? `drizzle-${dayStatus}` : 'drizzle'
-    }
-    if (status === 'Light rain') {
-      return cloudsPercentage < 75 ? `drizzle-${dayStatus}` : 'drizzle'
+    if (status === 'Light drizzle' || status === 'Light rain shower' || status === 'Light rain') {
+      return cloudsPercentage < 75 ? `partly-cloudy-${dayStatus}-drizzle` : 'drizzle'
     }
     if (status === 'Moderate rain') {
       return cloudsPercentage < 75 ? `partly-cloudy-${dayStatus}-rain` : 'rain'

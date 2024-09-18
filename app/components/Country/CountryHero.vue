@@ -92,11 +92,11 @@ const links = useBreadcrumbItems({
   &__wrapper {
     display: flex;
     flex-direction: column-reverse;
-    height: 100dvh;
+    height: calc(100vh - 90px);
 
     @media screen(lg) {
       flex-direction: row;
-      height: calc(100vh + 80px);
+      height: calc(100vh - 10px);
     }
   }
 

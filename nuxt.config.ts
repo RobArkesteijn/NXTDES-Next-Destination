@@ -1,6 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   $production: {
+    routeRules: {
+      '/**': { swr: true },
+    },
     seo: {
       redirectToCanonicalSiteUrl: true,
     },
@@ -37,10 +40,6 @@ export default defineNuxtConfig({
     preference: 'light',
   },
 
-  device: {
-    refreshOnResize: true,
-  },
-
   devtools: {
     enabled: true,
   },
@@ -58,10 +57,9 @@ export default defineNuxtConfig({
   },
 
   i18n: {
-    baseUrl: import.meta.env.NUXT_PUBLIC_SITE_URL,
+    baseUrl: 'nxtdes.eu',
     defaultLocale: 'en',
     langDir: 'lang/',
-    lazy: true,
     locales: [
       {
         code: 'en',
@@ -137,12 +135,11 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      siteUrl: import.meta.env.NUXT_PUBLIC_SITE_URL,
       weatherApiUrl: 'https://weatherapi-com.p.rapidapi.com',
       currencyApiUrl: 'https://currency-converter18.p.rapidapi.com/api/v1',
-      xRapidWeatherApiHost: import.meta.env.NUXT_PUBLIC_X_RAPID_WEATHER_API_HOST,
-      xRapidCurrencyApiHost: import.meta.env.NUXT_PUBLIC_X_RAPID_CURRENCY_API_HOST,
-      xRapidApiKey: import.meta.env.NUXT_PUBLIC_X_RAPID_WEATHER_API_KEY,
+      xRapidWeatherApiHost: 'weatherapi-com.p.rapidapi.com',
+      xRapidCurrencyApiHost: 'currency-converter18.p.rapidapi.com',
+      xRapidApiKey: '',
     },
   },
 
@@ -150,8 +147,8 @@ export default defineNuxtConfig({
     identity: {
       type: 'Organization',
       name: 'NXTDES',
-      url: import.meta.env.NUXT_PUBLIC_SITE_URL,
-      logo: '/logo.svg',
+      url: 'https://nxtdes.eu',
+      logo: '/favicon-black.svg',
     },
   },
 
@@ -164,9 +161,5 @@ export default defineNuxtConfig({
     viewer: false,
   },
 
-  ui: {
-    icons: ['material-symbols', 'mdi', 'twemoji', 'tabler'],
-  },
-
-  compatibilityDate: '2024-07-04',
+  compatibilityDate: '2024-09-18',
 })

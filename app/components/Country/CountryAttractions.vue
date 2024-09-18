@@ -112,7 +112,7 @@ defineProps({
     object-fit: cover;
     border-radius: 0.375rem;
 
-    @apply shadow-xl ring-1 ring-gray-300 dark:ring-gray-700;
+    @apply shadow-xl ring-1 ring-shark-300 dark:ring-gray-700;
   }
 }
 </style>

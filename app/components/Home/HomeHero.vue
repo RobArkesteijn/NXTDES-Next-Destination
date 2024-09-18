@@ -52,7 +52,7 @@ const backgroundStyles = computed(() => {
   &__landing-hero {
     background-repeat: no-repeat;
     background-size: cover;
-    height: calc(100dvh - 132px);
+    height: calc(100dvh - 216px);
     position: relative;
 
     &::before {
@@ -72,7 +72,7 @@ const backgroundStyles = computed(() => {
     }
 
     @media screen(lg) {
-      height: calc(100vh - 144px);
+      height: calc(100vh - 234px);
     }
   }
 
