@@ -110,7 +110,10 @@ useSeoMeta({
 </script>
 
 <template>
-  <div v-if="content">
+  <div
+    v-if="content"
+    class="country-detail"
+  >
     <div
       ref="countryTransitionOverlayRef"
       class="country-transition-overlay"
@@ -141,11 +144,15 @@ useSeoMeta({
 </template>
 
 <style lang="postcss" scoped>
+.country-detail {
+  position: relative;
+}
+
 .country-transition-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: 100%;
   width: 100vw;
   backdrop-filter: blur(10px);
   display: flex;

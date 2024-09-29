@@ -40,6 +40,8 @@ export default defineNuxtConfig({
     preference: 'light',
   },
 
+  compatibilityDate: '2024-09-29',
+
   devtools: {
     enabled: true,
   },
@@ -58,6 +60,11 @@ export default defineNuxtConfig({
 
   i18n: {
     baseUrl: 'nxtdes.eu',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',
+    },
     defaultLocale: 'en',
     langDir: 'lang/',
     locales: [
@@ -133,6 +140,11 @@ export default defineNuxtConfig({
     sitemap: 'https://nxtdes.com/sitemap.xml',
   },
 
+  routeRules: {
+    '/en/**': { isr: true },
+    '/nl/**': { isr: true },
+  },
+
   runtimeConfig: {
     public: {
       weatherApiUrl: 'https://weatherapi-com.p.rapidapi.com',
@@ -160,6 +172,4 @@ export default defineNuxtConfig({
     editorSupport: true,
     viewer: false,
   },
-
-  compatibilityDate: '2024-09-18',
 })
