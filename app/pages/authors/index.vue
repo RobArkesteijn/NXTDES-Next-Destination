@@ -11,6 +11,7 @@ defineI18nRoute({
 const route = useRoute()
 const { fullPath } = route
 const { t, locale } = useI18n()
+const config = useRuntimeConfig()
 
 const { data } = await useAsyncData(fullPath, async () => {
   const { find } = useStrapi()
@@ -38,7 +39,7 @@ const listItemSchemas = authors.map((author, index) => {
     '@type': 'ListItem',
     'position': index + 1,
     'name': author.attributes.name,
-    'url': `https://nxtdes.eu/${locale.value}/${t('authors.url')}/${author.attributes.name?.split(' ').join('-').toLowerCase()}`,
+    'url': `${config.public.i18n.baseUrl}/${locale.value}/${t('authors.url')}/${author.attributes.name?.split(' ').join('-').toLowerCase()}`,
   }
 })
 

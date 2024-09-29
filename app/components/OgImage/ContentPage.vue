@@ -33,6 +33,7 @@ withDefaults(defineProps<{
       :src="imageUrl"
       width="600px"
       height="600px"
+      alt=""
       class="w-3/5 h-full object-cover"
     />
   </div>
