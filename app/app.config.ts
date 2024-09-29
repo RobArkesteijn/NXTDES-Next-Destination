@@ -82,10 +82,13 @@ export default defineAppConfig({
         },
       },
     },
+    main: {
+      wrapper: 'mt-[var(--header-height)]',
+    },
     blog: {
       list: {
         wrapper:
-          'mt-[var(--header-height)] max-w-7xl gap-y-8 p-4 sm:p-6 lg:p-8 md:grid md:grid-cols-2 lg:grid-cols-2 md:mx-auto',
+          'max-w-7xl gap-y-8 p-4 sm:p-6 lg:p-8 md:grid md:grid-cols-2 lg:grid-cols-2 md:mx-auto',
       },
     },
     navigation: {
@@ -128,7 +131,7 @@ export default defineAppConfig({
     },
     landing: {
       faq: {
-        wrapper: 'mt-[var(--header-height)] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+        wrapper: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
       },
       hero: {
         wrapper: 'p-0 sm:p-0 md:p-0 m-0',

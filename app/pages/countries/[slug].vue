@@ -1,6 +1,36 @@
 <script setup lang="ts">
+import { gsap } from 'gsap'
 import type { Strapi4ResponseMany } from '@nuxtjs/strapi'
 import type { CountriesAttributes } from '@/types/Countries'
+
+definePageMeta({
+  pageTransition: {
+    name: 'country',
+    mode: 'out-in',
+    onEnter: (el, done) => {
+      const transitionOverlay = el.querySelector('.country-transition-overlay') as HTMLElement
+      gsap.to(transitionOverlay, {
+        opacity: 1,
+        duration: 0.2,
+        onComplete: () => {
+          done()
+        },
+      })
+    },
+    onAfterEnter: (el) => {
+      const transitionOverlay = el.querySelector('.country-transition-overlay') as HTMLElement
+      gsap.to(transitionOverlay, {
+        opacity: 0,
+        delay: 0.8,
+        duration: 0.4,
+      })
+    },
+  },
+  middleware(to) {
+    const nexyCountry = useNextCountry()
+    nexyCountry.value = to.params.slug as string
+  },
+})
 
 defineI18nRoute({
   paths: {
@@ -10,9 +40,12 @@ defineI18nRoute({
 })
 
 const route = useRoute()
+const { t } = useI18n()
 const { fullPath } = route
 const { slug } = route.params
-const { t } = useI18n()
+const { isDesktop } = useUIHelper()
+const nextCountry = useNextCountry()
+const countryTransitionOverlayRef = ref<HTMLElement | null>()
 
 const { data } = await useAsyncData(fullPath, async () => {
   const { find } = useStrapi()
@@ -45,9 +78,33 @@ if (!content.value) {
   })
 }
 
+const countryIcon = `i-twemoji-flag-${content.value?.country?.toLowerCase()}`
+const nextCountryIcon = computed(() => `i-twemoji-flag-${nextCountry.value}`)
+
 defineOgImageComponent('ContentPage', {
   imageUrl: content.value.hero_image?.data.attributes.url,
-  icon: `i-twemoji-flag-${content.value?.country?.toLowerCase()}`,
+  icon: countryIcon,
+  description: content.value.title,
+})
+
+const touristAttractionSchemas = content.value.attractions?.map((attraction) => {
+  return {
+    '@type': 'TouristAttraction',
+    'name': attraction.attraction,
+    'description': attraction.description?.split('.')[0], // Only pick first sentence for description
+  }
+})
+
+useSchemaOrg([
+  {
+    '@type': 'TouristDestination',
+    'name': content.value.country,
+    'description': content.value.description,
+    'containsPlace': touristAttractionSchemas,
+  },
+])
+
+useSeoMeta({
   description: content.value.title,
 })
 </script>

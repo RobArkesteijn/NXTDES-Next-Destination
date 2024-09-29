@@ -9,7 +9,7 @@ defineProps({
 })
 
 const ui = {
-  wrapper: 'h-screen gap-y-4 sm:gap-y-6 lg:gap-y-8',
+  wrapper: 'h-[calc(100vh-90px)] gap-y-4 sm:gap-y-6 lg:gap-y-8',
   image: {
     wrapper: 'h-full ring-0 rounded-none',
     base: '',

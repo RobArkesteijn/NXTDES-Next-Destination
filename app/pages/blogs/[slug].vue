@@ -15,9 +15,7 @@ const { data } = await useAsyncData(fullPath, async () => {
       author: {
         populate: '*',
       },
-      hero_image: {
-        populate: '*',
-      },
+      hero_image: '*',
     },
     filters: { title: { $eqi: (slug as string).split('-').join(' ') } },
   })

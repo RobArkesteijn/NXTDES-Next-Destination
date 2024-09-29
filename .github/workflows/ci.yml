@@ -4,8 +4,8 @@ on:
     branches:
       - '*'
 jobs:
-  lint:
-    name: Lint project code
+  lint-typecheck-build:
+    name: Lint, Type Check, and Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,5 +19,11 @@ jobs:
           node-version: 20.x
       - name: Install Dependencies
         run: bun install
-      - name: lint
+      - name: Lint
         run: bun lint
+      - name: Type check
+        run: bun type-check
+      - name: Build
+        run: bun run build
+        env:
+          NUXT_UI_PRO_LICENSE: ${{ secrets.NUXT_UI_PRO_LICENSE }}
