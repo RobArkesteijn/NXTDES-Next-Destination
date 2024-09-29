@@ -17,7 +17,7 @@ const heroIcon = computed(() => `i-twemoji-flag-${heroCountry.value?.toLowerCase
 const heroCountryNative = computed(() => props.content.country_native)
 const heroImageURL = computed(() => props.content.hero_image?.data.attributes.url)
 const heroImageALT = computed(
-  () => props.content.hero_image?.data.attributes.alternativeText ?? undefined,
+  () => props.content.hero_image?.data.attributes.alternativeText ?? '',
 )
 
 const links = useBreadcrumbItems({

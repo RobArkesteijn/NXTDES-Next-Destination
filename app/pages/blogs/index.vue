@@ -5,6 +5,7 @@ import type { BlogsAttributes } from '@/types/Blogs'
 const route = useRoute()
 const { fullPath } = route
 const { t, locale } = useI18n()
+const config = useRuntimeConfig()
 
 const { data } = await useAsyncData(fullPath, async () => {
   const { find } = useStrapi()
@@ -43,7 +44,7 @@ const listItemSchemas = sortedContent.map((blog, index) => {
     '@type': 'ListItem',
     'position': index + 1,
     'name': blog.attributes.title,
-    'url': `https://nxtdes.eu/${locale.value}/${t('blogs.url')}/${blog.attributes.title?.split(' ').join('-').toLowerCase()}`,
+    'url': `${config.public.i18n.baseUrl}/${locale.value}/${t('blogs.url')}/${blog.attributes.title?.split(' ').join('-').toLowerCase()}`,
   }
 })
 
@@ -79,13 +80,18 @@ useSchemaOrg({
             :alt="
               post.attributes.hero_image
                 ? (post.attributes.hero_image?.data.attributes.alternativeText as string)
-                : undefined
+                : ''
             "
             class="blogs__main-image"
           />
           <span class="blogs__avatar">
             <NuxtImg
               :src="post.attributes.author.data.attributes.avatar?.data.attributes.url"
+              :alt="
+                post.attributes.author.data.attributes.avatar
+                  ? (post.attributes.author.data.attributes.avatar?.data.attributes.alternativeText as string)
+                  : ''
+              "
               quality="20"
               width="40px"
               class="blogs__avatar-image"

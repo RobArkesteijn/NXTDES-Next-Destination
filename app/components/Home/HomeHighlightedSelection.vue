@@ -50,7 +50,7 @@ defineProps({
       >
         <NuxtImg
           :src="item.image?.data.attributes.url"
-          :alt="item.image ? (item.image.data.attributes.alternativeText as string) : undefined"
+          :alt="item.image ? (item.image.data.attributes.alternativeText as string) : ''"
           class="home-highlighted-section__image"
         />
         <span class="home-highlighted-section__image-card-content">

@@ -59,7 +59,7 @@ export default defineNuxtConfig({
   },
 
   i18n: {
-    baseUrl: 'nxtdes.eu',
+    baseUrl: 'nxtdes-next-destination.vercel.app',
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'i18n_redirected',
@@ -137,7 +137,7 @@ export default defineNuxtConfig({
         userAgent: '*',
       },
     ],
-    sitemap: 'https://nxtdes.com/sitemap.xml',
+    sitemap: 'https://nxtdes-next-destination.vercel.app/sitemap.xml',
   },
 
   routeRules: {
@@ -159,7 +159,7 @@ export default defineNuxtConfig({
     identity: {
       type: 'Organization',
       name: 'NXTDES',
-      url: 'https://nxtdes.eu',
+      url: 'https://nxtdes-next-destination.vercel.app',
       logo: '/favicon-black.svg',
     },
   },
