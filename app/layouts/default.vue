@@ -1,6 +1,11 @@
+<script setup lang="ts">
+import { SpeedInsights } from '@vercel/speed-insights/nuxt'
+</script>
+
 <template>
   <Html>
     <Body>
+      <SpeedInsights />
       <AppHeader />
       <NuxtLoadingIndicator
         color="#4394b1"

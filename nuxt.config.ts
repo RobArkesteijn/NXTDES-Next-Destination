@@ -37,9 +37,7 @@ export default defineNuxtConfig({
     preference: 'light',
   },
 
-  device: {
-    refreshOnResize: true,
-  },
+  compatibilityDate: '2024-09-29',
 
   devtools: {
     enabled: true,
@@ -58,7 +56,12 @@ export default defineNuxtConfig({
   },
 
   i18n: {
-    baseUrl: import.meta.env.NUXT_PUBLIC_SITE_URL,
+    baseUrl: 'nxtdes.eu',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',
+    },
     defaultLocale: 'en',
     langDir: 'lang/',
     lazy: true,
@@ -135,6 +138,11 @@ export default defineNuxtConfig({
     sitemap: 'https://nxtdes.com/sitemap.xml',
   },
 
+  routeRules: {
+    '/en/**': { isr: true },
+    '/nl/**': { isr: true },
+  },
+
   runtimeConfig: {
     public: {
       siteUrl: import.meta.env.NUXT_PUBLIC_SITE_URL,
@@ -163,10 +171,4 @@ export default defineNuxtConfig({
     editorSupport: true,
     viewer: false,
   },
-
-  ui: {
-    icons: ['material-symbols', 'mdi', 'twemoji', 'tabler'],
-  },
-
-  compatibilityDate: '2024-07-04',
 })
