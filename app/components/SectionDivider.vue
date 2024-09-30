@@ -51,19 +51,19 @@ defineProps({
 
   &--white {
     :deep(svg) {
-      @apply fill-white dark:fill-shark-950
+      @apply fill-white dark:fill-shark-950;
     }
   }
 
   &--blue {
     :deep(svg) {
-      @apply fill-boston-blue-400 dark:fill-boston-blue-900
+      @apply fill-boston-blue-100 dark:fill-boston-blue-900;
     }
   }
 
   &--sand {
     :deep(svg) {
-      @apply fill-copper-100 dark:fill-boston-blue-900
+      @apply fill-copper-100 dark:fill-boston-blue-900;
     }
   }
 
