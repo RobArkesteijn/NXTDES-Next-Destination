@@ -74,7 +74,7 @@ useSeoMeta({
       :intro-title="introTitle"
       :intro-description="introDescription"
     />
-    <SectionDivider>
+    <SectionDivider :side="['top']">
       <HomeHighlightedSelection
         v-if="contentData.data.attributes.Highlighted"
         :highlighted-headline="highlightedHeadline"
@@ -82,6 +82,12 @@ useSeoMeta({
         :highlighted-description="highlightedDescription"
         :highlighted-countries="highlightedCountries"
       />
+    </SectionDivider>
+    <SectionDivider
+      :side="['top']"
+      type="sand"
+    >
+      <SpotifyEmbed />
     </SectionDivider>
   </div>
 </template>
