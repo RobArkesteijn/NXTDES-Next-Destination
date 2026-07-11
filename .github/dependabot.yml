@@ -5,11 +5,19 @@
 
 version: 2
 updates:
+  # pnpm workspace — the "npm" ecosystem covers pnpm; list every package manifest.
   - package-ecosystem: "npm"
+    directories:
+      - "/"
+      - "/packages/web"
+      - "/packages/config"
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - RobArkesteijn
+  - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
     reviewers:
       - RobArkesteijn
-    ignore:
-    - dependency-name: "@nuxtjs/i18n"
