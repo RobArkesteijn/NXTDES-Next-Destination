@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { Strapi4ResponseSingle } from '@nuxtjs/strapi'
 import type { HomeAttributes } from '@/types/Home'
 
 const route = useRoute()
@@ -25,7 +24,7 @@ const { data } = await useAsyncData(fullPath, async () => {
   return response
 })
 
-const contentData = computed(() => data.value as Strapi4ResponseSingle<HomeAttributes>)
+const contentData = computed(() => data.value)
 const heroImage = computed(() => contentData.value?.data.attributes.hero_image)
 const introTitle = computed(() => contentData.value?.data.attributes.title)
 const introDescription = computed(() => contentData.value?.data.attributes?.intro)

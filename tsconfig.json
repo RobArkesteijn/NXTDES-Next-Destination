@@ -1,4 +1,7 @@
 {
-  // https://nuxt.com/docs/guide/concepts/typescript
-  "extends": "./.nuxt/tsconfig.json",
+  "extends": "./packages/config/tsconfig.base.json",
+  "files": [],
+  "references": [
+    { "path": "./packages/web" }
+  ]
 }
