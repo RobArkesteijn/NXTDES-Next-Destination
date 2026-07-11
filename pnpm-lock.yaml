@@ -50,8 +50,8 @@ importers:
         specifier: 2.0.0-rc.23
         version: 2.0.0-rc.23(@unhead/vue@1.11.20(vue@3.5.39(typescript@5.9.3)))(h3@1.15.11)(magicast@0.3.5)(rollup@4.62.2)(unhead@1.11.20)(vite@5.4.21(@types/node@26.1.1)(terser@5.49.0))(vue@3.5.39(typescript@5.9.3))
       '@nuxtjs/strapi':
-        specifier: ^1.12.0
-        version: 1.12.0(magicast@0.3.5)
+        specifier: ^2.2.0
+        version: 2.2.0(magicast@0.3.5)
       '@vercel/analytics':
         specifier: ^1.3.1
         version: 1.6.1(vue-router@4.6.4(vue@3.5.39(typescript@5.9.3)))(vue@3.5.39(typescript@5.9.3))
@@ -1384,8 +1384,8 @@ packages:
     resolution: {integrity: sha512-3ae7SBwMYQh8AKbznRbc1UORYNgi7ukAELJzCskAoKJgIr2ox8nIxMT/pvkpFWoKoTxC8bLINEbkfMvKVs2myg==}
     engines: {node: '>=18.0.0'}
 
-  '@nuxtjs/strapi@1.12.0':
-    resolution: {integrity: sha512-pysxYW5SPQaB6H7G72wO2qz4Rl7DakuPUthNweEvL3ERK5O3qMZ97mIm+Pdwvb3/H0ntFDJSjx08YRWjjuV7hg==}
+  '@nuxtjs/strapi@2.2.0':
+    resolution: {integrity: sha512-uLw8rLMEXq8yiru5uyzDBSc3dHY1ui6eOXQS75vDH8PG2MefNA6OOYAW32mvbPcR/2dTmBTx6nXZM9Uhk+zlyQ==}
 
   '@nuxtjs/stylelint-module@5.2.1':
     resolution: {integrity: sha512-ONcEZYelJH7+lUM3Q4sZ1olAsyKayOMbcuR1cDXsfPz4cqVO6WBPlDl7DkIlUjEW26MND7j9LfazcIHiOt19FA==}
@@ -4964,10 +4964,6 @@ packages:
     resolution: {integrity: sha512-RSn9F68PjH9HqtltsSnqYC1XXoWe9Bju5+213R98cNGttag9q9yAOTzdbsqvIa7aNm5WffBZFpWYr2aWrklWAw==}
     engines: {node: '>= 6'}
 
-  object-inspect@1.13.4:
-    resolution: {integrity: sha512-W67iLl4J2EXEGTbfeHCffrjDfitvLANg0UlX3wFUUSTx92KXRFegMHUVgSqE+wvhAbi4WqjGg9czysTV2Epbew==}
-    engines: {node: '>= 0.4'}
-
   obug@2.1.3:
     resolution: {integrity: sha512-9miFgM2OFba7hB+pRgvtV84pYTBaoTHohvmIgiRt6dRIzbwEOIaNaP+dIlGs2fNFoB0SeISs0Jz5WFVRid6Xyg==}
     engines: {node: '>=12.20.0'}
@@ -5494,10 +5490,6 @@ packages:
     resolution: {integrity: sha512-+Owyggi9IxT1ePKGafcI87ubSmxol6smwJ+RAHDQlx9+9cPwFWDiKFFCPuWhr9ignlGpZ9vDQLw67N4dcTVFEA==}
     engines: {node: '>=20'}
 
-  qs@6.15.3:
-    resolution: {integrity: sha512-O9gl3zCl5h5blw1KGUzQKhA5oUXSl8rwUIM5o0S3nCXMliSvy5Dzx7/DJcI+SwgICv+IneSZwhBh1oSyEHA71A==}
-    engines: {node: '>=0.6'}
-
   quansync@0.2.11:
     resolution: {integrity: sha512-AifT7QEbW9Nri4tAwR5M/uzpBuqfZf+zwaEM/QkzEjj7NBuFD2rBuy0K3dE+8wltbezDV7JMA0WfnCPYRSYbXA==}
 
@@ -5764,22 +5756,6 @@ packages:
 
   shell-quote@1.10.0:
     resolution: {integrity: sha512-w1aiOKwKuRgtwAReIIj89puqg+I7GvX4IbLrvmhXbzQsj1+Zwi4VO3+fa6ZF91TWSjIxoEkKnMeHcLEODK5ZXA==}
-    engines: {node: '>= 0.4'}
-
-  side-channel-list@1.0.1:
-    resolution: {integrity: sha512-mjn/0bi/oUURjc5Xl7IaWi/OJJJumuoJFQJfDDyO46+hBWsfaVM65TBHq2eoZBhzl9EchxOijpkbRC8SVBQU0w==}
-    engines: {node: '>= 0.4'}
-
-  side-channel-map@1.0.1:
-    resolution: {integrity: sha512-VCjCNfgMsby3tTdo02nbjtM/ewra6jPHmpThenkTYh8pG9ucZ/1P8So4u4FGBek/BjpOVsDCMoLA/iuBKIFXRA==}
-    engines: {node: '>= 0.4'}
-
-  side-channel-weakmap@1.0.2:
-    resolution: {integrity: sha512-WPS/HvHQTYnHisLo9McqBHOJk2FkHO/tlpvldyrnem4aeQp4hai3gythswg6p01oSoTl58rcpiFAjF2br2Ak2A==}
-    engines: {node: '>= 0.4'}
-
-  side-channel@1.1.1:
-    resolution: {integrity: sha512-6x6dK6zJdpTzF4sQeNYxwtvBzf6Eg4GtlesS94HOvTudUeyK2WXAaIfmDgsyslYrRBeFIlsi54AYsFGUuhmvrQ==}
     engines: {node: '>= 0.4'}
 
   siginfo@2.0.0:
@@ -8383,12 +8359,11 @@ snapshots:
       - vite
       - vue
 
-  '@nuxtjs/strapi@1.12.0(magicast@0.3.5)':
+  '@nuxtjs/strapi@2.2.0(magicast@0.3.5)':
     dependencies:
-      '@nuxt/kit': 3.21.8(magicast@0.3.5)
+      '@nuxt/kit': 4.4.8(magicast@0.3.5)
       defu: 6.1.7
       graphql: 16.14.2
-      qs: 6.15.3
       ufo: 1.6.4
     transitivePeerDependencies:
       - magicast
@@ -12406,8 +12381,6 @@ snapshots:
 
   object-hash@3.0.0: {}
 
-  object-inspect@1.13.4: {}
-
   obug@2.1.3: {}
 
   ofetch@1.5.1:
@@ -12908,11 +12881,6 @@ snapshots:
     dependencies:
       hookified: 2.2.0
 
-  qs@6.15.3:
-    dependencies:
-      es-define-property: 1.0.1
-      side-channel: 1.1.1
-
   quansync@0.2.11: {}
 
   queue-microtask@1.2.3: {}
@@ -13237,34 +13205,6 @@ snapshots:
   shebang-regex@3.0.0: {}
 
   shell-quote@1.10.0: {}
-
-  side-channel-list@1.0.1:
-    dependencies:
-      es-errors: 1.3.0
-      object-inspect: 1.13.4
-
-  side-channel-map@1.0.1:
-    dependencies:
-      call-bound: 1.0.4
-      es-errors: 1.3.0
-      get-intrinsic: 1.3.0
-      object-inspect: 1.13.4
-
-  side-channel-weakmap@1.0.2:
-    dependencies:
-      call-bound: 1.0.4
-      es-errors: 1.3.0
-      get-intrinsic: 1.3.0
-      object-inspect: 1.13.4
-      side-channel-map: 1.0.1
-
-  side-channel@1.1.1:
-    dependencies:
-      es-errors: 1.3.0
-      object-inspect: 1.13.4
-      side-channel-list: 1.0.1
-      side-channel-map: 1.0.1
-      side-channel-weakmap: 1.0.2
 
   siginfo@2.0.0: {}
 
