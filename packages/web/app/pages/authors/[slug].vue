@@ -1,17 +1,10 @@
 <script setup lang="ts">
 import type { AuthorAttributes } from '@/types/Author'
-
-defineI18nRoute({
-  paths: {
-    uk: '/authors/[slug]',
-    nl: '/auteurs/[slug]',
-  },
-})
+import { strings } from '@/constants/strings'
 
 const route = useRoute()
 const { fullPath, params } = route
 const { slug } = params
-const { t } = useI18n()
 
 const { data } = await useAsyncData(fullPath, async () => {
   const { find } = useStrapi()
@@ -25,12 +18,10 @@ const { data } = await useAsyncData(fullPath, async () => {
 if (!data.value) {
   throw createError({
     statusCode: 404,
-    statusMessage: t('error.404.statusMessage'),
-    message: t('error.404.message'),
+    statusMessage: strings.error.notFound.statusMessage,
+    message: strings.error.notFound.message,
   })
 }
-
-console.log(data.value)
 
 useSchemaOrg({
   '@type': 'ItemList',

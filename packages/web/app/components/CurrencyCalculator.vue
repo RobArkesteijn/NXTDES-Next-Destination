@@ -12,7 +12,6 @@ const props = defineProps({
 })
 
 const config = useRuntimeConfig()
-const i18n = useI18n()
 
 const calculatedAmount = ref<string>()
 
@@ -33,7 +32,7 @@ const currencies: Currency[] = [
   { currency: 'US Dollar', format: 'USD', icon: 'i-tabler-currency-pound' },
 ]
 
-const currencyOfReader = i18n.locale.value === 'nl' ? currencies[0] : currencies[1]
+const currencyOfReader = currencies[1]
 
 const state = reactive({
   amount: 1.0,

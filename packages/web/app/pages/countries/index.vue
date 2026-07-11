@@ -1,18 +1,11 @@
 <script setup lang="ts">
 import type { Strapi4ResponseMany } from '@nuxtjs/strapi'
 import type { CountriesAttributes } from '@/types/Countries'
-
-defineI18nRoute({
-  paths: {
-    uk: '/countries',
-    nl: '/landen',
-  },
-})
+import { strings } from '@/constants/strings'
 
 const route = useRoute()
 const { fullPath } = route
-const { t, locale } = useI18n()
-const config = useRuntimeConfig()
+const site = useSiteConfig()
 
 const { data } = await useAsyncData(fullPath, async () => {
   const { find } = useStrapi()
@@ -29,8 +22,8 @@ const { data } = await useAsyncData(fullPath, async () => {
 if (!data.value) {
   throw createError({
     statusCode: 500,
-    statusMessage: t('error.500.statusMessage'),
-    message: t('error.500.message'),
+    statusMessage: strings.error.serverError.statusMessage,
+    message: strings.error.serverError.message,
   })
 }
 
@@ -62,7 +55,7 @@ const listItemSchemas = alphabeticalContent.value.map((country, index) => {
     '@type': 'ListItem',
     'position': index + 1,
     'name': country.attributes.country,
-    'url': `${config.public.i18n.baseUrl}.app/${locale.value}/${t('countries.url')}/${country.attributes.country?.toLowerCase()}`,
+    'url': `${site.url}/countries/${country.attributes.country?.toLowerCase()}`,
   }
 })
 

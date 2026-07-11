@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import type { Strapi4ResponseMany } from '@nuxtjs/strapi'
 import type { BlogsAttributes } from '@/types/Blogs'
+import { strings } from '@/constants/strings'
 
 const route = useRoute()
 const { fullPath } = route
-const { t, locale } = useI18n()
-const config = useRuntimeConfig()
+const site = useSiteConfig()
 
 const { data } = await useAsyncData(fullPath, async () => {
   const { find } = useStrapi()
@@ -32,8 +32,8 @@ const sortedContent = content.sort((a, b) => {
 if (!data.value) {
   throw createError({
     statusCode: 500,
-    statusMessage: t('error.500.statusMessage'),
-    message: t('error.500.message'),
+    statusMessage: strings.error.serverError.statusMessage,
+    message: strings.error.serverError.message,
   })
 }
 
@@ -44,7 +44,7 @@ const listItemSchemas = sortedContent.map((blog, index) => {
     '@type': 'ListItem',
     'position': index + 1,
     'name': blog.attributes.title,
-    'url': `${config.public.i18n.baseUrl}/${locale.value}/${t('blogs.url')}/${blog.attributes.title?.split(' ').join('-').toLowerCase()}`,
+    'url': `${site.url}/blogs/${blog.attributes.title?.split(' ').join('-').toLowerCase()}`,
   }
 })
 
@@ -60,7 +60,7 @@ useSchemaOrg({
     <UBlogPost
       v-for="post in sortedContent"
       :key="`blogPost-${post.id}`"
-      :to="`/${$i18n.locale}/blogs/${post.attributes.title?.split(' ').join('-').toLowerCase()}`"
+      :to="`/blogs/${post.attributes.title?.split(' ').join('-').toLowerCase()}`"
       :ui="{
         wrapper: 'gap-y-0 rounded-lg ring-1 ring-copper-500 dark:ring-copper-300',
         // Error below is a Nuxt UI bug. Remove if this is no longer the case.

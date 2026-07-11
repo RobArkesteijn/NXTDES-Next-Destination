@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { FaqAttributes } from '@/types/Faq'
+import { strings } from '@/constants/strings'
 
 const route = useRoute()
-const { t } = useI18n()
 const { fullPath } = route
 
 const { data } = await useAsyncData(fullPath, async () => {
@@ -17,8 +17,8 @@ const { data } = await useAsyncData(fullPath, async () => {
 if (!data.value) {
   throw createError({
     statusCode: 500,
-    statusMessage: t('error.500.statusMessage'),
-    message: t('error.500.message'),
+    statusMessage: strings.error.serverError.statusMessage,
+    message: strings.error.serverError.message,
   })
 }
 

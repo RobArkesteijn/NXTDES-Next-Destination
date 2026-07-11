@@ -35,7 +35,7 @@ const backgroundStyles = (url: string | undefined) => {
           : ''
       "
       :style="backgroundStyles(item.attributes?.hero_image?.data.attributes.url ?? undefined)"
-      :to="`/${$i18n.locale}/${$t('countries.url')}/${item.attributes.country?.toLowerCase()}`"
+      :to="`/countries/${item.attributes.country?.toLowerCase()}`"
     >
       <div class="country-grid-display__cta">
         <h2 class="country-grid-display__title">

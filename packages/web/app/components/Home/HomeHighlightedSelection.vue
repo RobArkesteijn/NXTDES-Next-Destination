@@ -29,7 +29,7 @@ defineProps({
     :links="[
       {
         label: 'Explore Destinations',
-        to: `/${$i18n.locale}/${$t('countries.url')}`,
+        to: '/countries',
         color: 'boston-blue',
         trailingIcon: 'i-heroicons-arrow-right',
         size: 'lg',
@@ -45,7 +45,7 @@ defineProps({
       <SiteLink
         v-for="item in highlightedCountries"
         :key="`highlightedCountry-${item.id}`"
-        :to="`/${$i18n.locale}/${$t('countries.url')}/${item.country?.toLowerCase()}`"
+        :to="`/countries/${item.country?.toLowerCase()}`"
         class="home-highlighted-section__image-wrapper"
       >
         <NuxtImg

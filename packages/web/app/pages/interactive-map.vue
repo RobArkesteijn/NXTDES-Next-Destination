@@ -1,12 +1,3 @@
-<script setup lang="ts">
-defineI18nRoute({
-  paths: {
-    uk: '/interactive-map',
-    nl: '/interactieve-kaart',
-  },
-})
-</script>
-
 <template>
   <MapboxMap
     map-id="map-1"
