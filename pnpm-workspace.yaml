@@ -1,0 +1,11 @@
+packages:
+  - 'packages/*'
+  - 'apps/*'
+
+# Shared dependency versions, referenced with `catalog:` in each package's
+# package.json. Grow this as more deps become shared across packages
+# (Phase 2 adds Sanity, Phase 3 the design system + Storybook).
+catalog:
+  eslint: ^9.11.1
+  typescript: ^5.6.3
+  vitest: ^2.1.1

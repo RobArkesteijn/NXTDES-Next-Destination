@@ -106,7 +106,6 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/test-utils/module',
     '@nuxt/ui',
-    '@nuxtjs/fontaine',
     '@nuxtjs/i18n',
     '@nuxtjs/seo',
     '@nuxtjs/strapi',

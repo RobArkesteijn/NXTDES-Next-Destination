@@ -27,3 +27,6 @@ logs
 
 # Stylelint cache
 .stylelintcache
+
+# Turborepo
+.turbo
