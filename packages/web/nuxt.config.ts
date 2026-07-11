@@ -58,30 +58,6 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
 
-  i18n: {
-    baseUrl: 'nxtdes-next-destination.vercel.app',
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: 'i18n_redirected',
-      redirectOn: 'root',
-    },
-    defaultLocale: 'en',
-    langDir: 'lang/',
-    locales: [
-      {
-        code: 'en',
-        language: 'en-GB',
-        file: 'en-GB.ts',
-      },
-      {
-        code: 'nl',
-        language: 'nl-NL',
-        file: 'nl-NL.ts',
-      },
-    ],
-    strategy: 'prefix',
-  },
-
   image: {
     dir: 'assets/images',
     formats: ['webp'],
@@ -107,7 +83,6 @@ export default defineNuxtConfig({
     '@nuxt/test-utils/module',
     '@nuxt/ui',
     '@nuxtjs/fontaine',
-    '@nuxtjs/i18n',
     '@nuxtjs/seo',
     '@nuxtjs/strapi',
     '@nuxtjs/stylelint-module',
@@ -141,8 +116,7 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/en/**': { isr: true },
-    '/nl/**': { isr: true },
+    '/**': { isr: true },
   },
 
   runtimeConfig: {
@@ -162,6 +136,12 @@ export default defineNuxtConfig({
       url: 'https://nxtdes-next-destination.vercel.app',
       logo: '/favicon-black.svg',
     },
+  },
+
+  site: {
+    url: 'https://nxtdes-next-destination.vercel.app',
+    name: 'Next Destination',
+    description: 'Step into the world of your Next Destination',
   },
 
   svgo: {

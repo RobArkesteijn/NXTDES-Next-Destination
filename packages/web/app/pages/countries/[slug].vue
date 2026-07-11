@@ -2,6 +2,7 @@
 import { gsap } from 'gsap'
 import type { Strapi4ResponseMany } from '@nuxtjs/strapi'
 import type { CountriesAttributes } from '@/types/Countries'
+import { strings } from '@/constants/strings'
 
 definePageMeta({
   pageTransition: {
@@ -32,15 +33,7 @@ definePageMeta({
   },
 })
 
-defineI18nRoute({
-  paths: {
-    uk: '/countries/[slug]',
-    nl: '/landen/[slug]',
-  },
-})
-
 const route = useRoute()
-const { t } = useI18n()
 const { fullPath } = route
 const { slug } = route.params
 const { isDesktop } = useUIHelper()
@@ -73,8 +66,8 @@ const content = computed(
 if (!content.value) {
   throw createError({
     statusCode: 404,
-    statusMessage: t('error.404.statusMessage'),
-    message: t('error.404.message'),
+    statusMessage: strings.error.notFound.statusMessage,
+    message: strings.error.notFound.message,
   })
 }
 

@@ -1,17 +1,10 @@
 <script setup lang="ts">
 import type { AuthorAttributes } from '@/types/Author'
-
-defineI18nRoute({
-  paths: {
-    uk: '/authors',
-    nl: '/auteurs',
-  },
-})
+import { strings } from '@/constants/strings'
 
 const route = useRoute()
 const { fullPath } = route
-const { t, locale } = useI18n()
-const config = useRuntimeConfig()
+const site = useSiteConfig()
 
 const { data } = await useAsyncData(fullPath, async () => {
   const { find } = useStrapi()
@@ -27,8 +20,8 @@ const { data } = await useAsyncData(fullPath, async () => {
 if (!data.value) {
   throw createError({
     statusCode: 500,
-    statusMessage: t('error.500.statusMessage'),
-    message: t('error.500.message'),
+    statusMessage: strings.error.serverError.statusMessage,
+    message: strings.error.serverError.message,
   })
 }
 
@@ -39,7 +32,7 @@ const listItemSchemas = authors.map((author, index) => {
     '@type': 'ListItem',
     'position': index + 1,
     'name': author.attributes.name,
-    'url': `${config.public.i18n.baseUrl}/${locale.value}/${t('authors.url')}/${author.attributes.name?.split(' ').join('-').toLowerCase()}`,
+    'url': `${site.url}/authors/${author.attributes.name?.split(' ').join('-').toLowerCase()}`,
   }
 })
 
@@ -72,7 +65,7 @@ useSchemaOrg({
       :links="[
         {
           label: 'Check out author',
-          to: `/${locale}/${t('authors.url')}/${author.attributes.name?.split(' ').join('-').toLowerCase()}`,
+          to: `/authors/${author.attributes.name?.split(' ').join('-').toLowerCase()}`,
           color: 'boston-blue',
           trailingIcon: 'i-heroicons-arrow-right',
           size: 'lg',

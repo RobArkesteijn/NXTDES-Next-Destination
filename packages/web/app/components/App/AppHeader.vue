@@ -1,11 +1,9 @@
 <script lang="ts" setup>
 import type { Strapi4ResponseMany } from '@nuxtjs/strapi'
 import type CountriesNavigationAttributes from '@/types/Navigation'
+import { strings } from '@/constants/strings'
 
-const localePath = useLocalePath()
 const route = useRoute()
-const i18n = useI18n()
-const { t } = useI18n()
 
 const { data: countriesData } = await useAsyncData('navigation', async () => {
   const { find } = useStrapi()
@@ -19,49 +17,47 @@ const { data: countriesData } = await useAsyncData('navigation', async () => {
   return response
 })
 
-const currentLocale = i18n.locale.value
-
 const countriesChildren = (countriesData.value as Strapi4ResponseMany<CountriesNavigationAttributes>).data.map((country) => {
   const countryName = country.attributes.country ?? ''
 
   return {
     label: countryName,
-    to: `/${currentLocale}/${t('countries.url')}/${countryName.toLowerCase()}`,
+    to: `/countries/${countryName.toLowerCase()}`,
     icon: `i-twemoji-flag-${countryName.toLowerCase()}`,
   }
 }).sort((a, b) => a.label.localeCompare(b.label))
 
 const links = computed(() => [
   {
-    label: t('authors.title'),
+    label: strings.nav.authors,
     icon: 'i-material-symbols-article',
-    to: `/${currentLocale}/${t('authors.url')}`,
-    active: route.path.startsWith(`/${t('authors.url')}`),
+    to: '/authors',
+    active: route.path.startsWith('/authors'),
   },
   {
-    label: t('blogs.title'),
+    label: strings.nav.blogs,
     icon: 'i-material-symbols-article',
-    to: `/${currentLocale}/${t('blogs.url')}`,
-    active: route.path.startsWith(`/${t('blogs.url')}`),
+    to: '/blogs',
+    active: route.path.startsWith('/blogs'),
   },
   {
-    label: t('contact.title'),
+    label: strings.nav.contact,
     icon: 'i-material-symbols-article',
-    to: `/${currentLocale}/${t('contact.url')}`,
-    active: route.path.startsWith(`/${t('contact.url')}`),
+    to: '/contact',
+    active: route.path.startsWith('/contact'),
   },
   {
-    label: t('countries.title'),
+    label: strings.nav.countries,
     icon: 'i-material-symbols-globe',
-    to: `/${currentLocale}/${t('countries.url')}`,
-    active: route.path.startsWith(`/${t('countries.url')}`),
+    to: '/countries',
+    active: route.path.startsWith('/countries'),
     children: countriesChildren,
   },
   {
-    label: t('interactive_map.title'),
+    label: strings.nav.interactiveMap,
     icon: 'i-material-symbols-map',
-    to: `/${currentLocale}/${t('interactive_map.url')}`,
-    active: route.path.startsWith(`/${t('interactive_map.url')}`),
+    to: '/interactive-map',
+    active: route.path.startsWith('/interactive-map'),
   },
 ])
 </script>
@@ -69,7 +65,7 @@ const links = computed(() => [
 <template>
   <UHeader
     class="header"
-    :to="localePath('/')"
+    to="/"
   >
     <template #logo>
       <SvgoLogo
@@ -96,7 +92,6 @@ const links = computed(() => [
             }"
           />
         </ClientOnly>
-        <LanguageSwitcher />
       </div>
     </template>
 

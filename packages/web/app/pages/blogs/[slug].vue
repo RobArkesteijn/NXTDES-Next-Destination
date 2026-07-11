@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import type { Strapi4ResponseMany } from '@nuxtjs/strapi'
 import type { BlogsAttributes } from '@/types/Blogs'
+import { strings } from '@/constants/strings'
 
 const route = useRoute()
 const { fullPath } = route
 const { slug } = route.params
-const { t } = useI18n()
 
 const { data } = await useAsyncData(fullPath, async () => {
   const { find } = useStrapi()
@@ -29,8 +29,8 @@ const content = computed(
 if (!content.value) {
   throw createError({
     statusCode: 404,
-    statusMessage: t('error.404.statusMessage'),
-    message: t('error.404.message'),
+    statusMessage: strings.error.notFound.statusMessage,
+    message: strings.error.notFound.message,
   })
 }
 

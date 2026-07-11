@@ -1,30 +1,27 @@
 <script setup lang="ts">
-const { t } = useI18n()
-const i18n = useI18n()
-
-const currentLocale = i18n.locale.value
+import { strings } from '@/constants/strings'
 
 const links = computed(() => {
   return [{
-    label: t('about_us.title'),
+    label: strings.nav.aboutUs,
     children: [{
-      label: t('faq.title'),
-      to: `/${currentLocale}/faq`,
+      label: strings.nav.faq,
+      to: '/faq',
     }, {
-      label: t('the_story.title'),
-      to: `/${currentLocale}/${t('the_story.url')}`,
+      label: strings.nav.theStory,
+      to: '/the-story',
     }, {
-      label: t('the_goal.title'),
-      to: `/${currentLocale}/${t('the_goal.url')}`,
+      label: strings.nav.theGoal,
+      to: '/the-goal',
     }],
   }, {
-    label: t('legal_info.title'),
+    label: strings.nav.legalInfo,
     children: [{
-      label: t('privacy_statement.title'),
-      to: `/${currentLocale}/${t('privacy_statement.url')}`,
+      label: strings.nav.privacyStatement,
+      to: '/privacy-statement',
     }, {
-      label: t('terms_and_conditions.title'),
-      to: `/${currentLocale}/${t('terms_and_conditions.url')}`,
+      label: strings.nav.termsAndConditions,
+      to: '/terms-and-conditions',
     }],
   }]
 })

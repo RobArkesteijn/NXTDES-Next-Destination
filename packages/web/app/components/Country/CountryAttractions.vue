@@ -29,7 +29,7 @@ defineProps({
       :links="[
         {
           label: 'Explore Attraction',
-          to: `/${$i18n.locale}/${$t('countries.url')}/${slug}/${attractions[index]?.attraction?.toLowerCase().split(' ').join('-')}`,
+          to: `/countries/${slug}/${attractions[index]?.attraction?.toLowerCase().split(' ').join('-')}`,
           color: 'boston-blue',
           trailingIcon: 'i-heroicons-arrow-right',
           size: 'lg',

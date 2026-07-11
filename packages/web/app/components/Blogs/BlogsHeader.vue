@@ -28,7 +28,7 @@ const ui = {
       {
         name: data.author.data.attributes.name ?? '',
         avatar: { src: data.author.data.attributes.avatar?.data.attributes.url, size: 'md' },
-        to: `/${$i18n.locale}/authors/${data.author.data.attributes.name?.split(' ').join('-').toLowerCase()}`,
+        to: `/authors/${data.author.data.attributes.name?.split(' ').join('-').toLowerCase()}`,
       },
     ]"
     :badge="{ label: data.label ?? undefined }"

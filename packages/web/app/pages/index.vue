@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { HomeAttributes } from '@/types/Home'
+import { strings } from '@/constants/strings'
 
 const route = useRoute()
 const { fullPath } = route
-const { t } = useI18n()
 
 const { data } = await useAsyncData(fullPath, async () => {
   const { findOne } = useStrapi()
@@ -40,8 +40,8 @@ const highlightedCountries = computed(
 if (!data.value) {
   throw createError({
     statusCode: 500,
-    statusMessage: t('error.500.statusMessage'),
-    message: t('error.500.message'),
+    statusMessage: strings.error.serverError.statusMessage,
+    message: strings.error.serverError.message,
   })
 }
 
@@ -56,7 +56,7 @@ definePageMeta({
 })
 
 useSeoMeta({
-  title: t('home.meta_title'),
+  title: strings.home.metaTitle,
 })
 </script>
 
